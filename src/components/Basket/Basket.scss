@@ -1,0 +1,38 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+
+// $color-main
+// $color-white   @include flex(center, center);
+
+.basket-content {
+  position: absolute;
+  padding: 48px 40px;
+  border-radius: 0;
+  top: 128px;
+  margin: 0;
+  right: 95px;
+  left: auto;
+  width: 405px;
+  background: $color-white;
+  box-shadow: 0 4px 30px $color-grey;
+
+  &::active {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+  
+  & .close {
+    color: $color-grey-dark;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+      color: $color-main;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
