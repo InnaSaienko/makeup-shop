@@ -1,0 +1,30 @@
+@import "./assets/styles/variables";
+@import "./assets/styles/mixins";
+
+.App {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+.button {
+  @include flex(center, center);  
+  height: auto;
+  min-height: 48px;
+  cursor: pointer;
+  outline: 0;
+  user-select: none;
+  font-size: 14px;
+  line-height: 24px;
+  white-space: nowrap;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  color: $color-white;
+  background: $color-main;
+  font-size: 16px;
+  padding-right: 83px;
+  padding-left: 83px;
+}
