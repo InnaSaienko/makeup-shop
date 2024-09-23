@@ -1,0 +1,86 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+// $color-main
+// $color-white   @include flex(center, center);
+.catalog-grid__cell {
+  padding: 3%;
+  background-color: $color-white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.card {
+  margin: 0 2px 24px 2px;
+  background: $color-grey;
+  position: relative;
+
+  &__badge {
+    position: absolute;
+
+    & .card__label {
+      @include flex(center, center);
+      margin: 0 0 4px 0;
+      padding: 5px 6px 5px 8px;
+      color: $color-white;
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: $color-main;
+      color: $color-white;
+    }
+  }
+  &-icons-wrapper {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 2;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: all 0.2s ease-in-out;
+    margin: 0 0 8px 0;
+    & .to-favorite {
+      background: $color-white url("../../assets/images/favorite.svg") no-repeat
+        center 11px / 16px 16px;
+      &:hover {
+        background: $color-white url("../../assets/images/favorite-hover.svg")
+          no-repeat center 11px / 16px 16px;
+      }
+    }
+    & .to-quick-buy {
+    }
+  }
+  &__image {
+    position: relative;
+    @include flex(center, center);
+    height: 252px;
+    padding: 40px 32px;
+    font-size: 0;
+
+    @media (max-width: 1023px) {
+      height: 176px;
+      padding: 35px 25px;
+      transition: none;
+    }
+
+    &__link {
+      display: flex;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  &__content {
+    padding: 15px;
+  }
+  &__title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  &__description {
+    color: $color-main;
+    font-size: 1rem;
+  }
+}
