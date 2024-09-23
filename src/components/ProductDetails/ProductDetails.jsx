@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Basket } from "../Basket/Basket";
 import "./ProductDetails.scss";
 
 function ProductDetails() {
@@ -19,10 +18,10 @@ function ProductDetails() {
   };
   
   const addBasketItems = () => {
-    // const selectedItem = {
-    //   ...product, 
-    //   selectedColor: selectedColor,
-    // };
+    const selectedItem = {
+      ...product, 
+      selectedColor: selectedColor,
+    };
     
   };
 
@@ -97,10 +96,9 @@ function ProductDetails() {
           </div>
         )}
       </div>
-      <div class="product-item__button">
-        <div class="button buy" onClick={addBasketItems}>Buy</div>
+      <div className="product-item__button">
+        <button className="button buy" onClick={addBasketItems}>Buy</button>
       </div>
-      {/* <Basket setBasketItem={selectedItem} /> */}
     </div>
   );
 }

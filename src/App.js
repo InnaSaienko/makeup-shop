@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.scss"
 import { Routes, Route } from "react-router-dom";
+import { BasketProvider } from "./context/BasketContext/BasketContext";
 import { HeaderTop } from "./layout/HeaderTop/HeaderTop";
 import { Navigation } from "./layout/Navigation/Navigation";
 import { Footer } from "./layout/Footer/Footer";
@@ -15,12 +16,15 @@ function App() {
     <>
       <div className="main-wrap">
         <Navigation />
-        <HeaderTop />        
+        <BasketProvider>
+          <HeaderTop />        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products/:productType" element={<ProductsList />} />
           <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
+        </BasketProvider>
+        
         <Footer />
       </div>
     </>
