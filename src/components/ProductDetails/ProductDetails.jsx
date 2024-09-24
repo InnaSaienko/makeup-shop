@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useBasket } from "../../context/BasketContext/BasketContext";
+import { formatId } from "../../utilities/formatId";
 import "./ProductDetails.scss";
 
 function ProductDetails() {
@@ -7,6 +9,7 @@ function ProductDetails() {
   const { product } = location.state;
   const [selectedColor, setSelectedColor] = useState(product.product_colors[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { addItem } = useBasket();
  
   if (!product) {
     return <div>Product not found</div>;
@@ -78,7 +81,6 @@ function ProductDetails() {
           {product.price} {product.currency}
         </div>
       </div>
-
       <div className="select">
         <label
           className="select-product-variant" data-id={product.id}
@@ -97,7 +99,8 @@ function ProductDetails() {
         )}
       </div>
       <div className="product-item__button">
-        <button className="button buy" onClick={addBasketItems}>Buy</button>
+        <button className="button buy"
+        onClick={() => addItem(formatId(product.id, selectedColor.hex_value))}>Buy</button>
       </div>
     </div>
   );

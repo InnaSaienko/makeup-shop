@@ -14,10 +14,10 @@ function Products() {
   return (
     <ul className="catalog-grid">
       
-      {data.length ? (
-        data.map((product) => <ProductCard key={product.id} {...product} />)
+      {loading ? (
+        <Preloader />
       ) : (
-       <Preloader />
+        data.map((product) => <ProductCard key={product.id} {...product} />)
       )}
     </ul>
    

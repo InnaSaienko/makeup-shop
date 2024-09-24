@@ -10,7 +10,7 @@
 
   &__image {
     @include flex(center, center);
-    max-width: 40%;
+    max-width: 300px;
     height: auto;
     object-fit: contain;
     & .img {
