@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import { useState } from "react";
+import Basket from "../../components/Basket/Basket";
 
 const BasketContext = createContext({});
 
@@ -9,6 +10,10 @@ export function useBasket() {
 
 export function BasketProvider({ children }) {
   const [basketItems, setBasketItems] = useState([]);
+  const [isOpen, setIsOpen] = useState(false)
+
+  const openBasket = () => setIsOpen(true);
+  const closeBasket = () => setIsOpen(false)
 
   function getItemQuantity() {
     if(basketItems.length === 0) {
@@ -34,8 +39,10 @@ export function BasketProvider({ children }) {
   }
 
   return (
-    <BasketContext.Provider value={{ getItemQuantity, addItem }}>
+    <BasketContext.Provider value={{ basketItems, getItemQuantity, addItem, openBasket,
+      closeBasket, }}>
       {children}
+      <Basket isOpen={isOpen} />
     </BasketContext.Provider>
   );
 }

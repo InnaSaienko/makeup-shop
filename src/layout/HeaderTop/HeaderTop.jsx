@@ -7,7 +7,7 @@ import "./HeaderTop.scss";
 
 function HeaderTop() {
   const location = useLocation();
-  const { getItemQuantity } = useBasket();
+  const { openBasket, getItemQuantity } = useBasket();
 
   return (
     <header className="header">
@@ -24,7 +24,7 @@ function HeaderTop() {
           />
         </div>
         <div className="header-right-row">
-          <button className="basket">
+          <button className="basket" onClick={openBasket}>
             <span className="basket-quant">{getItemQuantity()}</span>
           </button>
         </div>

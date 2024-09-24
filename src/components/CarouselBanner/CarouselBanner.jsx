@@ -28,7 +28,6 @@ export default function CarouselBanner(props) {
   return (
     <Slider {...settings}>
       {topFive.map((item) => {
-        console.log(item);
         return (
           <div
             className="slide-item"
@@ -38,7 +37,7 @@ export default function CarouselBanner(props) {
             <div className="slide__content">
               <div className="slide__left">
                 <div className="slide__label hit">
-                  {item.brand ? item.brand.toUpperCase() : ""}
+                  {item.brand ? item.brand.toUpperCase() : "COSMETICS"}
                 </div>
                 <button className="button">Buy Now</button>
                 <div className="slide__product-info">
