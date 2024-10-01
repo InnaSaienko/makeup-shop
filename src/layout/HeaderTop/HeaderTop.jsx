@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useBasket } from "../../context/BasketContext/BasketContext";
-import { Authorization } from "../../components/Authorization/Authorization";
+// import { Authorization } from "../../components/Authorization/Authorization";
 
 import { useLocation, NavLink } from "react-router-dom";
 import "./HeaderTop.scss";
 
 function HeaderTop() {
-  const location = useLocation();
-  const { openBasket, getItemQuantity } = useBasket();
+  // const location = useLocation();
+  const { openBasket, getProductQuantity } = useBasket();
 
   return (
     <header className="header">
@@ -24,8 +24,8 @@ function HeaderTop() {
           />
         </div>
         <div className="header-right-row">
-          <button className="basket" onClick={openBasket}>
-            <span className="basket-quant">{getItemQuantity()}</span>
+          <button className="basket-widget" onClick={openBasket}>
+            <span className="basket-quant">{getProductQuantity()}</span>
           </button>
         </div>
       </div>

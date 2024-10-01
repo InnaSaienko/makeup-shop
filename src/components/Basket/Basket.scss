@@ -4,41 +4,131 @@
 // $color-main
 // $color-white   @include flex(center, center);
 
-@import "../../assets/styles/variables";
-@import "../../assets/styles/mixins";
-
-// $color-main
-// $color-white   @include flex(center, center);
-
-.basket-content {
+.basket {
   position: absolute;
-  padding: 48px 40px;
+  max-height: calc(100vh - 165px);
+  padding: 30px 24px 0 24px;
   border-radius: 0;
   top: 128px;
   margin: 0;
   right: 95px;
   left: auto;
-  width: 405px;
   background: $color-white;
   box-shadow: 0 4px 30px $color-grey;
 
+  &-header {
+    margin: 0;
+    font-size: 26px;
+    line-height: 40px;
+    border-bottom: 1px solid $color-grey-light;
+    text-align: left;
+    padding: 0 0 16px 24px;
+    font-weight: 500;
+  }
   &::active {
     visibility: visible;
     opacity: 1;
     display: block;
   }
-  
+
   & .close {
     color: $color-grey-dark;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding-left: 20px;
 
     &:hover,
     &:focus {
       color: $color-main;
       text-decoration: none;
       cursor: pointer;
+    }
+  }
+  & .product-list {
+    &__item {
+      @include flex(space-between, center);
+    }
+
+    &__image {
+      width: 86px;
+    height: 96px;
+    margin: 0 32px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    }
+
+    &__count {
+      @include flex(space-between, center);
+      gap: 1rem;
+      margin: 0;
+      padding: 0 0 0 16px;
+      height: 40px;
+
+      & input {
+        font-size: 14px;
+        width: 31px;
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        vertical-align: top;
+        display: inline-block;
+        border: none;
+      }
+
+      & .product__button-decrease,
+      & .product__button-increase {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 1px solid $color-grey-light;        
+        overflow: hidden;
+        text-indent: -3000px;
+        color: transparent;
+        vertical-align: top;
+        cursor: pointer;
+        background-color: transparent;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          border-top: 1px solid #212121;
+          width: 19px;
+          margin-left: -8px;
+          margin-top: -0.5px;
+        }
+        @media (max-width: 1200px) {
+          width: 32px;
+          height: 32px;
+        }
+      }
+      & .product__button-increase::after {
+        content: '';
+        position: absolute;
+        height: 19px;
+        border-left: 1px solid $color-main;
+        top: 50%;
+        left: 50%;
+        margin-top: -9.5px;
+        margin-left: -.5px;
+      }
+      
+      & .product__button-remove {
+        background: url("../../assets/images/remove.svg"), no-repeat, center;
+        width: 16px;
+        height: 16px;
+      }
+      
     }
   }
 }
