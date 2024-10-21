@@ -1,6 +1,7 @@
 import React from "react";
-import "./App.scss"
+import "./App.scss";
 import { Routes, Route } from "react-router-dom";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary"
 import { BasketProvider } from "./context/BasketContext/BasketContext";
 import { HeaderTop } from "./layout/HeaderTop/HeaderTop";
 import { Navigation } from "./layout/Navigation/Navigation";
@@ -9,23 +10,22 @@ import { Home } from "./pages/Home";
 import ProductsList from "./components/ProductsList/ProductsList";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 
-
 function App() {
-    
   return (
     <>
       <div className="main-wrap">
-        <Navigation />
-        <BasketProvider>
-          <HeaderTop />        
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products/:productType" element={<ProductsList />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-        </Routes>
-        </BasketProvider>
-        
+      <ErrorBoundary>
+          <Navigation />
+          <BasketProvider>
+            <HeaderTop />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products/:productType" element={<ProductsList />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+            </Routes>
+          </BasketProvider>
         <Footer />
+        </ErrorBoundary>
       </div>
     </>
   );

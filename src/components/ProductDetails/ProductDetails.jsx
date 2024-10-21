@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useBasket } from "../../context/BasketContext/BasketContext";
-import { formatId } from "../../utilities/formatId";
 import "./ProductDetails.scss";
 
 function ProductDetails() {
@@ -9,7 +8,7 @@ function ProductDetails() {
   const { product } = location.state;
   const [selectedColor, setSelectedColor] = useState(product.product_colors[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { addItem } = useBasket();
+  const { addProduct } = useBasket();
  
   if (!product) {
     return <div>Product not found</div>;
@@ -20,13 +19,13 @@ function ProductDetails() {
     setIsDropdownOpen(false); // Close dropdown after selecting a color
   };
   
-  const addBasketItems = () => {
-    const selectedItem = {
-      ...product, 
-      selectedColor: selectedColor,
-    };
+  // const addBasketItems = () => {
+  //   const selectedItem = {
+  //     ...product, 
+  //     selectedColor: selectedColor,
+  //   };
     
-  };
+  // };
 
   const renderStars = (rating) => {
     if (rating === null) {
@@ -100,7 +99,7 @@ function ProductDetails() {
       </div>
       <div className="product-item__button">
         <button className="button buy"
-        onClick={() => addItem(formatId(product.id, selectedColor.hex_value))}>Buy</button>
+        onClick={() => addProduct(product.id, selectedColor.hex_value, product.product_type)}>Buy</button>
       </div>
     </div>
   );

@@ -1,20 +1,28 @@
 import React from "react";
 import { useBasket } from "../../context/BasketContext/BasketContext";
-import { unFormatId } from "../../utilities/unFormatId";
+import BasketCard from "../../components/BasketCard/BasketCard"
+import { Preloader } from "../Preloader/Preloader";
 import "./Basket.scss";
 
 function Basket({ isOpen }) {
   const {
     closeBasket,
-    basketItems,
-    getUniqueProductQuantity,
-    addItem,
-    decreaseQuantity,
-    removeFromBasket,
+    basketProductsContext
   } = useBasket();
+ 
   if (!isOpen) {
     return null;
   }
+
+  // const productsByType = basketProductsContext.reduce((acc, item) => {
+  //      const { product_type } = item;
+  
+  //      if (!acc[product_type]) {
+  //        acc[product_type] = [];
+  //      }
+  //      acc[product_type].push(item);
+  //      return acc;
+  // }, {});
 
   return (
     <div className="basket">
@@ -24,57 +32,9 @@ function Basket({ isOpen }) {
           &times;
         </span>
       </div>
-
-      <ul className="product-list">
-        {basketItems.map((product, index) => (
-          <li
-            key={product.id}
-            className="product-list__item"
-            data-id={product.id}
-          >
-            <div id={product.id} className="product-list__image">
-              <img
-                className="img"
-                loading="lazy"
-                src={product.id}
-                alt={product.name}
-              />
-            </div>
-            {product.id}
-            <div className="product-list__count">
-              <div
-                className="product__button-decrease"
-                onClick={() => {
-                  decreaseQuantity(product.id);
-                }}
-              >
-                -
-              </div>
-              <input
-                key={index}
-                type="text"
-                name="count[]"
-                value={getUniqueProductQuantity(product.id)}
-                readOnly
-              />
-              <div
-                className="product__button-increase"
-                onClick={() => {
-                  addItem(product.id);
-                }}
-              >
-                +
-              </div>
-              <div className="product__price">Price</div>
-              <div
-                className="product__button-remove"
-                onClick={() => {
-                  removeFromBasket(product.id);
-                }}
-              ></div>
-            </div>
-          </li>
-        ))}
+      <ul className="product-list">        
+        {basketProductsContext.map((product) => <BasketCard key={`${product.id}_${product.selectedColor ? product.selectedColor : 'default'}`} 
+    {...product}  />)}        
       </ul>
     </div>
   );

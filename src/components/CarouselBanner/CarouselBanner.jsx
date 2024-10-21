@@ -8,13 +8,11 @@ import "./CarouselBanner.scss";
 export default function CarouselBanner(props) {
   const { data = [] } = props;
   const navigate = useNavigate();
-  const topFive = data.slice(0, 5);
-
+  
   const settings = {
     dots: true,
     infinite: true,
     autoplay: false,
-
     // autoplaySpeed: 5000,
     arrows: false,
     slidesToShow: 1,
@@ -27,7 +25,7 @@ export default function CarouselBanner(props) {
 
   return (
     <Slider {...settings}>
-      {topFive.map((item) => {
+      {data.map((item) => {
         return (
           <div
             className="slide-item"

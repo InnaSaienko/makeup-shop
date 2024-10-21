@@ -73,6 +73,10 @@
         background: url(../../assets/images/cart.svg) no-repeat center center / 24px
           24px;
         border: none;
+        &:hover {
+          fill: $color-brand;
+        }
+
         &-quant {
           position: absolute;
           right: 5px;

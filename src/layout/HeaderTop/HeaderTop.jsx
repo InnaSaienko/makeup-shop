@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useBasket } from "../../context/BasketContext/BasketContext";
 // import { Authorization } from "../../components/Authorization/Authorization";
 
-import { useLocation, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./HeaderTop.scss";
 
 function HeaderTop() {
-  // const location = useLocation();
   const { openBasket, getProductQuantity } = useBasket();
 
   return (
