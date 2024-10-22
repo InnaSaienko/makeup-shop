@@ -34,17 +34,17 @@ export function BasketProvider({ children }) {
     return quantity;
   }
 
-  function getUniqueProductQuantity(id) {
-    const product = basketProductsContext.find((item) => item.id === id);
+  function getUniqueProductQuantity(id, selectedColor) {
+    const product = basketProductsContext.find((item) => (item.id === id && item.selectedColor === selectedColor));
     return product ? product.quantity : 0;
   }
 
   function addProduct(id, selectedColor, product_type) {
-    const item = basketProductsContext.find((item) => item.id === id && item.selectedColor === selectedColor);
+    const item = basketProductsContext.find((item) => (item.id === id && item.selectedColor === selectedColor));
 
     if (item !== undefined) {
       const item = basketProductsContext.map((item) =>
-        item.id === id && item.selectedColor === selectedColor
+        (item.id === id && item.selectedColor === selectedColor)
           ? { ...item, selectedColor: selectedColor, product_type: product_type, quantity: item.quantity + 1 }
           : item
       );
@@ -79,7 +79,7 @@ export function BasketProvider({ children }) {
 
   function removeFromBasket(id, selectedColor) {
     setBasketProductsContext((basketProductsContext) => {
-      return basketProductsContext.filter((item) => item.id !== id && item.selectedColor === selectedColor);
+      return basketProductsContext.filter((item) => !(item.id === id && item.selectedColor === selectedColor));
     });
   }
 

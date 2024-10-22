@@ -1,8 +1,14 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
-// $color-main
-// $color-white   @include flex(center, center);
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 .basket {
   position: fixed; 
@@ -131,5 +137,32 @@
         height: 16px;
       }
     }
+  }
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+  animation: fadeIn 0.5s forwards;
+  opacity: 0;
+}
+
+.empty-basket {
+  text-align: center;
+  padding: 40px 0;
+  
+  img {
+    max-width: 150px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 18px;
+    color: $color-grey-dark;
   }
 }
