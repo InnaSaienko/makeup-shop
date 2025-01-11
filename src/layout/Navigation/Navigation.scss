@@ -3,14 +3,17 @@
 
 .menu {
   @include flex(space-around, center);
-  &.menu-list {
+  flex: 0 0 auto;
+  
+  & .menu-list {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin: 1rem 0;
   
     &__item {
       position: relative;
       display: inline-block;
+      margin: 0 2rem;
   
       &:hover .menu-list__link__category__content {
         display: block;
@@ -23,9 +26,6 @@
       color: $color-main;
       cursor: pointer;
   
-      &:hover {
-        color: $color-brand;
-      }
       &__content {
         display: none;
         position: absolute;
@@ -34,53 +34,8 @@
         padding: 10px;
         z-index: 1;
         min-width: 200px;
-        & li a {
-          color: $color-main;
-          &:hover {
-            color: $color-brand;
-          }
-        }
       }
     }
   }
 }
-.menu-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
 
-  &__item {
-    position: relative;
-    display: inline-block;
-
-    &:hover .menu-list__link__category__content {
-      display: block;
-    }
-  }
-
-  &__link__category {
-    padding: 10px;
-    display: inline-block;
-    color: $color-main;
-    cursor: pointer;
-
-    &:hover {
-      color: $color-brand;
-    }
-    &__content {
-      display: none;
-      position: absolute;
-      color: $color-main;
-      background-color: $color-white;
-      padding: 10px;
-      z-index: 1;
-      min-width: 200px;
-      & li a {
-        color: $color-main;
-        &:hover {
-          color: $color-brand;
-        }
-      }
-    }
-  }
-}

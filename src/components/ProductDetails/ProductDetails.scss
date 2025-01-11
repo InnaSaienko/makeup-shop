@@ -4,30 +4,42 @@
 // $color-main
 // $color-white   @include flex(center, center);
 
+.content,
 .product-item {
-  @include flex(center, center, column);
-  margin: 10px 48px;
+  // flex: 1 1 0;
+  // @include flex(center, center,  column);
+  // width: 100%;
+  // overflow-y: hidden;
+  
+  .main {
+    // width: 100%;
+    // position: relative;
+  }
 
   &__image {
     @include flex(center, center);
     max-width: 300px;
     height: auto;
     object-fit: contain;
+
     & .img {
       width: 100%;
       height: auto;
     }
   }
+
   &__info {
     text-align: center;
-    & .title-2 {
-    }
+
+    & .title-2 {}
   }
+
   &__rating {
     & .star-list {
       @include flex(center, center);
       gap: 1%;
       margin-bottom: 10px;
+
       & .no-rating {
         background: $color-grey;
       }
@@ -61,22 +73,23 @@
       align-items: center;
       margin-bottom: 3px;
     }
+
     & .variant-image {
       width: 20px;
       height: 20px;
       border-radius: 50%;
       margin-right: 10px;
     }
-    & .dropdown-icon {
-      background: url("../../assets/images/dropdown.svg") no-repeat center
-        center / 11px 6px;
-        width: 11px;
-        height: 6px;
-        padding-left: 30px;
 
-        &:active {
-          transform: rotate(182deg);
-        }
+    & .dropdown-icon {
+      background: url("../../assets/images/dropdown.svg") no-repeat center center / 11px 6px;
+      width: 11px;
+      height: 6px;
+      padding-left: 30px;
+
+      &:active {
+        transform: rotate(182deg);
+      }
     }
 
     & .variants {
@@ -104,7 +117,6 @@
       }
     }
   }
-  &__button {
-  
-  }
+
+  &__button {}
 }

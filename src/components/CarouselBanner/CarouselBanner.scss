@@ -2,41 +2,82 @@
 @import "../../assets/styles/mixins";
 
 .slick-slider {
-  margin-bottom: 20px;
-  margin: 0 48px;
-
-  & .slick-track {
-    position: relative;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-  }
+  display: flex;
 
-  & .slide__content {
-    @include flex(space-between, center);
-    padding: 5%;
+  & .slick-list {
+    overflow: hidden;
+    width: 100%;
 
-    & .slide__left {
-      @include flex(center, flex-start, column);
-      padding-left: 3%;
-      flex: 1;
-      gap: 10px;
-
-      & .slide__label.hit {
-        font-size: 16px;
-        font-weight: bold;
-      }
-      & .button {
-      }
+    & .slick-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
     }
 
-    & .slide__right {
-      @include flex(center, center);
-      flex: 1;
+    & .slick-slide {
+      box-sizing: border-box;
+      margin: 4rem 0;
 
-      & .slide-link img {
+      &.slick-active {
+        opacity: 1;
+      }
+
+      & .slide-item {
+        width: 100%;
+        height: auto;
+        @include flex(space-between, center, column);
+        margin: 4rem 0;
+
+        & .slide__content {
+          display: flex;
+
+          & .slide__left,
+          & .slide__right {
+            @include flex (center, center);
+            flex: 1;
+            margin: 0px 5rem;
+          }
+
+          & .slide__left {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4rem;
+          }
+        }
+      }
+
+      & img {
         max-width: 100%;
         height: auto;
+        display: block;
+      }
+    }
+  }
+
+  & .slick-dots {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    bottom: 85px;
+    list-style: none;
+
+    & li {
+      margin: 0;
+
+      &.slick-active button {
+        background: $color-main;
+      }
+
+      & button {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: $color-grey-light;
+
+        &:before {
+          font-size: 0;
+        }
       }
     }
   }

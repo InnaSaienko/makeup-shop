@@ -12,8 +12,8 @@ export default function CarouselBanner(props) {
   const settings = {
     dots: true,
     infinite: true,
-    autoplay: false,
-    // autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 5000,
     arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
