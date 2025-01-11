@@ -18,14 +18,6 @@ function ProductDetails() {
     setSelectedColor(color);
     setIsDropdownOpen(false); // Close dropdown after selecting a color
   };
-  
-  // const addBasketItems = () => {
-  //   const selectedItem = {
-  //     ...product, 
-  //     selectedColor: selectedColor,
-  //   };
-    
-  // };
 
   const renderStars = (rating) => {
     if (rating === null) {
