@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Basket from "../../components/Basket/Basket";
+import { useAuthorization } from "../../context/AuthorizationContext/AuthorizationContext";
 
 const BasketContext = createContext({});
 
@@ -10,17 +11,29 @@ export function useBasket() {
 
 export function BasketProvider({ children }) {
   const [basketProductsContext, setBasketProductsContext] = useState([]);
+  const { loggedUser } = useAuthorization();
   const [isOpen, setIsOpen] = useState(false);
 
   const openBasket = () => setIsOpen(true);
   const closeBasket = () => setIsOpen(false);
 
+  useEffect(() => {
+    const storedItems = localStorage.getItem(loggedUser);
+    if (storedItems) {
+      setBasketProductsContext(JSON.parse(storedItems));
+    }
+  }, []);
+
   // useEffect(() => {
-  //   const storedItems = localStorage.getItem("basketItems");
-  //   if (storedItems) {
-  //     setBasketProductsContext(JSON.parse(storedItems));
+  //   if (users) {
+  //     const updatedBasket =  basketProductsContext.map((item) => ({
+  //       ...item,
+  //       userEmail: users.email,
+  //     }));
+  //     setBasketProductsContext(updatedBasket);
+  //     localStorage.setItem(users.email, JSON.stringify(updatedBasket));
   //   }
-  // }, []);
+  // }, [users]);
 
   function getProductQuantity() {
     if (basketProductsContext.length === 0) {
@@ -50,12 +63,12 @@ export function BasketProvider({ children }) {
       );
       return (
         setBasketProductsContext(item),
-        localStorage.setItem("basketItems", JSON.stringify(basketProductsContext))
+        localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext))
       );
     } else {
       return (
         setBasketProductsContext([...basketProductsContext, { id, selectedColor, product_type, quantity: 1 }]),
-        localStorage.setItem("basketItems", JSON.stringify(basketProductsContext))
+        localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext))
       );
     }
   }

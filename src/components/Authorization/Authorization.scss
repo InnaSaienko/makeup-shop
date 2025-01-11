@@ -1,17 +1,38 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .modal-auth {
-  position: absolute;
-  padding: 48px 40px;
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: calc(100vh - 165px);
+  padding: 30px 24px 0 24px;
   border-radius: 0;
-  top: 128px;
   margin: 0;
-  right: 95px;
-  left: auto;
-  width: 405px;
   background: $color-white;
-  box-shadow: 0 4px 30px $color-grey;
+  box-shadow: 0 4px 30px $color-grey-dark;
+  z-index: 1000;
+  width: 500px;
+
+  &.shake {
+    animation: shake 0.5s;
+  }
 
   &::active {
     visibility: visible;
@@ -55,4 +76,16 @@
       margin: 8px 0 0 0;
     }
   }
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+  animation: fadeIn 0.5s forwards;
+  opacity: 0;
 }

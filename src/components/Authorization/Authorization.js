@@ -1,85 +1,123 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Authorization.scss"
+import "./Authorization.scss";
+import { useAuthorization } from "../../context/AuthorizationContext/AuthorizationContext";
 
-function Authorization({ isOpen, closeModal }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const usersData = [];
-
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const userData = { email, password };
-    usersData.push(userData);
-    // localStorage.setItem("userData", JSON.stringify(userData));
-    setEmail("");
-    setPassword("");
-    closeModal();
-  };
+function Authorization({ isOpen }) {
+  const {
+      users,
+      guest,
+      loggedUser,
+      closeAuthorization,
+      verifyUserCredentials,
+      userSignIn,
+      logOut,
+      isLogin,
+  } = useAuthorization();
+  const [isShaking, setIsShaking] = useState(false);
 
   if (!isOpen) {
-    return null;
+      return null;
   }
-  
-const handleClose = (e) => {
-  e.preventDefault();
-  closeModal();
-}
+
+  if (loggedUser !== guest || "") {
+      return (
+          <>
+              <div className="background-overlay" onClick={closeAuthorization}></div>
+              <div className="modal-auth">
+                  <h2>Welcome, {loggedUser}!</h2>
+                  <button
+                      type="button"
+                      className="button full-width"
+                      onClick={() => logOut(loggedUser)}
+                  >
+                      Log Out
+                  </button>
+              </div>
+          </>
+      );
+  }
+
+  const handleSignIn = (event) => {
+      event.preventDefault();
+      const email = event.target.user_login.value;
+      const password = event.target.user_pw.value;
+
+      const isValidUser = verifyUserCredentials(email, password);
+
+      if (isValidUser) {
+          userSignIn(email);
+          closeAuthorization();
+      } else {
+          setIsShaking(true);
+          setTimeout(() => setIsShaking(false), 500);
+      }
+  };
 
   return (
-    <form className="modal-auth" method="post">
-      <span className="close" onClick={handleClose}>&times;</span>
-      <div className="form-auth">
-        <h2>Login to personal account</h2>
-        <div className="input-row">
-              <input
-                id="login"
-                type="text"
-                name="user_login"
-                placeholder="E-mail"
-                value={email}
-                onChange={handleEmailChange}
-                className="profile-form-input"
-                required
-              />
-              <label htmlFor="login" className="label">
-                E-mail
-              </label>
-              <span className="bar"></span>
-        </div>
-        <div className="input-row">
-              <input
-                id="pw"
-                type="password"
-                name="user_pw"
-                placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
-                className="profile-form-input"
-                required
-              />
-              <label htmlFor="pw" className="label">
-                Password
-              </label>
-              <span className="bar"></span>
-        </div>
-        <div className="forgot-pass-link">Forgot the password?</div>
-        <div className="input-row" onClick={handleSubmit}>
-              <button type="submit" className="button full-width">
-                Sign In
-              </button>
-        </div>
-        <div className="input-row links">
-          <Link to="/register" className="auth-link">
-            Sign Up
-          </Link>
-        </div>
-      </div>        
-    </form>     
+      <>
+          <div className="background-overlay" onClick={closeAuthorization}></div>
+          <form
+              className={`modal-auth ${isShaking ? "shake" : ""}`}
+              method="post"
+              onSubmit={handleSignIn}
+          >
+              <span className="close" onClick={closeAuthorization}>
+                  &times;
+              </span>
+              <div className="form-auth">
+                  <h2>Login to personal account</h2>
+                  <div className="input-row">
+                      <input
+                          id="login"
+                          type="text"
+                          name="user_login"
+                          placeholder="E-mail"
+                          defaultValue=""
+                          className="profile-form-input"
+                          autoComplete="current-password"
+                          required
+                      />
+                      <label htmlFor="login" className="label">
+                          E-mail
+                      </label>
+                      <span className="bar"></span>
+                  </div>
+                  <div className="input-row">
+                      <input
+                          id="pw"
+                          type="password"
+                          name="user_pw"
+                          placeholder="Password"
+                          defaultValue=""
+                          className="profile-form-input"
+                          required
+                      />
+                      <label htmlFor="pw" className="label">
+                          Password
+                      </label>
+                      <span className="bar"></span>
+                  </div>
+                  <div className="forgot-pass-link">Forgot the password?</div>
+                  <div className="input-row">
+                      <button type="submit" className="button full-width">
+                          Sign In
+                      </button>
+                  </div>
+                  <div className="input-row links">
+                      <Link
+                          to="/register-form"
+                          className="auth-link"
+                          onClick={closeAuthorization}
+                      >
+                          Sign Up
+                      </Link>
+                  </div>
+              </div>
+          </form>
+      </>
   );
 }
 
-export { Authorization };
+
+export default Authorization;
