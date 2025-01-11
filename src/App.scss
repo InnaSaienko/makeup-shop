@@ -6,6 +6,11 @@
 }
 a {
   text-decoration: none;
+  color: $color-main;
+  
+  &:hover {
+    color: $color-brand;
+  }
 }
 ul {
   padding: 0;

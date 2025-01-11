@@ -1,30 +1,39 @@
 import React from "react";
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
-import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary"
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { BasketProvider } from "./context/BasketContext/BasketContext";
+import { AuthorizationProvider } from "./context/AuthorizationContext/AuthorizationContext";
 import { HeaderTop } from "./layout/HeaderTop/HeaderTop";
 import { Navigation } from "./layout/Navigation/Navigation";
 import { Footer } from "./layout/Footer/Footer";
 import { Home } from "./pages/Home";
 import ProductsList from "./components/ProductsList/ProductsList";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import RegisterForm from "./components/RegisterForm/RegisterForm"
 
 function App() {
   return (
     <>
       <div className="main-wrap">
-      <ErrorBoundary>
-          <Navigation />
-          <BasketProvider>
-            <HeaderTop />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products/:productType" element={<ProductsList />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-            </Routes>
-          </BasketProvider>
-        <Footer />
+        <ErrorBoundary>          
+          <AuthorizationProvider>
+            <BasketProvider>
+              <HeaderTop />
+              <Navigation />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route
+                  path="/products/:productType"
+                  element={<ProductsList />}
+                />
+                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="/register-form" element={<RegisterForm />} />
+              </Routes>
+            </BasketProvider>
+          </AuthorizationProvider>
+
+          <Footer />
         </ErrorBoundary>
       </div>
     </>
