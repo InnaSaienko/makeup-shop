@@ -1,12 +1,13 @@
 import React from "react";
 import { useBasket } from "../../context/BasketContext/BasketContext";
-// import { Authorization } from "../../components/Authorization/Authorization";
+import { useAuthorization } from "../../context/AuthorizationContext/AuthorizationContext";
 
 import { NavLink } from "react-router-dom";
 import "./HeaderTop.scss";
 
 function HeaderTop() {
   const { openBasket, getProductQuantity } = useBasket();
+  const { openAuthorization, loggedUser, guest } = useAuthorization();
 
   return (
     <header className="header">
@@ -23,6 +24,7 @@ function HeaderTop() {
           />
         </div>
         <div className="header-right-row">
+          <button className={`authorization ${loggedUser !== guest ? "logged-in" : "logged-out"}`} onClick={openAuthorization}></button>
           <button className="basket-widget" onClick={openBasket}>
             <span className="basket-quant">{getProductQuantity()}</span>
           </button>
