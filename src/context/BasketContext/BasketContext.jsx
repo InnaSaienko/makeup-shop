@@ -20,7 +20,7 @@ export function BasketProvider({ children }) {
   useEffect(() => {
     const storedItems = localStorage.getItem(loggedUser);
     if (storedItems) {
-      setBasketProductsContext(JSON.parse(storedItems));
+      setBasketProductsContext(loggedUser, JSON.parse(storedItems));
     }
   }, []);
 
