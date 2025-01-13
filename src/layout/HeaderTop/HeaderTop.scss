@@ -13,23 +13,24 @@
     height: 100%;
     min-width: 100%;
     background-color: $color-white;
-    // margin: 0 auto;
     padding: 42px clamp(20px, 50vw - 585px, 30px) 0;
-    
+
     // @media (max-width: 1023px) {
     //   padding-top: 110px;
     // }
     .header {
       flex: 0 0 auto;
-    
+
       & .layout {
         display: flex;
-        padding: 18px 0 0 0;
+        margin: 0 auto;
+        width: calc(100vw - 15%);
       }
+
       &-left-row {
         @include flex(flex-start, center);
         flex: 0 0 calc(100% / 4);
-    
+
         & div.search-button {
           width: 24px;
           height: 24px;
@@ -38,10 +39,11 @@
           background: url(../../assets/images/search.svg) no-repeat center / 24px 24px;
         }
       }
+
       &-center-row {
         @include flex(center, center);
         flex: 1 0 auto;
-    
+
         & .logo {
           position: relative;
           display: flex;
@@ -49,14 +51,14 @@
           font-size: 0;
           width: 264px;
           height: 68px;
-          background: url("../../assets/images/logo.svg") no-repeat center center /
-            220px 52px;
+          background: url("../../assets/images/logo.svg") no-repeat center center / 220px 52px;
         }
       }
+
       &-right-row {
         flex: 0 0 calc(100% / 4);
         @include flex(flex-end, center);
-    
+
         & .authorization {
           position: relative;
           cursor: pointer;
@@ -65,17 +67,17 @@
           width: 24px;
           border: none;
           // background: url(../../assets/images/login.svg) no-repeat center / 24px 24px;
-          
+
           &.logged-in {
             background: url(../../assets/images/logout.svg) no-repeat center / 24px 24px;
           }
-          
+
           &.logged-out {
             background: url(../../assets/images/login.svg) no-repeat center / 24px 24px;
           }
-  
+
         }
-    
+
         & .basket-widget {
           position: relative;
           margin-left: 20px;
@@ -83,19 +85,20 @@
           display: flex;
           height: 44px;
           width: 44px;
-          background: url(../../assets/images/cart.svg) no-repeat center center / 24px
-            24px;
+          background: url(../../assets/images/cart.svg) no-repeat center center / 24px 24px;
           border: none;
+
           &:hover {
             fill: $color-brand;
           }
-  
+
           &-quant {
             position: absolute;
             right: 5px;
           }
         }
       }
+
       @media (max-width: 1023px) {
         .header {
           height: auto;
@@ -106,6 +109,3 @@
   }
 
 }
-
-
-

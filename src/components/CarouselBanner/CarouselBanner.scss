@@ -2,7 +2,8 @@
 @import "../../assets/styles/mixins";
 
 .slick-slider {
-  width: 100%;
+  width: calc(100vw - 15%);
+  margin: 0 auto;
   display: flex;
 
   & .slick-list {

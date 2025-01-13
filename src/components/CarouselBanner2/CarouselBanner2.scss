@@ -2,22 +2,30 @@
 @import "../../assets/styles/mixins";
 
 
-.carousel-banner {
-  .slide-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-    box-sizing: border-box;
+.carousel-banner2 {
+  width: calc(100vw - 15%);
+  margin: 0 auto;
+
+  & .slick-slide.slick-active {
+
+    & .slide-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
   }
 
+
   .product-card {
+    min-height: 350px;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 16px;
     transition: box-shadow 0.3s;
-    
+
     &:hover {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
@@ -39,29 +47,27 @@
     color: #888;
   }
 
+  .slick-next:before,
+  .slick-prev:before {
+    display: none;
+  }
+
   .custom-next-arrow,
   .custom-prev-arrow {
-    background-color: #000;
-    color: #fff;
-    border-radius: 50%;
     width: 40px;
     height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
     z-index: 1;
 
-    &:hover {
-      background-color: #444;
+    &:before {
+      content: '';
+      border: solid $color-main;
+      border-width: 0 8px 8px 0;
+      display: inline-block;
+      padding: 14px;
+      transform: rotate(135deg);
     }
   }
-
-  .custom-prev-arrow {
-    left: -50px;
-  }
-
-  .custom-next-arrow {
-    right: -50px;
+  & .custom-next-arrow:before {
+    transform: rotate(-45deg);
   }
 }

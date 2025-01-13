@@ -11,11 +11,11 @@ export default function CarouselBanner(props) {
 
   const settings = {
     dots: false,
-    infinite: false, // Set to true if you want infinite scrolling
+    infinite: true,
     autoplay: false,
     autoplaySpeed: 5000,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     arrows: true,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
@@ -49,22 +49,26 @@ export default function CarouselBanner(props) {
   };
 
   return (
-    <Slider {...settings}>
-      {data.map((item) => (
-        <div className="slide-item" key={item.id} onClick={() => handleClick(item)}>
-          <div className="product-card">
-            <img src={item.image} alt={item.name} className="product-image" />
-            <h3 className="product-name">{item.name}</h3>
-            <p className="product-price">${item.price}</p>
+    <div className="carousel-banner2">
+      <Slider {...settings}>
+        {data.map((item) => (
+          <div className="slide-item" key={item.id} onClick={() => handleClick(item)}>
+            <div className="product-card">
+              <div className="image">
+                <img src={item.image_link} alt={item.name} className="product-image" />
+              </div>
+              <h3 className="product-name">{item.name}</h3>
+              <p className="product-price">${item.price}</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
+    </div>
   );
 }
 
 const CustomNextArrow = (props) => {
-const { className, style, onClick } = props;
+  const { className, style, onClick } = props;
   return (
     <div
       className={`${className} custom-next-arrow`}
