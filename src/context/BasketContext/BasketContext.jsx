@@ -24,17 +24,6 @@ export function BasketProvider({ children }) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (users) {
-  //     const updatedBasket =  basketProductsContext.map((item) => ({
-  //       ...item,
-  //       userEmail: users.email,
-  //     }));
-  //     setBasketProductsContext(updatedBasket);
-  //     localStorage.setItem(users.email, JSON.stringify(updatedBasket));
-  //   }
-  // }, [users]);
-
   function getProductQuantity() {
     if (basketProductsContext.length === 0) {
       return null;

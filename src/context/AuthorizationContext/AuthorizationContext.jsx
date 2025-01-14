@@ -1,7 +1,6 @@
 import { createContext, useContext } from "react";
 import { useState } from "react";
 import Authorization from "../../components/Authorization/Authorization";
-// import { unstable_useViewTransitionState } from "react-router-dom";
 const guest = "guest@guest"; 
 
 const AuthorizationContext = createContext({});
