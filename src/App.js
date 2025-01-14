@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { BasketProvider } from "./context/BasketContext/BasketContext";
 import { AuthorizationProvider } from "./context/AuthorizationContext/AuthorizationContext";
+import { APIProvider } from "./context/APIContext/APIContext";
 import { HeaderTop } from "./layout/HeaderTop/HeaderTop";
 import { Navigation } from "./layout/Navigation/Navigation";
 import { Footer } from "./layout/Footer/Footer";
@@ -16,23 +17,24 @@ function App() {
   return (
     <>
       <div className="main-wrap">
-        <ErrorBoundary>          
+        <ErrorBoundary>
           <AuthorizationProvider>
-            <BasketProvider>
-              <HeaderTop />
-              <Navigation />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route
-                  path="/products/:productType"
-                  element={<ProductsList />}
-                />
-                <Route path="/product/:id" element={<ProductDetails />} />
-                <Route path="/register-form" element={<RegisterForm />} />
-              </Routes>
-            </BasketProvider>
+            <APIProvider>
+              <BasketProvider>
+                <HeaderTop />
+                <Navigation />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route
+                    path="/products/:productType"
+                    element={<ProductsList />}
+                  />
+                  <Route path="/product/:id" element={<ProductDetails />} />
+                  <Route path="/register-form" element={<RegisterForm />} />
+                </Routes>
+              </BasketProvider>
+            </APIProvider>
           </AuthorizationProvider>
-
           <Footer />
         </ErrorBoundary>
       </div>
