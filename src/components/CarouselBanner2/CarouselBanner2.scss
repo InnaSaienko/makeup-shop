@@ -9,9 +9,7 @@
   & .slick-slide.slick-active {
 
     & .slide-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      @include flex(center, center, column);
       text-align: center;
       padding: 10px;
       box-sizing: border-box;
@@ -19,8 +17,7 @@
   }
 
   & .product-card {
-    display: flex;
-    flex-direction: column;
+    @include flex(center, center, column);
     min-height: 350px;
     border: 1px solid $color-grey-light;
     border-radius: 8px;

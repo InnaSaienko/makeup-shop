@@ -6,16 +6,7 @@
 
 .content,
 .product-item {
-  // flex: 1 1 0;
-  // @include flex(center, center,  column);
-  // width: 100%;
-  // overflow-y: hidden;
   
-  .main {
-    // width: 100%;
-    // position: relative;
-  }
-
   &__image {
     @include flex(center, center);
     max-width: 300px;
@@ -30,8 +21,6 @@
 
   &__info {
     text-align: center;
-
-    & .title-2 {}
   }
 
   &__rating {
@@ -48,9 +37,7 @@
 
   & .select {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex(center, space-between);
     padding: 10px;
     border: 1px solid $color-grey;
     border-radius: 4px;
@@ -63,7 +50,7 @@
       padding: 0 30px 0 12px;
       height: 40px;
       cursor: pointer;
-      border: 1px solid #ebebeb;
+      border: 1px solid $color-grey-light;
       gap: 20px;
     }
 
@@ -112,11 +99,9 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #f1f1f1;
+          background-color: $color-grey-light;
         }
       }
     }
   }
-
-  &__button {}
 }

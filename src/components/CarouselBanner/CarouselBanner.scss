@@ -37,7 +37,6 @@
           & .slide__right {
             @include flex (center, center);
             flex: 1;
-            // margin: 0px 5rem;
           }
 
           & .slide__left {
@@ -57,9 +56,7 @@
   }
 
   & .slick-dots {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
+    @include flex(center, center);
     gap: 10px;
     bottom: 85px;
     list-style: none;

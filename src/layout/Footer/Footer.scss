@@ -10,7 +10,6 @@
     font-family: Arial, sans-serif;
   
     .container {
-      // max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
     }
@@ -28,7 +27,6 @@
         gap: 2rem;
   
         .col {
-        //   flex: 1;
         flex-grow: 1;
           h3 {
             font: $font-main;
@@ -73,12 +71,10 @@
       padding: 1rem 0;
       text-align: center;
       font-size: 0.8rem;
-      color: #aaa;
+      color: $color-grey-dark;
   
       .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex(center, space-between);
   
         .grey-text {
           color: $color-grey-dark;

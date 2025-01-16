@@ -15,9 +15,6 @@
     background-color: $color-white;
     padding: 42px clamp(20px, 50vw - 585px, 30px) 0;
 
-    // @media (max-width: 1023px) {
-    //   padding-top: 110px;
-    // }
     .header {
       flex: 0 0 auto;
 
@@ -66,7 +63,6 @@
           height: 24px;
           width: 24px;
           border: none;
-          // background: url(../../assets/images/login.svg) no-repeat center / 24px 24px;
 
           &.logged-in {
             background: url(../../assets/images/logout.svg) no-repeat center / 24px 24px;
@@ -75,7 +71,6 @@
           &.logged-out {
             background: url(../../assets/images/login.svg) no-repeat center / 24px 24px;
           }
-
         }
 
         & .basket-widget {
