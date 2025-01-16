@@ -31,12 +31,13 @@
 
         & .slide__content {
           display: flex;
+          gap: 2%;
 
           & .slide__left,
           & .slide__right {
             @include flex (center, center);
             flex: 1;
-            margin: 0px 5rem;
+            // margin: 0px 5rem;
           }
 
           & .slide__left {
