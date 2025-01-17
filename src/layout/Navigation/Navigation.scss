@@ -4,38 +4,53 @@
 .menu {
   @include flex(space-around, center);
   flex: 0 0 auto;
-  
-  & .menu-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 1rem 0;
-  
-    &__item {
+
+  & .layout {
+    width: 100%;
+
+    & .menu-list {
       position: relative;
-      display: inline-block;
-      margin: 0 2rem;
-  
-      &:hover .menu-list__link__category__content {
-        display: block;
+      @include flex(space-around, center);
+      padding: 0;
+      margin: 1rem 0;
+      font: $font-title;
+      font-size: medium;
+      list-style-type: none;
+
+      &:hover {
+        border-bottom: 2px solid $color-brand;
+        color: $color-brand;
+
       }
-    }
-  
-    &__link__category {
-      padding: 10px;
-      display: inline-block;
-      color: $color-main;
-      cursor: pointer;
-  
-      &__content {
-        display: none;
-        position: absolute;
-        color: $color-main;
-        background-color: $color-white;
+
+      &__item {
+        position: relative;
+        display: inline-block;
+        margin: 0 2rem;
+
+        &:hover .menu-list__link__category__content {
+          display: block;
+        }
+      }
+
+      &__link__category {
         padding: 10px;
-        z-index: 10;
-        min-width: 200px;
+        display: inline-block;
+        color: $color-main;
+        cursor: pointer;
+
+        &__content {
+          display: none;
+          top: 105%;
+          position: absolute;
+          color: $color-main;
+          background-color: $color-white;
+          padding: 10px;
+          z-index: 10;
+          min-width: 200px;
+        }
       }
     }
   }
-}
 
+}
