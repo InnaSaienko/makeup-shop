@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { BasketProvider } from "./context/BasketContext/BasketContext";
 import { AuthorizationProvider } from "./context/AuthorizationContext/AuthorizationContext";
-import { APIProvider } from "./context/APIContext/APIContext";
+import { ProductProvider } from "./context/ProductContext/ProductContext";
 import { HeaderTop } from "./layout/HeaderTop/HeaderTop";
 import { Navigation } from "./layout/Navigation/Navigation";
 import { Footer } from "./layout/Footer/Footer";
@@ -19,7 +19,7 @@ function App() {
       <div className="main-wrap">
         <ErrorBoundary>
           <AuthorizationProvider>
-            <APIProvider>
+            <ProductProvider>
               <BasketProvider>
                 <HeaderTop />
                 <Navigation />
@@ -33,7 +33,7 @@ function App() {
                   <Route path="/register-form" element={<RegisterForm />} />
                 </Routes>
               </BasketProvider>
-            </APIProvider>
+            </ProductProvider>
           </AuthorizationProvider>
           <Footer />
         </ErrorBoundary>

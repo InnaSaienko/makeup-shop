@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./CarouselBanner2.scss";
+import "./SliderTopNext.scss";
 
-export default function CarouselBanner(props) {
+export default function SliderTopNext(props) {
   const { data = [] } = props;
   const navigate = useNavigate();
 

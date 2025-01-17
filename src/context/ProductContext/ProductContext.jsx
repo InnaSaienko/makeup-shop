@@ -1,20 +1,19 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-const APIContext = createContext({});
+const ProductContext = createContext({});
 
-export function useAPIContext() {
-  return useContext(APIContext);
+export function useProductContext() {
+  return useContext(ProductContext);
 }
 const importVideos = () => {
   const context = require.context('../../assets/videos', false, /\.(mp4|webm)$/);
-  console.log("Video keys:", context.keys());
   return context.keys().map((key) => ({
       src: context(key),
       title: key.replace('./', '').replace(/\.(mp4|webm)$/, ''),
   }));
 };
 
-export function APIProvider({ children }) {
+export function ProductProvider({ children }) {
   const [isDownloaded, setIsDownloaded] = useState(false);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +39,7 @@ export function APIProvider({ children }) {
   }, []);
 
   return (
-    <APIContext.Provider
+    <ProductContext.Provider
       value={{
         videos,
         topFive,
@@ -50,6 +49,6 @@ export function APIProvider({ children }) {
       }}
     >
       {children}
-    </APIContext.Provider>
+    </ProductContext.Provider>
   );
 }

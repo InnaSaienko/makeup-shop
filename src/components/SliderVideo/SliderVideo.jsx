@@ -3,13 +3,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import "./SwiperSlide.scss"
+import "./SliderVideo.scss"
 import { Navigation, Pagination } from 'swiper/modules';
 
 
-export default function VideoSlider(props) {
+export default function SliderVideo(props) {
     const { data = [] } = props;
-    console.log("VideoSlider data:", data);
 
     return (
         <div className="carouselVideo">

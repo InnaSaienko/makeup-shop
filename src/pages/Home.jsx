@@ -1,12 +1,12 @@
 import React from "react";
-import { useAPIContext } from "../context/APIContext/APIContext";
-import VideoSlider from "../components/VideoSlider/SwiperSlide"
-import CarouselBanner from "../components/CarouselBanner/CarouselBanner";
-import CarouselBanner2 from "../components/CarouselBanner2/CarouselBanner2";
+import { useProductContext } from "../context/ProductContext/ProductContext";
+import SliderVideo from "../components/SliderVideo/SliderVideo"
+import SliderTopFive from "../components/SliderTopFive/SliderTopFive";
+import SliderTopNext from "../components/SliderTopNext/SliderTopNext";
 import { Preloader } from "../components/Preloader/Preloader";
 
 function Home() {
-  const { videos, topFive, hit20, loading, isDownloaded } = useAPIContext();
+  const { videos, topFive, hit20, loading, isDownloaded } = useProductContext();
 
   if (!isDownloaded) {
     return <Preloader />;
@@ -19,9 +19,9 @@ function Home() {
           <Preloader />
         ) : (
           <>
-            <VideoSlider data={videos}/>
-            <CarouselBanner data={topFive} />
-            <CarouselBanner2 data={hit20} />
+            <SliderVideo data={videos}/>
+            <SliderTopFive data={topFive} />
+            <SliderTopNext data={hit20} />
           </>
         )}
       </div>
