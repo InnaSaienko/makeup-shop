@@ -4,53 +4,82 @@
 .menu {
   @include flex(space-around, center);
   flex: 0 0 auto;
+  position: relative;
+  margin-bottom: 3%;
 
   & .layout {
     width: 100%;
+    position: relative; // Ensures dropdown is positioned correctly
+  }
 
-    & .menu-list {
-      position: relative;
-      @include flex(space-around, center);
-      padding: 0;
-      margin: 1rem 0;
-      font: $font-title;
-      font-size: medium;
-      list-style-type: none;
+  & .menu-list {
+    position: relative;
+    @include flex(space-around, center);
+    padding: 0;
+    margin: 1rem 0;
+    font: $font-title;
+    font-size: medium;
+    list-style-type: none;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      border-bottom: 2px solid $color-brand;
+    }
+
+    &__item {
+      // position: relative;
+      display: inline-block;
+      margin: 0 2rem;
+      transition: color 0.3s ease-in-out;
 
       &:hover {
-        border-bottom: 2px solid $color-brand;
         color: $color-brand;
+      }
+
+      & .menu-list__subcategories {
+        visibility: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100vw;
+        background-color: $color-white;
+        padding: 0.5rem 0;
+        z-index: 10;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0.2s, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+        &__item {
+        //   list-style: none;
+          margin: 10px;
+        //   text-align: center;
+        //   transition: background-color 0.3s;
+
+        //   a {
+        //     text-decoration: none;
+        //     color: $color-main;
+        //     font-size: 16px;
+        //     display: block;
+
+        //     &:hover {
+        //       color: $color-brand;
+        //       text-decoration: underline;
+        //       background-color: lighten($color-brand, 40%);
+        //     }
+        //   }
+        }
+
+        // &:hover {
+        //   visibility: visible;
+        //   opacity: 1;
+        // }
 
       }
 
-      &__item {
-        position: relative;
-        display: inline-block;
-        margin: 0 2rem;
-
-        &:hover .menu-list__link__category__content {
-          display: block;
-        }
-      }
-
-      &__link__category {
-        padding: 10px;
-        display: inline-block;
-        color: $color-main;
-        cursor: pointer;
-
-        &__content {
-          display: none;
-          top: 105%;
-          position: absolute;
-          color: $color-main;
-          background-color: $color-white;
-          padding: 10px;
-          z-index: 10;
-          min-width: 200px;
-        }
+      &:hover .menu-list__subcategories {
+        visibility: visible;
+        opacity: 1;
       }
     }
   }
-
 }
