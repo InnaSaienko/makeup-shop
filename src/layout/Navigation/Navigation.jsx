@@ -35,40 +35,33 @@ function Navigation() {
     },
   ];
 
-  
+
   const handleClick = (itemName) => {
     const productType = itemName.toLowerCase().replace(/\s+/g, '_');
     navigate(`/products/${productType}`, { state: { productType } });
-    
-  };
 
-  const menuListItem = categories.map((category, index) => {
-    return (
-      <li key={index} className="menu-list__item">
-        <Link
-          to="#"
-          className="menu-list__link__category"
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-        >
-          {category.category}
-        </Link>
-        <ul className="menu-list__link__category__content">
-          {category.items.map((item, itemIndex) => (
-            <li key={itemIndex} onClick={() => handleClick(item.name)}>
-              <Link>{item.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </li>
-    );
-  });
+  };
 
   return (
     <nav className="menu">
       <div className="layout">
-        <ul className="menu-list">{menuListItem}</ul>
+        <ul className="menu-list">
+          {categories.map((category, index) => (
+            <li key={index} className="menu-list__item">
+              <Link to="#" className="menu-list__link__category" onClick={(e) => e.preventDefault()}>
+                {category.category}
+              </Link>
+              {/* Subcategories Dropdown */}
+              <ul className="menu-list__subcategories">
+                {category.items.map((item, itemIndex) => (
+                  <li key={itemIndex} className="menu-list__subcategories__item">
+                    <Link to={item.link}>{item.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );
