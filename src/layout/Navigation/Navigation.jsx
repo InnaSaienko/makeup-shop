@@ -4,7 +4,6 @@ import "./Navigation.scss";
 
 function Navigation() {
   const navigate = useNavigate();
-  // const [activeCategory, setActiveCategory] = useState(null);
   const categories = [
     {
       category: "Eyes",
@@ -69,3 +68,4 @@ function Navigation() {
 }
 
 export { Navigation };
+
