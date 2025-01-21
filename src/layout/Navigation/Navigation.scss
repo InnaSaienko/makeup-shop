@@ -39,8 +39,6 @@
         visibility: hidden;
         position: absolute;
         top: 100%;
-        left: 0;
-        width: 100%;
         background-color: $color-white;
         padding: 0.5rem 0;
         z-index: 10;
@@ -50,27 +48,7 @@
 
         &__item {
           margin: 10px;
-        //   text-align: center;
-        //   transition: background-color 0.3s;
-
-        //   a {
-        //     text-decoration: none;
-        //     color: $color-main;
-        //     font-size: 16px;
-        //     display: block;
-
-        //     &:hover {
-        //       color: $color-brand;
-        //       text-decoration: underline;
-        //       background-color: lighten($color-brand, 40%);
-        //     }
-        //   }
         }
-
-        // &:hover {
-        //   visibility: visible;
-        //   opacity: 1;
-        // }
       }
 
       &:hover .menu-list__subcategories {
