@@ -19,7 +19,6 @@ export default function SliderVideo(props) {
                 navigation
                 pagination={{ clickable: true }}
                 loop={true}
-                style={{ height: 'auto' }}
             >
                 {data.map((video, index) => (
                     <SwiperSlide key={index}>
