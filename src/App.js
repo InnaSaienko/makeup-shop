@@ -9,7 +9,7 @@ import { HeaderTop } from "./layout/HeaderTop/HeaderTop";
 import { Navigation } from "./layout/Navigation/Navigation";
 import { Footer } from "./layout/Footer/Footer";
 import { Home } from "./pages/Home";
-import ProductsList from "./components/ProductsList/ProductsList";
+import Products from "./components/ProductsList/ProductsList";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import RegisterForm from "./components/RegisterForm/RegisterForm"
 
@@ -25,10 +25,7 @@ function App() {
                 <Navigation />
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route
-                    path="/products/:productType"
-                    element={<ProductsList />}
-                  />
+                  <Route path="/products/:productType/:subcategory" element={<Products />} />
                   <Route path="/product/:id" element={<ProductDetails />} />
                   <Route path="/register-form" element={<RegisterForm />} />
                 </Routes>

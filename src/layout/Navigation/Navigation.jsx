@@ -35,12 +35,13 @@ function Navigation() {
     },
   ];
 
+  const handleClick = (category, itemName) => {
+    const productType = category.toLowerCase().replace(/\s+/g, '_');
+    const subcategory = itemName.toLowerCase().replace(/\s+/g, '_');
 
-  const handleClick = (itemName) => {
-    const productType = itemName.toLowerCase().replace(/\s+/g, '_');
-    navigate(`/products/${productType}`, { state: { productType } });
-
+    navigate(`/products/${productType}/${subcategory}`, { state: { productType, subcategory } });
   };
+
 
   return (
     <nav className="menu">
@@ -55,7 +56,9 @@ function Navigation() {
               <ul className="menu-list__subcategories">
                 {category.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="menu-list__subcategories__item">
-                    <Link to={item.link}>{item.name}</Link>
+                    <Link to="#" onClick={(e) => { e.preventDefault(); handleClick(category.category, item.name); }}>
+                      {item.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

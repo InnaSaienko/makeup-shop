@@ -49,13 +49,13 @@ export default function SliderTopNext(props) {
   };
 
   return (
-    <div className="carousel-banner2">
+    <div className="carousel-top-next">
       <Slider {...settings}>
         {data.map((item) => (
           <div className="slide-item" key={item.id} onClick={() => handleClick(item)}>
             <div className="product-card">
               <div className="image">
-                <img src={item.image_link} alt={item.name} className="product-image" />
+                <img src={item.api_featured_image} alt={item.name} className="product-image" />
               </div>
               <h3 className="product-name">{item.name}</h3>
               <p className="product-price">${item.price}</p>

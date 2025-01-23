@@ -2,7 +2,7 @@
 @import "../../assets/styles/mixins";
 
 
-.carousel-banner2 {
+.carousel-top-next {
   width: calc(100vw - 15%);
   margin: 0 auto;
 
@@ -28,9 +28,8 @@
       box-shadow: 0 4px 8px $color-grey-light(0, 0, 0, 0.1);
     }
 
-    & .product-image {
-      max-width: 100%;
-      height: auto;
+    & .image {
+      height: 250px;
       margin: 0 auto;
     }
 

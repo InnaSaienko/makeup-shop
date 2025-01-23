@@ -12,7 +12,7 @@ export default function CarouselBanner(props) {
   const settings = {
     dots: true,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000,
     arrows: false,
     slidesToShow: 1,
@@ -44,7 +44,7 @@ export default function CarouselBanner(props) {
               </div>
               <div className="slide__right">
                 <Link className="slide-link" to="#one!">
-                  <img src={item.image_link} alt="Product image" />
+                  <img src={item.api_featured_image} alt="Product image" />
                 </Link>
               </div>
             </div>
