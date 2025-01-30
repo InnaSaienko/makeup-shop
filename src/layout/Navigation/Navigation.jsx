@@ -42,7 +42,6 @@ function Navigation() {
     navigate(`/products/${productType}/${subcategory}`, { state: { productType, subcategory } });
   };
 
-
   return (
     <nav className="menu">
       <div className="layout">
