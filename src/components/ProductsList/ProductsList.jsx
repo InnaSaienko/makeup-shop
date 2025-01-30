@@ -1,32 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
+import useFetchData from "../../hooks/useFetchData.js";
 import { ProductCard } from "../ProductCard/ProductCard";
-import { useLocation } from 'react-router-dom';
 import { Preloader } from "../Preloader/Preloader"
 import "./ProductsList.scss"
 
 
 function Products() {
-  const location = useLocation();
-  const { productType } = location.state;
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { category, subcategory } = useParams();
+  const { data, loading, error } = useFetchData({ product_type: subcategory });
+  
+  if (loading) { return <Preloader />; };
+    if (error) return <p>Error: {error}</p>;
 
-  useEffect(() => {
-    fetch(`http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${productType}`)
-    .then((response) => response.json())
-    .then((data) => {setData(data); setLoading(false)});
-  }, [productType]);
-
-  return (    
+  return (
     <ul className="catalog-grid">
-      
-      {loading ? (
-        <Preloader />
-      ) : (
-        data.map((product) => <ProductCard key={product.id} {...product} />)
-      )}
-    </ul>   
+      {data.map((product) => <ProductCard key={`${category}-${subcategory}-${product.id}`}
+            category={category}
+            subcategory={subcategory} {...product} />)}
+    </ul>
   );
 }
 
-export default  Products;
+export default Products;

@@ -1,20 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./ProductCard.scss";
 
-function ProductCard(props) {
+function ProductCard(props) {  
   const {
     id: id,
     brand: brand,
     rating: rating,
     name: name,
     productType: product_type,
+    category: category,
+    subcategory: subcategory,
     api_featured_image: image_link,
-    product_colors: product_colors,
+    // product_colors: product_colors,
   } = props;
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/product/${id}`, { state: { product: props } });
+    navigate(`/product/${category}/${subcategory}/${id}`, { state: { product: props } });
   };
   return (
     <li className="catalog-grid__cell card" id={id} onClick={() => handleClick()}>

@@ -11,8 +11,6 @@ const ProductDetails = () => {
   const { addProduct } = useBasket();
   const product = data.find((item) => item.id === Number(id));
   const [selectedColor, setSelectedColor] = useState(null);
-  //   product.product_colors.length > 0 ? product.product_colors[0] : null
-  // );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 
