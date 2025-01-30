@@ -1,14 +1,13 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
-// $color-main
-// $color-white   @include flex(center, center);
 
 .content,
 .product-item {
-  
+
   &__image {
     @include flex(center, center);
+    margin: 0 auto;
     max-width: 300px;
     height: auto;
     object-fit: contain;
@@ -104,4 +103,13 @@
       }
     }
   }
+
+  &__button {
+    margin: 10px 0;
+
+    & .button {
+      margin: 0 auto;
+    }
+  }
+
 }
