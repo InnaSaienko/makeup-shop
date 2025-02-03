@@ -22,7 +22,7 @@ export default function SliderVideo() {
                 spaceBetween={20}
                 slidesPerView={1}
                 navigation
-                pagination={{ clickable: true }}
+                // pagination={{ clickable: true }}
                 loop={true}
             >
                 {videos.map((video, index) => (

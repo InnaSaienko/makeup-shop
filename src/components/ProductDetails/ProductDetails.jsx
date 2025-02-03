@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData.js";
 import { useBasket } from "../../context/BasketContext/BasketContext";
-import { Preloader } from "../Preloader/Preloader"
+import { Preloader } from "../Preloader/Preloader";
+import VariantsOfColors from "./VariantsOfColors.jsx";
 import "./ProductDetails.scss";
 
 const ProductDetails = () => {
@@ -11,15 +12,14 @@ const ProductDetails = () => {
   const { addProduct } = useBasket();
   const product = data.find((item) => item.id === Number(id));
   const [selectedColor, setSelectedColor] = useState(null);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const params = useParams();
+  console.log("Params received:", params);
 
   if (loading) { return <Preloader />; };
   if (error) return <p>Error: {error}</p>;
 
   const handleColorSelect = (color) => {
-    setSelectedColor(color); 
-    setIsDropdownOpen(false);
+    setSelectedColor(color);
   };
 
   const renderStars = (rating) => {
@@ -43,43 +43,7 @@ const ProductDetails = () => {
       </div>
     ));
   };
-
-  const variantsOfColors =
-    product.product_colors.length > 0 ? (
-      <div className="select">
-        <label
-          className="select-product-variant"
-          data-id={product.id}
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        >
-          <div className="variant">
-            <div
-              className="variant-image"
-              style={{
-                backgroundColor: product.product_colors[0].hex_value ? product.product_colors[0].hex_value : "#ccc",
-              }}
-            ></div>
-            <span>{product.product_colors[0].colour_name}</span>
-          </div>
-          <div className="dropdown-icon"></div>
-        </label>
-
-        {isDropdownOpen && (
-          <div className="variants">
-            {product.product_colors.map((color) => (
-              <div key={color.hex_value} onClick={() => handleColorSelect(color)}>
-                <div className="variant-image" style={{ backgroundColor: color.hex_value }}></div>
-                <span>{color.colour_name}</span>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    ) : (
-      <p>No colors available</p>
-    );
-    
-    return (
+  return (
     <div className="product-item">
       <div id="product-image" className="product-item__image">
         <img
@@ -98,14 +62,18 @@ const ProductDetails = () => {
         </div>
         <div className="product-item__buy" data-id={product.id}>
           {product.price} {product.currency}
+          {product.product_colors && product.product_colors.length > 0 && (
+            <VariantsOfColors product_colors={product.product_colors} handleColorSelect={handleColorSelect} id={product.id} />
+          )}
+          <div className="product-item__button">
+            <button className="button buy"
+              onClick={() => addProduct(product.id, selectedColor?.hex_value || "", product.product_type)}
+              disabled={!selectedColor}>Buy</button>
+          </div>
+
         </div>
       </div>
-      {variantsOfColors}
-      <div className="product-item__button">
-        <button className="button buy"
-          onClick={() => addProduct(product.id, selectedColor?.hex_value || "", product.product_type)}
-          disabled={!selectedColor}>Buy</button>
-      </div>
+
     </div>
   );
 }
