@@ -19,20 +19,24 @@ li {
   list-style: none;
 }
 .button {
-  @include flex(center, center);  
-  height: auto;
-  min-height: 48px;
+  @include flex(center, center); 
+  @include shared-size();
   cursor: pointer;
   outline: 0;
   user-select: none;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 24px;
   white-space: nowrap;
   border: none;
   transition: all 0.2s ease-in-out;
   color: $color-white;
   background: $color-main;
-  font-size: 16px;
-  padding-right: 83px;
-  padding-left: 83px;
+}
+
+@media (max-width: 768px) {
+  .button,
+  .select-product-variant {
+    @include shared-size($padding-x: 16px, $padding-y: 10px);
+    max-width: 100%;
+  }
 }

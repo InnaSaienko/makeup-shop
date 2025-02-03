@@ -1,8 +1,6 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
-// $color-main
-// $color-white   @include flex(center, center);
 .catalog-grid__cell {
   padding: 3%;
   background-color: $color-white;

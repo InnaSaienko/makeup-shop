@@ -4,3 +4,13 @@
     justify-content: $justify;
     flex-direction: $flex-direction;
 }
+
+@mixin shared-size($min-height: 48px, $padding-x: 24px, $padding-y: 12px) {
+    min-height: $min-height;
+    height: auto;
+    padding: $padding-y $padding-x;
+    width: 100%;
+    line-height: 24px;
+    border-radius: 8px;
+  }
+  
