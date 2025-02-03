@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./ProductCard.scss";
 
 function ProductCard(props) {  
@@ -8,11 +9,9 @@ function ProductCard(props) {
     rating: rating,
     name: name,
     productType: product_type,
-    category: category,
-    subcategory: subcategory,
     api_featured_image: image_link,
-    // product_colors: product_colors,
   } = props;
+  const { category, subcategory } = useParams();
   const navigate = useNavigate();
 
   const handleClick = () => {
