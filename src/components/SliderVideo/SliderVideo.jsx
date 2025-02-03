@@ -1,14 +1,19 @@
 import React from 'react';
+import useVideos from "../../hooks/useFetchVideo";
+import { Preloader } from "../Preloader/Preloader";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import "./SliderVideo.scss"
+import "./SliderVideo.scss";
 import { Navigation, Pagination } from 'swiper/modules';
 
+export default function SliderVideo() {
+    const { videos, loading }= useVideos();
 
-export default function SliderVideo(props) {
-    const { data = [] } = props;
+    if (loading) { 
+        return <Preloader />; 
+    }
 
     return (
         <div className="carouselVideo">
@@ -20,13 +25,10 @@ export default function SliderVideo(props) {
                 pagination={{ clickable: true }}
                 loop={true}
             >
-                {data.map((video, index) => (
+                {videos.map((video, index) => (
                     <SwiperSlide key={index}>
                         <div className="slide-video">
-                            <video
-                                controls
-                                className="video"
-                            >
+                            <video controls className="video">
                                 <source src={video.src} type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>
@@ -36,5 +38,4 @@ export default function SliderVideo(props) {
             </Swiper>
         </div>
     );
-};
-
+}

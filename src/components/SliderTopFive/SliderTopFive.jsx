@@ -1,14 +1,17 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Slider from "react-slick";
+import useFetchData from "../../hooks/useFetchData.js";
+import { Preloader } from "../Preloader/Preloader"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopFive.scss";
 
-export default function CarouselBanner(props) {
-  const { data = [] } = props;
+const CarouselBanner = () => {
+  const { subcategory } = useParams();
+  const { data, loading, error } = useFetchData({ subcategory });
   const navigate = useNavigate();
-  
+  const topFive = data.slice(0, 5);
   const settings = {
     dots: true,
     infinite: true,
@@ -19,13 +22,16 @@ export default function CarouselBanner(props) {
     slidesToScroll: 1,
   };
 
+  if (loading) { return <Preloader />; };
+  if (error) return <p>Error: {error}</p>;
+
   const handleClick = (product) => {
     navigate(`/product/${product.id}`, { state: { product } });
   };
 
   return (
     <Slider {...settings}>
-      {data.map((item) => {
+      {topFive.map((item) => {
         return (
           <div
             className="slide-item"
@@ -54,3 +60,4 @@ export default function CarouselBanner(props) {
     </Slider>
   );
 }
+export default CarouselBanner;

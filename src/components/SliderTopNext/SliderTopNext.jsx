@@ -1,14 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useFetchData from "../../hooks/useFetchData.js";
+import { Preloader } from "../Preloader/Preloader";
+import CustomArrow from "./CustomArrow.jsx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopNext.scss";
 
-export default function SliderTopNext(props) {
-  const { data = [] } = props;
+const SliderTopNext = () => {
+  const { id, subcategory } = useParams();
+  const { data, loading, error } = useFetchData({ subcategory });
   const navigate = useNavigate();
-
+  const topNext = data.slice(5, 21);
   const settings = {
     dots: false,
     infinite: true,
@@ -17,8 +21,8 @@ export default function SliderTopNext(props) {
     slidesToShow: 5,
     slidesToScroll: 5,
     arrows: true,
-    nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomArrow direction="next" />,
+    prevArrow: <CustomArrow direction="prev" />,
     responsive: [
       {
         breakpoint: 1024,
@@ -44,14 +48,17 @@ export default function SliderTopNext(props) {
     ],
   };
 
+  if (loading) { return <Preloader />; };
+  if (error) return <p>Error: {error}</p>;
+
   const handleClick = (product) => {
-    navigate(`/product/${product.id}`, { state: { product } });
+    navigate(`/product/${subcategory}/${product.id}`, { state: { product } });
   };
 
   return (
     <div className="carousel-top-next">
       <Slider {...settings}>
-        {data.map((item) => (
+        {topNext.map((item) => (
           <div className="slide-item" key={item.id} onClick={() => handleClick(item)}>
             <div className="product-card">
               <div className="image">
@@ -65,26 +72,6 @@ export default function SliderTopNext(props) {
       </Slider>
     </div>
   );
-}
-
-const CustomNextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} custom-next-arrow`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
 };
 
-const CustomPrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} custom-prev-arrow`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-};
+export default SliderTopNext;
