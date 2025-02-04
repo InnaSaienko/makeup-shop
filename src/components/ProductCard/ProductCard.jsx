@@ -15,7 +15,7 @@ function ProductCard(props) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/product/${category}/${subcategory}/${id}`, { state: { product: props } });
+    navigate(`/products/${category}/${subcategory}/${id}`, { state: { product: props } });
   };
   return (
     <li className="catalog-grid__cell card" id={id} onClick={() => handleClick()}>
