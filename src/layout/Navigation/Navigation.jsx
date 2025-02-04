@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Navigation.scss";
 
 function Navigation() {
-  const navigate = useNavigate();
   const categories = [
     {
       category: "Eyes",
@@ -34,7 +33,6 @@ function Navigation() {
       items: [{ name: "Nail polish", link: "/item1" }],
     },
   ];
-
   return (
     <nav className="menu">
       <div className="layout">
@@ -48,7 +46,8 @@ function Navigation() {
               <ul className="menu-list__subcategories">
                 {category.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="menu-list__subcategories__item">
-                    <Link to={item.link}>{item.name}</Link>
+                    <Link to={`/products/${category.category.toLowerCase()}/${item.name.toLowerCase()}`}>{item.name}</Link>
+
                   </li>
                 ))}
               </ul>

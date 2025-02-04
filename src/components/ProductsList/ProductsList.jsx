@@ -6,7 +6,7 @@ import { Preloader } from "../Preloader/Preloader"
 import "./ProductsList.scss"
 
 
-function Products() {
+function ProductsList() {
   const { category, subcategory } = useParams();
   const { data, loading, error } = useFetchData({ product_type: subcategory });
   
@@ -22,4 +22,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default ProductsList;
