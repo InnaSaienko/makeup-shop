@@ -6,7 +6,8 @@
   margin: 0 auto;
   height: 4px;
   display: block;
-  width: calc(100vw - 15%);
+  // width: calc(100vw - 15%);
+  width: 100%;
   background-color: $color-white;
   border-radius: 2px;
 }
