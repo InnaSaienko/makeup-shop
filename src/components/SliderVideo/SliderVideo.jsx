@@ -21,14 +21,13 @@ export default function SliderVideo() {
                 modules={[Navigation, Pagination]}
                 spaceBetween={20}
                 slidesPerView={1}
-                navigation
-                // pagination={{ clickable: true }}
+                navigation={{ clickable: true }}
                 loop={true}
             >
                 {videos.map((video, index) => (
                     <SwiperSlide key={index}>
                         <div className="slide-video">
-                            <video controls className="video">
+                            <video controls className="video"preload="metadata">
                                 <source src={video.src} type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>

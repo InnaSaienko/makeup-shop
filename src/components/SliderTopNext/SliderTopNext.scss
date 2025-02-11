@@ -2,71 +2,95 @@
 @import "../../assets/styles/mixins";
 
 
-.carousel-top-next {
+.carouselTopNext {
   width: calc(100vw - 15%);
   margin: 0 auto;
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  overflow: hidden;
 
-  & .slick-slide.slick-active {
+  .slick-slider {
+    padding: 0 70px;
+  }
 
     & .slide-item {
       @include flex(center, center, column);
       text-align: center;
       padding: 10px;
       box-sizing: border-box;
+      cursor: pointer;
+
+      & .product-card {
+        @include flex(center, center, column);
+        min-height: 250px;
+        border: 1px solid $color-grey-light;
+        border-radius: 8px;
+        transition: box-shadow 0.3s;
+    
+        &:hover {
+          box-shadow: 0 4px 8px $color-grey-light(0, 0, 0, 0.1);
+        }
+    
+        & .image {
+          height: 250px;
+          margin: 0 auto;
+
+          & img {
+            width: 100%;
+            height: 100%;
+            padding: 5px;
+          }
+        }
+    
+        & .product-name {
+          font-size: 1.2rem;
+          min-height: 66px;
+          margin: 0 0 8px;
+        }
+    
+        & .product-price {
+          font-size: 1rem;
+          color: $color-grey-dark;
+          margin-top: auto;
+        }
+      }
+
+
     }
-  }
-
-  & .product-card {
-    @include flex(center, center, column);
-    min-height: 350px;
-    border: 1px solid $color-grey-light;
-    border-radius: 8px;
-    padding: 16px;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: 0 4px 8px $color-grey-light(0, 0, 0, 0.1);
-    }
-
-    & .image {
-      height: 250px;
-      margin: 0 auto;
-    }
-
-    & .product-name {
-      font-size: 1.2rem;
-      margin: 0 0 8px;
-    }
-
-    & .product-price {
-      font-size: 1rem;
-      color: $color-grey-dark;
-      margin-top: auto;
-    }
-  }
-
+  
   .slick-next:before,
   .slick-prev:before {
     display: none;
   }
 
-  .custom-next-arrow,
-  .custom-prev-arrow {
-    width: 40px;
-    height: 40px;
-    z-index: 1;
-
-    &:before {
-      content: '';
-      border: solid $color-main;
-      border-width: 0 8px 8px 0;
-      display: inline-block;
-      padding: 14px;
-      transform: rotate(135deg);
-    }
-  }
-
   & .custom-next-arrow:before {
     transform: rotate(-45deg);
+  }
+
+  .slick-dots {
+    display: flex !important;
+    margin: 0 -4px;
+    width: 260px;
+    bottom: 0;
+    overflow: hidden;
+    position: relative;
+    left: -5%;
+
+    li {
+      width: 44px;
+      margin: 0 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+      transition: .3s all ease;
+      backface-visibility: hidden;
+      height: 2px;
+      background: $color-grey-dark;
+
+      &.slick-active {
+        background: $color-main;
+      }
+    }
   }
 }

@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData.js";
 import { ProductCard } from "../ProductCard/ProductCard";
-import { Preloader } from "../Preloader/Preloader"
-import "./ProductsList.scss"
+import { Preloader } from "../Preloader/Preloader";
+import "./ProductsList.scss";
 
 
 function ProductsList() {

@@ -40,3 +40,23 @@ li {
     max-width: 100%;
   }
 }
+
+.content {
+  width: calc(100vw - 15%);
+  margin: 0 auto;
+}
+
+.text {
+  font: $font-main;
+  color: $color-main;
+  line-height: 20px;
+}
+
+ .title-2 {
+  font: $font-alternate;
+  font-weight: 600;
+  font-size: 26px;
+  color: $color-main;
+  line-height: 40px;
+  margin: 8px 0 0 0;
+}

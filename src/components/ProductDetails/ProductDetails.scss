@@ -2,13 +2,41 @@
 @import "../../assets/styles/mixins";
 
 
-.content,
 .product-item {
-  @include flex(center, center, column);
+  @include flex(center, center);
   position: relative;
-  overflow: visible;
-  width: 100%;
+  width: calc(100vw - 15%);
+  margin: 32px auto;
 
+  &__description {
+    @include flex(flex-start, center, column);
+    width: calc(100% / 12* 3);
+
+    & .title-2 {
+      width: 100%;
+    }
+
+    & .product-item__category-name {
+      width: 100%;
+    }
+
+    & .product-item__rating {
+      width: 100%;
+      margin-top: 10px;
+
+      & .star-list {
+        @include flex(flex-start, center);
+        gap: 1%;
+        margin-bottom: 10px;
+  
+        & .no-rating {
+          background: $color-grey;
+        }
+      }
+    }
+  }
+
+  
   &__image {
     @include flex(center, center);
     margin: 0 auto;
@@ -22,99 +50,31 @@
     }
   }
 
-  &__info {
-    text-align: center;
+  &__buy {
     width: calc(100% / 12* 3);
-  }
 
-  &__rating {
-    & .star-list {
-      @include flex(center, center);
-      gap: 1%;
-      margin-bottom: 10px;
+    & .product-item__price-wrap{
+      @include flex(flex-start, _, column);
 
-      & .no-rating {
-        background: $color-grey;
-      }
-    }
-  }
+      & .price {
+        font: $font-alternate;
+        color: $color-main;
 
-  & .select {
-    position: relative;
-    @include flex(center, space-between);
-    padding: 10px;
-    border: 1px solid $color-grey;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: $color-white;
-
-    &-product-variant {
-      display: flex;
-      align-items: center;
-      padding: 0 30px 0 12px;
-      height: 40px;
-      cursor: pointer;
-      border: 1px solid $color-grey-light;
-      gap: 20px;
-    }
-
-    & .variant {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 3px;
-    }
-
-    & .variant-image {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-
-    & .dropdown-icon {
-      background: url("../../assets/images/dropdown.svg") no-repeat center center / 11px 6px;
-      width: 11px;
-      height: 6px;
-      padding-left: 30px;
-
-      &:active {
-        transform: rotate(182deg);
-      }
-    }
-
-    & .variants {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      border: 1px solid $color-grey;
-      border-radius: 4px;
-      background-color: $color-white;
-      max-height: 200px;
-      overflow: auto;
-      margin-top: 5px;
-      z-index: 1000;
-
-      & .color-option {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: $color-grey-light;
+        &-old {
+          color: $color-grey-dark;
+          text-decoration: line-through;
+          line-height: 24px;
+          font-weight: 400;
+          line-height: 1;
+        }
+        &-new {
+          color: $color-deal;
+          font: $font-alternate;
         }
       }
+      & .currency {
+        margin-left: 10px;
+      }
     }
   }
-
-  &__button {
-    margin: 10px 0;
-
-    & .button {
-      margin: 0 auto;
-    }
-  }
-
 }
