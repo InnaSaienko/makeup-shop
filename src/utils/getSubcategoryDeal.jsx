@@ -1,4 +1,3 @@
-import { getCategoryName } from "./getCategoryName";
 import { categories } from "../constatnts/categories";
 
 export const getSubcategoryDeal = (subcategory) => {
