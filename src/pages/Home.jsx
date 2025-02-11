@@ -6,7 +6,7 @@ import SliderTopNext from "../components/SliderTopNext/SliderTopNext";
 function Home() {
   return (
     <main className="content">
-      <div className="main">
+      <div className="main"  >
         <SliderVideo />
         <SliderTopFive />
         <SliderTopNext />
