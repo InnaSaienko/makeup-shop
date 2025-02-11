@@ -3,6 +3,7 @@ import "./VariantsOfColors.scss"
 
 const VariantsOfColors = ({ id, product_colors, handleColorSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [variantColor, setVariantColor] = useState(product_colors[0]);
 
   if (!product_colors || product_colors.length === 0) {
     return null;
@@ -24,19 +25,20 @@ const VariantsOfColors = ({ id, product_colors, handleColorSelect }) => {
         <div className="variant">
           <div
             className="variant-image"
-            style={{ backgroundColor: product_colors[0].hex_value || "#ccc" }}
+            style={{ backgroundColor: variantColor.hex_value || "#ccc" }}
           ></div>
-          <span>{product_colors[0].colour_name}</span>
+          <span>{variantColor.colour_name}</span>
         </div>
         <div className="dropdown-icon"></div>
       </button>
 
-      <div className={`variants ${isDropdownOpen ? "open" : ""}`}>
+      <div className={`variants-scrolling ${isDropdownOpen ? "open" : ""}`}>
         {product_colors.map((color) => (
           <div
             key={color.hex_value}
             className="variant-option"
             onClick={() => {
+              setVariantColor(color);
               handleColorSelect(color);
               setIsDropdownOpen(false);
             }}
