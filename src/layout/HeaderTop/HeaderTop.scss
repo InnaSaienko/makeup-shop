@@ -83,13 +83,23 @@
           background: url(../../assets/images/cart.svg) no-repeat center center / 24px 24px;
           border: none;
 
-          &:hover {
-            fill: $color-brand;
+          &.empty {
+            cursor: default;
           }
 
-          &-quant {
+          & .header-counter {
             position: absolute;
-            right: 5px;
+            width: 15px;
+            height: 15px;
+            border: 1px solid $color-grey-dark;
+            border-radius: 50%;
+            background: $color-main;
+            color: $color-white;
+            right: 1px;
+
+            &.hidden {
+              visibility: hidden;
+            }
           }
         }
       }
