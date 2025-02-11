@@ -1,14 +1,10 @@
-import React, { useState} from "react";
+import React from "react";
 import useFetchData from "../../hooks/useFetchData.js";
 import { useBasket } from "../../context/BasketContext/BasketContext";
 import { Preloader } from "../Preloader/Preloader";
 
 function BasketCard(props) {
-  const {
-    id: id,
-    selectedColor: selectedColor,
-    product_type: product_type,
-  } = props;
+  const {id, selectedColor, product_type} = props;
 
   const {
     getUniqueProductQuantity,
@@ -23,7 +19,7 @@ function BasketCard(props) {
   if (loading) { return <Preloader />; };
 
   if (foundProduct) {
-    const { name, price, category, api_featured_image } = foundProduct;
+    const { name, category, api_featured_image } = foundProduct;
     return (
       <li key={selectedColor} className="product-list__item" data-id={id}>
          <div
