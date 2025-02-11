@@ -24,20 +24,12 @@ const ProductDetails = () => {
 
   const renderStars = (rating) => {
     if (rating === null) {
-      return Array.from({ length: 5 }, (_, index) => (
-        <div
-          key={index}
-          className={`star-list__item ${index < rating ? "" : "no-rating"}`}
-        >
-          ★
-        </div>
-      ));
+      rating = 0;
     }
 
     return Array.from({ length: 5 }, (_, index) => (
       <div
-        // key={index}
-        className={`star-list__item ${index < rating ? "" : "no-rating"}`}
+       className={`star-list__item${index < rating ? "" : "-gray"}`}
       >
         ★
       </div>
@@ -50,10 +42,11 @@ const ProductDetails = () => {
   return (
     <div className="product-item">
       <div className="product-item__description">
+        {isDeal ? (<div className="card__label">DEAL</div>) : (<></>)}
       <h2 className="title-2">{product.name}</h2>
       <p className="product-item__category-name">{product.product_type}</p>
       <div className="product-item__rating">
-          <div className="star-list">{renderStars(product.rating)}</div>
+          <div className="star-list" id={`${product.rating}`}>{renderStars(product.rating)}</div>
         </div>
       <div className="product-item__text text">{product.description}</div>
       </div>
@@ -65,17 +58,30 @@ const ProductDetails = () => {
           alt={product.name}
         />
       </div>
-      <div className="product-item__buy">       
-        <div className="product-item__price-wrap" data-id={product.id}>
+      <div className="product-item__buy">        
         {isDeal ? (
-        <p>
-          <span className="price-old">{oldPrice}</span><span class="currency">{product.currency}</span>
-          <span className="price-new">{newPrice}</span><span class="currency">{product.currency}</span>
-        </p>
+          <div className="product-item__price-wrap" data-id={product.id}>
+          <span className="product-item__price_red">
+            <div className="offers">
+          <span className="price__item">{newPrice}</span>
+          <span class="currency">{product.currency}</span>
+            </div>
+          </span>
+          <span className="product-item__price_old">
+            <div className="offers">
+            <span className="price__item">{oldPrice}</span>
+            <span class="currency">{product.currency}</span>
+            </div>
+          </span>
+          </div>       
       ) : (
-        <p><span className="price">{oldPrice}</span>
-        <span class="currency">{product.currency}</span>
-        </p>
+        <div className="product-item__price-wrap" data-id={product.id}>
+        <span className="product-item__price">
+          <div className="offers"><span className="price__item">{oldPrice}</span>
+           <span class="currency">{product.currency}</span>
+          </div>
+        </span>
+        </div>
       )}
           {product.product_colors && product.product_colors.length > 0 && (
             <VariantsOfColors product_colors={product.product_colors} handleColorSelect={handleColorSelect} id={product.id} />
@@ -86,7 +92,7 @@ const ProductDetails = () => {
               disabled={!selectedColor}>Buy</button>
           </div>
 
-        </div>
+        
       </div>
 
     </div>

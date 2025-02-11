@@ -29,8 +29,12 @@
         gap: 1%;
         margin-bottom: 10px;
   
-        & .no-rating {
-          background: $color-grey;
+        & .star-list__item {
+        color: $color-main;
+
+          &-gray {
+            color: $color-grey-dark;
+          }
         }
       }
     }
@@ -54,26 +58,27 @@
     width: calc(100% / 12* 3);
 
     & .product-item__price-wrap{
-      @include flex(flex-start, _, column);
+      @include flex(flex-start, center);
+      gap: 10px;
+      & .product-item__price {
 
-      & .price {
-        font: $font-alternate;
-        color: $color-main;
-
-        &-old {
-          color: $color-grey-dark;
-          text-decoration: line-through;
-          line-height: 24px;
-          font-weight: 400;
-          line-height: 1;
+        &_red {
+          & .offers {
+            color: $color-deal;
+            font: $font-alternate;            
+          }         
         }
-        &-new {
-          color: $color-deal;
-          font: $font-alternate;
+        &_old {
+          & .offers {
+            color: $color-grey-dark;
+            text-decoration: line-through;
+            font-size: 17px;
+            font-weight: 400;
+          }
         }
       }
       & .currency {
-        margin-left: 10px;
+        margin: 0 5px;
       }
     }
   }
