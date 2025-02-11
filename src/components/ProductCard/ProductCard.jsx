@@ -11,6 +11,7 @@ function ProductCard(props) {
     productType: product_type,
     api_featured_image: image_link,
   } = props;
+  
   const { category, subcategory } = useParams();
   const navigate = useNavigate();
 

@@ -1,0 +1,35 @@
+@import "../../assets/styles/_variables";
+@import "../../assets/styles/mixins";
+
+.slick-arrow {
+
+    &.slick-next,
+    &.slick-prev {
+      width: 60px;
+      height: 60px;
+    }
+
+    &.slick-next:before,
+    &.slick-prev:before {
+      display: none;
+    }
+
+    &.custom-next-arrow,
+    &.custom-prev-arrow {
+      & svg {
+        transform: rotate(180deg);
+        left: 35px;
+        position: absolute;
+        z-index: 1000 !important;
+
+        @media only screen and (max-width: 1127px) {
+          width: 50px;
+        }
+      }
+    }
+
+    &.custom-next-arrow svg {
+      transform: rotate(-360deg);
+      left: -35px;
+    }
+  }
