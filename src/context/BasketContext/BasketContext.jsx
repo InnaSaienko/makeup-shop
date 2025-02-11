@@ -18,10 +18,10 @@ export function BasketProvider({ children }) {
   const closeBasket = () => setIsOpen(false);
 
   useEffect(() => {
-    const storedItems = localStorage.getItem(loggedUser);
-    if (storedItems) {
-      setBasketProductsContext(loggedUser, JSON.parse(storedItems));
-    }
+    // const storedItems = localStorage.getItem(loggedUser);
+    // if (storedItems) {
+    //   setBasketProductsContext(loggedUser, JSON.parse(storedItems));
+    // }
   }, []);
 
   function getProductQuantity() {
@@ -50,15 +50,12 @@ export function BasketProvider({ children }) {
           ? { ...item, selectedColor: selectedColor, product_type: product_type, quantity: item.quantity + 1 }
           : item
       );
-      return (
-        setBasketProductsContext(item),
-        localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext))
-      );
+        setBasketProductsContext(item);
+        localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext));
+      
     } else {
-      return (
-        setBasketProductsContext([...basketProductsContext, { id, selectedColor, product_type, quantity: 1 }]),
-        localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext))
-      );
+      setBasketProductsContext([...basketProductsContext, { id, selectedColor, product_type, quantity: 1 }]);
+        // localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext));      
     }
   }
 
