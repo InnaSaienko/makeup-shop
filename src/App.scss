@@ -4,22 +4,26 @@
 .App {
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
   color: $color-main;
-  
+
   &:hover {
     color: $color-brand;
   }
 }
+
 ul {
   padding: 0;
 }
+
 li {
   list-style: none;
 }
+
 .button {
-  @include flex(center, center); 
+  @include flex(center, center);
   @include shared-size();
   cursor: pointer;
   outline: 0;
@@ -34,6 +38,7 @@ li {
 }
 
 @media (max-width: 768px) {
+
   .button,
   .select-product-variant {
     @include shared-size($padding-x: 16px, $padding-y: 10px);
@@ -52,11 +57,23 @@ li {
   line-height: 20px;
 }
 
- .title-2 {
+.title-2 {
   font: $font-alternate;
   font-weight: 600;
   font-size: 26px;
   color: $color-main;
   line-height: 40px;
   margin: 8px 0 0 0;
+}
+
+.offers {
+  font: $font-alternate;
+  font-size: 20px;
+  line-height: 32px;
+  color: $color-main;
+}
+
+.card__label {
+  @include flex(flex-start, center);
+  @include card-label();
 }

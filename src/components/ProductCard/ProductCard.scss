@@ -23,16 +23,7 @@
 
     & .card__label {
       @include flex(center, center);
-      margin: 0 0 4px 0;
-      padding: 5px 6px 5px 8px;
-      color: $color-white;
-      font-size: 12px;
-      line-height: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      background: $color-main;
-      color: $color-white;
+      @include card-label();
     }
   }
 
