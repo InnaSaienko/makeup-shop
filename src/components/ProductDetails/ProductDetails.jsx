@@ -4,6 +4,8 @@ import useFetchData from "../../hooks/useFetchData.js";
 import { useBasket } from "../../context/BasketContext/BasketContext";
 import { Preloader } from "../Preloader/Preloader";
 import VariantsOfColors from "./VariantsOfColors.jsx";
+import { getSubcategoryDeal } from "../../utils/getSubcategoryDeal.jsx";
+import { calculatePrice } from "../..//utils/calculatePrice.jsx";
 import "./ProductDetails.scss";
 
 const ProductDetails = () => {
@@ -11,9 +13,7 @@ const ProductDetails = () => {
   const { data, loading, error } = useFetchData({ subcategory });
   const { addProduct } = useBasket();
   const product = data.find((item) => item.id === Number(id));
-  const [selectedColor, setSelectedColor] = useState(null);
-  const params = useParams();
-  console.log("Params received:", params);
+  const [selectedColor, setSelectedColor] = useState(null);  
 
   if (loading) { return <Preloader />; };
   if (error) return <p>Error: {error}</p>;
@@ -43,8 +43,20 @@ const ProductDetails = () => {
       </div>
     ));
   };
+  const isDeal = getSubcategoryDeal(product.product_type);
+  const { oldPrice, newPrice } = calculatePrice(product.price, isDeal);
+
+  
   return (
     <div className="product-item">
+      <div className="product-item__description">
+      <h2 className="title-2">{product.name}</h2>
+      <p className="product-item__category-name">{product.product_type}</p>
+      <div className="product-item__rating">
+          <div className="star-list">{renderStars(product.rating)}</div>
+        </div>
+      <div className="product-item__text text">{product.description}</div>
+      </div>
       <div id="product-image" className="product-item__image">
         <img
           className="img"
@@ -53,15 +65,18 @@ const ProductDetails = () => {
           alt={product.name}
         />
       </div>
-
-      <div className="product-item__info">
-        <h2 className="title-2">{product.name}</h2>
-        <p>{product.product_type}</p>
-        <div className="product-item__rating">
-          <div className="star-list">{renderStars(product.rating)}</div>
-        </div>
-        <div className="product-item__buy" data-id={product.id}>
-          {product.price} {product.currency}
+      <div className="product-item__buy">       
+        <div className="product-item__price-wrap" data-id={product.id}>
+        {isDeal ? (
+        <p>
+          <span className="price-old">{oldPrice}</span><span class="currency">{product.currency}</span>
+          <span className="price-new">{newPrice}</span><span class="currency">{product.currency}</span>
+        </p>
+      ) : (
+        <p><span className="price">{oldPrice}</span>
+        <span class="currency">{product.currency}</span>
+        </p>
+      )}
           {product.product_colors && product.product_colors.length > 0 && (
             <VariantsOfColors product_colors={product.product_colors} handleColorSelect={handleColorSelect} id={product.id} />
           )}
