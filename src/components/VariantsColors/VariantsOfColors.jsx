@@ -3,8 +3,7 @@ import "./VariantsOfColors.scss"
 
 const VariantsOfColors = ({ id, product_colors, handleColorSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [variantColor, setVariantColor] = useState(product_colors[0]);
-
+  
   if (!product_colors || product_colors.length === 0) {
     return null;
   }
@@ -12,7 +11,7 @@ const VariantsOfColors = ({ id, product_colors, handleColorSelect }) => {
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
-
+  
   return (
     <div className="variants-container">
       <button
@@ -25,9 +24,9 @@ const VariantsOfColors = ({ id, product_colors, handleColorSelect }) => {
         <div className="variant">
           <div
             className="variant-image"
-            style={{ backgroundColor: variantColor.hex_value || "#ccc" }}
+            style={{ backgroundColor: product_colors[0].hex_value || "#ccc" }}
           ></div>
-          <span>{variantColor.colour_name}</span>
+          <span>{product_colors[0].colour_name}</span>
         </div>
         <div className="dropdown-icon"></div>
       </button>
@@ -38,7 +37,6 @@ const VariantsOfColors = ({ id, product_colors, handleColorSelect }) => {
             key={color.hex_value}
             className="variant-option"
             onClick={() => {
-              setVariantColor(color);
               handleColorSelect(color);
               setIsDropdownOpen(false);
             }}
