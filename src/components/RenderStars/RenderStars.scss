@@ -1,0 +1,21 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+
+.product-item__rating {
+    width: 100%;
+    margin-top: 10px;
+
+    & .star-list {
+      @include flex(flex-start, center);
+      gap: 1%;
+      margin-bottom: 10px;
+
+      & .star-list__item {
+      color: $color-main;
+
+        &-gray {
+          color: $color-grey-dark;
+        }
+      }
+    }
+  }
