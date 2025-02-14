@@ -15,5 +15,10 @@ export const getSubcategoryDeal = (subcategory) => {
     (item) => item.name.toLowerCase() === formattedSubcategory
   );
 
-  return subcategoryItem?.deal || false;
+  if (!subcategoryItem || !subcategoryItem.attention) return { deal: false, message: null };
+  
+  return {
+    deal: subcategoryItem.attention.deal,
+    message: subcategoryItem.attention.message
+  };
 };
