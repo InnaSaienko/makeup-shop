@@ -10,6 +10,15 @@
   padding: 10px;
   overflow: hidden;
 
+  &:hover {
+    .custom-next-arrow,
+    .custom-prev-arrow {      
+      visibility: visible;
+      transition: opacity 0.4s ease;
+    }
+  }
+
+
   .slick-slider {
     padding: 0 70px;
   }
