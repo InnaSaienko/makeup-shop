@@ -33,7 +33,7 @@ function BasketCard(props) {
              alt={category}
            />
          </div>
-         <div className="product-list__name" style={{ color: selectedColor }}>{name}</div>
+         <div className="product-list__name" style={{ color: selectedColor.hex_value }}>{name}</div>
          <div className="product-list__count">
            <div
              className="product__button-decrease"

@@ -24,7 +24,8 @@ function HeaderTop() {
           />
         </div>
         <div className="header-right-row">
-          <button className={`authorization ${loggedUser !== guest ? "logged-in" : "logged-out"}`} onClick={openAuthorization}></button>
+          <button className={`authorization ${loggedUser !== guest ? "logged-in" : "logged-out"}`} 
+  onClick={openAuthorization}></button>
           <button className={`basket-widget ${getProductQuantity() === null ? "empty" : ""}`} onClick={openBasket}>
             <span className={`header-counter${getProductQuantity() === null ? "hidden" : ""}`}>{getProductQuantity()}</span>
           </button>

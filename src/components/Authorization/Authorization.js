@@ -5,14 +5,12 @@ import { useAuthorization } from "../../context/AuthorizationContext/Authorizati
 
 function Authorization({ isOpen }) {
   const {
-      users,
       guest,
       loggedUser,
       closeAuthorization,
       verifyUserCredentials,
       userSignIn,
-      logOut,
-      isLogin,
+      signOut,
   } = useAuthorization();
   const [isShaking, setIsShaking] = useState(false);
 
@@ -21,6 +19,7 @@ function Authorization({ isOpen }) {
   }
 
   if (loggedUser !== guest || "") {
+    console.log("Now this user try to loguot: ", loggedUser);
       return (
           <>
               <div className="background-overlay" onClick={closeAuthorization}></div>
@@ -29,7 +28,7 @@ function Authorization({ isOpen }) {
                   <button
                       type="button"
                       className="button full-width"
-                      onClick={() => logOut(loggedUser)}
+                      onClick={() => signOut(loggedUser)}
                   >
                       Log Out
                   </button>
