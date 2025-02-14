@@ -1,0 +1,15 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+.product-item__description {
+    @include flex(flex-start, center, column);
+    width: calc(100% / 12* 3);
+
+    & .title-2 {
+      width: 100%;
+    }
+
+    & .product-item__category-name {
+      width: 100%;
+    }
+  }

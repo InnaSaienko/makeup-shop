@@ -1,0 +1,15 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+.product-item__image {
+    @include flex(center, center);
+    margin: 0 auto;
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
+
+    & .img {
+      width: 100%;
+      height: auto;
+    }
+  }

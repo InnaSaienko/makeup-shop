@@ -1,0 +1,28 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+.product-item__price-wrap{
+
+    @include flex(flex-start, center);
+    gap: 10px;
+    & .product-item__price {
+
+      &_red {
+        & .offers {
+          color: $color-deal;
+          font: $font-alternate;            
+        }         
+      }
+      &_old {
+        & .offers {
+          color: $color-grey-dark;
+          text-decoration: line-through;
+          font-size: 17px;
+          font-weight: 400;
+        }
+      }
+    }
+    & .currency {
+      margin: 0 5px;
+    }
+  }
