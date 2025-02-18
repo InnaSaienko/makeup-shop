@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import Basket from "../../components/Basket/Basket";
 import { useAuthorization } from "../../context/AuthorizationContext/AuthorizationContext";
 
@@ -12,31 +12,30 @@ export function BasketProvider({ children }) {
   const [basketProductsContext, setBasketProductsContext] = useState([]);
   const { loggedUser } = useAuthorization();
   const [isOpen, setIsOpen] = useState(false);
+  const isInitialLoad = useRef(true); //persist values between renders
 
   const openBasket = () => setIsOpen(true);
   const closeBasket = () => setIsOpen(false);
 
   useEffect(() => {
-    if (loggedUser) {
-      const storedBasket = localStorage.getItem(loggedUser);
-      if (storedBasket) {
-        setBasketProductsContext(JSON.parse(storedBasket));
-      } else {
-        setBasketProductsContext([]);
-      }
+    if (!loggedUser) { //if no user prevent execution
+      return;
     }
-  }, [loggedUser]);
 
-  useEffect(() => {
-    if (loggedUser) {
-      localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext));
+    if (isInitialLoad.current) {      
+      const storedBasket = localStorage.getItem(loggedUser); //only for render: loadload basket from localStore
+      setBasketProductsContext(JSON.parse(storedBasket));
+      isInitialLoad.current = false;
+    } else {
+      localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext)); //for next updates: save to localStore
     }
-  }, [basketProductsContext, loggedUser]);
+  }, [loggedUser, basketProductsContext]);
+
 
   function addProduct(id, selectedColor, product_type) {
     setBasketProductsContext((prevBasket) => {
       const existingItem = prevBasket.find(item => item.id === id && item.selectedColor === selectedColor);
-  
+
       let updatedBasket;
       if (existingItem) {
         updatedBasket = prevBasket.map(item =>
@@ -47,7 +46,7 @@ export function BasketProvider({ children }) {
       } else {
         updatedBasket = [...prevBasket, { id, selectedColor, product_type, quantity: 1 }];
       }
-      
+
       localStorage.setItem(loggedUser, JSON.stringify(updatedBasket));
       return updatedBasket;
     });
