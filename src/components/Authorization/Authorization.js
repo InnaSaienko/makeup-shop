@@ -9,7 +9,7 @@ function Authorization({ isOpen }) {
       loggedUser,
       closeAuthorization,
       verifyUserCredentials,
-      userSignIn,
+      signIn,
       signOut,
   } = useAuthorization();
   const [isShaking, setIsShaking] = useState(false);
@@ -45,7 +45,7 @@ function Authorization({ isOpen }) {
       const isValidUser = verifyUserCredentials(email, password);
 
       if (isValidUser) {
-          userSignIn(email);
+          signIn(email);
           closeAuthorization();
       } else {
           setIsShaking(true);

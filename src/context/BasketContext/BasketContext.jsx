@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useRef } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import Basket from "../../components/Basket/Basket";
 import { useAuthorization } from "../../context/AuthorizationContext/AuthorizationContext";
 
@@ -12,24 +12,23 @@ export function BasketProvider({ children }) {
   const [basketProductsContext, setBasketProductsContext] = useState([]);
   const { loggedUser } = useAuthorization();
   const [isOpen, setIsOpen] = useState(false);
-  const isInitialLoad = useRef(true); //persist values between renders
 
   const openBasket = () => setIsOpen(true);
   const closeBasket = () => setIsOpen(false);
 
   useEffect(() => {
-    if (!loggedUser) { //if no user prevent execution
-      return;
-    }
+    const prevUser = localStorage.getItem(loggedUser) ;
+    console.log("prevUser in localStore: " , prevUser);
 
-    if (isInitialLoad.current) {      
-      const storedBasket = localStorage.getItem(loggedUser); //only for render: loadload basket from localStore
-      setBasketProductsContext(JSON.parse(storedBasket));
-      isInitialLoad.current = false;
-    } else {
-      localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext)); //for next updates: save to localStore
-    }
-  }, [loggedUser, basketProductsContext]);
+    const storedBasket = localStorage.getItem(loggedUser);
+    setBasketProductsContext(storedBasket ? JSON.parse(storedBasket) : []);
+  }, [loggedUser]);
+  
+
+  useEffect(() => {   
+      localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext));    
+  }, [basketProductsContext, loggedUser]);
+
 
 
   function addProduct(id, selectedColor, product_type) {
@@ -50,7 +49,8 @@ export function BasketProvider({ children }) {
       localStorage.setItem(loggedUser, JSON.stringify(updatedBasket));
       return updatedBasket;
     });
-  }
+}
+
 
   function decreaseQuantity(id, selectedColor) {
     setBasketProductsContext((prevBasket) => {
