@@ -7,17 +7,19 @@ import "./ProductsList.scss";
 
 
 function ProductsList() {
-  const { category, subcategory } = useParams();
-  const { data, loading, error } = useFetchData({ product_type: subcategory });
-  
-  if (loading) { return <Preloader />; };
-    if (error) return <p>Error: {error}</p>;
+  const { category, subcategory, brand} = useParams();
+  const fetchParams = brand ? { brand } : { product_type: subcategory };
+  const { data, loading, error } = useFetchData(fetchParams);
+
+
+  if (loading) { return <Preloader />; }
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <ul className="catalog-grid">
       {data.map((product) => <ProductCard key={`${category}-${subcategory}-${product.id}`}
-            category={category}
-            subcategory={subcategory} {...product} />)}
+        category={category}
+        subcategory={subcategory} {...product} />)}
     </ul>
   );
 }
