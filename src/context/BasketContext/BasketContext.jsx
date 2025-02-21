@@ -17,26 +17,24 @@ export function BasketProvider({ children }) {
   const closeBasket = () => setIsOpen(false);
 
   useEffect(() => {
-    if (loggedUser) {
-      const storedBasket = localStorage.getItem(loggedUser);
-      if (storedBasket) {
-        setBasketProductsContext(JSON.parse(storedBasket));
-      } else {
-        setBasketProductsContext([]);
-      }
-    }
-  }, [loggedUser]);
+    const prevUser = localStorage.getItem(loggedUser) ;
+    console.log("prevUser in localStore: " , prevUser);
 
-  useEffect(() => {
-    if (loggedUser) {
-      localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext));
-    }
+    const storedBasket = localStorage.getItem(loggedUser);
+    setBasketProductsContext(storedBasket ? JSON.parse(storedBasket) : []);
+  }, [loggedUser]);
+  
+
+  useEffect(() => {   
+      localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext));    
   }, [basketProductsContext, loggedUser]);
+
+
 
   function addProduct(id, selectedColor, product_type) {
     setBasketProductsContext((prevBasket) => {
       const existingItem = prevBasket.find(item => item.id === id && item.selectedColor === selectedColor);
-  
+
       let updatedBasket;
       if (existingItem) {
         updatedBasket = prevBasket.map(item =>
@@ -47,11 +45,12 @@ export function BasketProvider({ children }) {
       } else {
         updatedBasket = [...prevBasket, { id, selectedColor, product_type, quantity: 1 }];
       }
-      
+
       localStorage.setItem(loggedUser, JSON.stringify(updatedBasket));
       return updatedBasket;
     });
-  }
+}
+
 
   function decreaseQuantity(id, selectedColor) {
     setBasketProductsContext((prevBasket) => {

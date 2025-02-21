@@ -17,8 +17,8 @@ function App() {
     <>
       <div className="main-wrap">
         <ErrorBoundary>
-          <BasketProvider>
-            <AuthorizationProvider>
+          <AuthorizationProvider>
+            <BasketProvider>
               <HeaderTop />
               <Navigation />
               <Routes>
@@ -27,8 +27,8 @@ function App() {
                 <Route path="/products/:category/:subcategory/:id" element={<ProductDetails />} />
                 <Route path="/register-form" element={<RegisterForm />} />
               </Routes>
-            </AuthorizationProvider>
-          </BasketProvider>
+            </BasketProvider>
+          </AuthorizationProvider>
           <Footer />
         </ErrorBoundary>
       </div>
