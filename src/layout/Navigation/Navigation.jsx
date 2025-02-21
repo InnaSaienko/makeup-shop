@@ -14,7 +14,7 @@ function Navigation() {
         <ul className="menu-list">
           {categories.map((category, index) => (
             <li key={index} className="menu-list__item">
-              <Link to="#" className="menu-list__link__category" onClick={(e) => e.preventDefault()}>
+              <Link to="#" className="menu-list__link__category title-2" onClick={(e) => e.preventDefault()}>
                 {category.category}
               </Link>
               {/* Subcategories Dropdown */}

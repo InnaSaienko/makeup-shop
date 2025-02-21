@@ -1,8 +1,9 @@
 @import "./assets/styles/variables";
 @import "./assets/styles/mixins";
 
-.App {
+* {
   box-sizing: border-box;
+  font: $font-main;
 }
 
 a {
@@ -60,7 +61,6 @@ li {
 .title-2 {
   font: $font-alternate;
   font-weight: 600;
-  font-size: 26px;
   color: $color-main;
   line-height: 40px;
   margin: 8px 0 0 0;

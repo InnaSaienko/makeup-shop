@@ -1,11 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getSubcategoryDeal } from "../../utils/getSubcategoryDeal.jsx";
 import "./ProductCard.scss";
 
 function ProductCard(props) {  
   const {id, brand, rating, name, api_featured_image: image_link } = props;
-  
+
   const { category, subcategory } = useParams();
   const navigate = useNavigate();
 
@@ -31,14 +30,14 @@ function ProductCard(props) {
       </div>
       </div>
       
-      <Link className="card__image">
+      <div className="card__image">
         <img
           className="card__image__link"
           alt="image_product"
           src={image_link}
           loading="lazy"
         />
-      </Link>
+      </div>
       <div className="card__content">
         <span className="card__title">
           {brand}
