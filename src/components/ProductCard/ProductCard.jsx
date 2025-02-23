@@ -10,7 +10,7 @@ function ProductCard(props) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/products/${category}/${subcategory}/${id}`, { state: { product: props } });
+    navigate(`/products/${category}/${subcategory}/${id}`);
   };
   const isDeal = getSubcategoryDeal(subcategory);
 
@@ -31,14 +31,14 @@ function ProductCard(props) {
       </div>
       </div>
       
-      <Link className="card__image">
+      <div className="card__image">
         <img
           className="card__image__link"
           alt="image_product"
           src={image_link}
           loading="lazy"
         />
-      </Link>
+      </div>
       <div className="card__content">
         <span className="card__title">
           {brand}

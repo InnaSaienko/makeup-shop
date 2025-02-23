@@ -4,10 +4,6 @@ import { categories } from "../../constatnts/categories";
 import "./Navigation.scss";
 
 function Navigation() {
-  
-
-
-
   return (
     <nav className="menu">
       <div className="layout">

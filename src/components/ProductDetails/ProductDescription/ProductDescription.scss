@@ -2,14 +2,23 @@
 @import "../../../assets/styles/mixins";
 
 .product-item__description {
-    @include flex(flex-start, center, column);
-    width: calc(100% / 12* 3);
+  @include flex(flex-start, center, column);
+  width: calc(100% / 12* 3);
 
-    & .title-2 {
-      width: 100%;
-    }
+  & .label_brand {
+    width: 100%;
+    font: $font-alternate;
+    font-size: 16px;
+    line-height: 20px;
 
-    & .product-item__category-name {
-      width: 100%;
+    & .brand-product__name {
+      color: $color-grey-dark;
     }
   }
+
+& .product-item__category-name {
+  width: 100%;
+  font: $font-alternate;
+  font-size: 32px;
+}
+}
