@@ -1,12 +1,11 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import RenderStars from '../RenderStars/RenderStars';
-import "./ProductDescription.scss"
-import { Link } from 'react-router-dom';
+import "./ProductDescription.scss";
 
 const ProductDescription = ({ isDeal, productDetails }) => {
     const { category, subcategory } = useParams();
-    const { name, brand, rating } = productDetails.product;
+    const { name, brand, rating } = productDetails;
     const { deal, message } = isDeal;
     return (
         <div className="product-item__description">
