@@ -1,11 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getSubcategoryDeal } from "../../utils/getSubcategoryDeal.jsx";
 import "./ProductCard.scss";
 
 function ProductCard(props) {  
   const {id, brand, rating, name, api_featured_image: image_link } = props;
-  
+
   const { category, subcategory } = useParams();
   const navigate = useNavigate();
 
