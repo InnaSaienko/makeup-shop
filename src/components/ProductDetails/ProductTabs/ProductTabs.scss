@@ -1,0 +1,48 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+.product-item-tabs {
+    display: flex;
+    width: calc(100vw - 15%);
+    margin: 32px auto;
+    border: 1px solid $color-grey-light;
+    border-radius: 8px;
+    background: $color-white;
+    font: $font-title;
+    font-size: 20px;
+  
+    &__nav {
+      border-right: 1px solid $color-grey-light;
+      padding: 0 0 0 4%;
+      margin: 36px;
+      width: 24%;
+  
+      li {
+        cursor: pointer;
+        padding: 10px;
+        transition: background 0.3s ease-in-out;
+        color: $color-grey-dark;
+  
+        &.active-tab {
+          color: $color-main;
+          border-right: 2px solid $color-main;
+        }
+      }
+    }
+  
+    &__content {
+      padding: 16px;
+  
+      li {
+        padding: 10px;
+        display: none;
+  
+        &.active-tab {
+          display: block;
+          font-size: 16px;
+          color: $color-main;
+        }
+      }
+    }
+  }
+  
