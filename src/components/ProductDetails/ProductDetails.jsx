@@ -9,7 +9,9 @@ import VariantsOfColors from "../VariantsColors/VariantsOfColors.jsx";
 import ProductPrice from "./ProductPrice/ProductPrice.jsx";
 import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal.jsx";
 import "./ProductDetails.scss";
+import "../Button/Button.scss";
 import ProductTabs from "./ProductTabs/ProductTabs";
+import Button from "../Button/Button.jsx";
 
 const ProductDetails = () => {
     const {id, subcategory} = useParams();
@@ -49,11 +51,7 @@ const ProductDetails = () => {
                         <VariantsOfColors product_colors={product.product_colors} handleColorSelect={handleColorSelect}
                                           id={product.id}/>
                     )}
-                    <div className="product-item__button">
-                        <button className="button buy"
-                                onClick={() => addProduct(product.id, selectedColor, product.product_type)}>Buy
-                        </button>
-                    </div>
+                    <Button onClick={() => addProduct(product.id, selectedColor, product.product_type)}/>
                 </div>
             </div>
             <ProductTabs productDetails={product}/>

@@ -23,30 +23,6 @@ li {
   list-style: none;
 }
 
-.button {
-  @include flex(center, center);
-  @include shared-size();
-  cursor: pointer;
-  outline: 0;
-  user-select: none;
-  font-size: 16px;
-  line-height: 24px;
-  white-space: nowrap;
-  border: none;
-  transition: all 0.2s ease-in-out;
-  color: $color-white;
-  background: $color-main;
-}
-
-@media (max-width: 768px) {
-
-  .button,
-  .select-product-variant {
-    @include shared-size($padding-x: 16px, $padding-y: 10px);
-    max-width: 100%;
-  }
-}
-
 .content {
   width: calc(100vw - 15%);
   margin: 0 auto;
