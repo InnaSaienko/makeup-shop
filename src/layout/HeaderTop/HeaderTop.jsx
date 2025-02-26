@@ -19,7 +19,7 @@ function HeaderTop() {
         <div className="header-center-row">
           <NavLink
             to="/"
-            title="MAKEUP beauty without limits"
+            title="Beaty no limits"
             className="logo"
           />
         </div>
