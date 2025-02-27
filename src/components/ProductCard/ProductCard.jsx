@@ -1,20 +1,16 @@
-import { useNavigate, useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import { getSubcategoryDeal } from "../../utils/getSubcategoryDeal.jsx";
 import "./ProductCard.scss";
 
 function ProductCard(props) {  
   const {id, brand, rating, name, api_featured_image: image_link } = props;
 
-  const { category, subcategory } = useParams();
-  const navigate = useNavigate();
+  const { subcategory } = useParams();
 
-  const handleClick = () => {
-    navigate(`/products/${category}/${subcategory}/${id}`);
-  };
   const isDeal = getSubcategoryDeal(subcategory);
 
   return (
-    <li className="catalog-grid__cell card" id={id} onClick={() => handleClick()}>
+    <Link className="catalog-grid__cell card" id={id} to={`/products/${id}`}>
       <div className="card__badge">
         {isDeal ? (<div className="card__label">DEAL</div>) : (<div className="card__label">HIT</div>)}
       </div>
@@ -48,7 +44,7 @@ function ProductCard(props) {
           <span className="card__description">{name}</span>
         </p>
       </div>
-    </li>
+    </Link>
   );
 }
 
