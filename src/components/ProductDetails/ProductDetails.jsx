@@ -10,12 +10,12 @@ import ProductPrice from "./ProductPrice/ProductPrice.jsx";
 import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal.jsx";
 import "./ProductDetails.scss";
 import "../Button/Button.scss";
-import ProductTabs from "./ProductTabs/ProductTabs";
+import ProductTabs from "./ProductTabs/ProductTabs.jsx";
 import Button from "../Button/Button.jsx";
 
 const ProductDetails = () => {
-    const {id, subcategory} = useParams();
-    const {data, loading, error} = useFetchData({product_type: subcategory});
+    const {id} = useParams();
+    const {data, loading, error} = useFetchData({ product_id: id });
     const {addProduct} = useBasket();
     const product = data.find((item) => item.id === Number(id));
     const [selectedColor, setSelectedColor] = useState(null);
@@ -37,16 +37,14 @@ const ProductDetails = () => {
     };
 
     const {deal, message} = getSubcategoryDeal(product.product_type);
-    console.log("image: ", product.api_featured_image);
 
     return (
         <>
             <div className="product-item">
                 <ProductDescription isDeal={{deal, message}} productDetails={product}/>
-                <ProductImage productImage={{name: product.name, image: product.api_featured_image}}/>
+                <ProductImage productImage={{name: product.name, image: product.api_featured_image, product_type: product.product_type}}/>
                 <div className="product-item__buy">
-                    <ProductPrice isDeal={{deal}}
-                                  productPrice={{id: id, price: product.price, currency: product.currency}}/>
+                    <ProductPrice isDeal={{deal}} productPrice={{id: id, price: product.price, currency: product.currency}}/>
                     {product.product_colors && product.product_colors.length > 0 && (
                         <VariantsOfColors product_colors={product.product_colors} handleColorSelect={handleColorSelect}
                                           id={product.id}/>

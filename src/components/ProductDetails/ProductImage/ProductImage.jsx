@@ -1,11 +1,9 @@
 import {useState} from "react";
 import PopupWindow from "../PopupWindow/PopupWindow";
 import "./ProductImage.scss"
-import {useParams} from "react-router-dom";
 
 const ProductImage = ({productImage}) => {
-    const {name, image} = productImage;
-    const {subcategory } = useParams();
+    const {name, image, product_type} = productImage;
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
 
@@ -16,14 +14,14 @@ const ProductImage = ({productImage}) => {
                     className="img"
                     loading="lazy"
                     src={image}
-                    alt={`Photo of ${name}`}
+                    alt={name}
                 />
             </div>
             {isPopupOpen && (<PopupWindow
                 isOpen={isPopupOpen}
                 onClose={() => setIsPopupOpen(false)}
                 name={name}
-                subcategory={subcategory}
+                subcategory={product_type}
                 img={image}
             />)}
 

@@ -25,7 +25,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/products/:category/:subcategory" element={<ProductsList />} />
                 <Route path="/brand/:brand" element={<ProductsList />} />
-                <Route path="/products/:category/:subcategory/:id" element={<ProductDetails />} />
+                <Route path="/products/:id" element={<ProductDetails />} />
                 <Route path="/register-form" element={<RegisterForm />} />
               </Routes>
             </BasketProvider>
