@@ -71,9 +71,29 @@
     transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease-in-out;
 
     &.open {
-        max-height: 200px;
+        max-height: 180px;
         opacity: 1;
         visibility: visible;
+        overflow: auto;
+        /* Customizing the scrollbar for WebKit browsers */
+        &::-webkit-scrollbar {
+            width: 4px; // Width of the scrollbar
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $color-grey; // Background color of the scrollbar track
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $color-grey-dark; // Background color of the scrollbar thumb
+            border-right: 1px solid $color-grey-dark; // Right border of the scrollbar thumb
+            min-height: 40px; // Increase the minimum height of the scrollbar thumb
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: darken($color-grey-dark, 40%); // Darken the thumb color on hover
+            border-right: 2px solid darken($color-grey-dark, 40%); // Darken the border color on hover
+        }
     }
 
     .variant-option {
