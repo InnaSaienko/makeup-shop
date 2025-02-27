@@ -12,7 +12,7 @@ import "./SliderTopNext.scss";
 const SliderTopNext = () => {
   const { data, loading, error } = useFetchData();
   const navigate = useNavigate();
-  const topNext = data.slice(5, 21);
+  const topNext = data.length > 5 ? data.slice(5, Math.min(data.length, 21)) : data;
   const settings = {
     dots: true,
     infinite: true,
@@ -48,7 +48,7 @@ const SliderTopNext = () => {
     ],
   };
 
-  if (loading) { return <Preloader />; };
+  if (loading) { return <Preloader />; }
   if (error) return <p>Error: {error}</p>;
 
   const handleClick = (id, subcategory) => {

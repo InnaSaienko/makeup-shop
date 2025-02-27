@@ -1,12 +1,9 @@
 @import "../../assets/styles/_variables";
 @import "../../assets/styles/mixins";
 
-
 .carouselTopNext {
-  width: calc(100vw - 15%);
-  margin: 0 auto;
   position: relative;
-  width: 100%;
+  width: calc(100vw - 15%);
   padding: 10px;
   overflow: hidden;
 
@@ -18,10 +15,8 @@
     }
   }
 
-
   .slick-slider {
     padding: 0 70px;
-  }
 
     & .slide-item {
       @include flex(center, center, column);
@@ -36,11 +31,11 @@
         border: 1px solid $color-grey-light;
         border-radius: 8px;
         transition: box-shadow 0.3s;
-    
+
         &:hover {
           box-shadow: 0 4px 8px $color-grey-light(0, 0, 0, 0.1);
         }
-    
+
         & .image {
           height: 250px;
           margin: 0 auto;
@@ -51,13 +46,13 @@
             padding: 5px;
           }
         }
-    
+
         & .product-name {
           font-size: 1.2rem;
           min-height: 66px;
           margin: 0 0 8px;
         }
-    
+
         & .product-price {
           font-size: 1rem;
           color: $color-grey-dark;
@@ -67,39 +62,41 @@
 
 
     }
-  
-  .slick-next:before,
-  .slick-prev:before {
-    display: none;
-  }
 
-  & .custom-next-arrow:before {
-    transform: rotate(-45deg);
-  }
+    .slick-next:before,
+    .slick-prev:before {
+      display: none;
+    }
 
-  .slick-dots {
-    display: flex !important;
-    margin: 0 -4px;
-    width: 260px;
-    bottom: 0;
-    overflow: hidden;
-    position: relative;
-    left: -5%;
-
-    li {
-      width: 44px;
-      margin: 0 4px;
-      cursor: pointer;
-      flex-shrink: 0;
+    & .custom-next-arrow:before {
+      transform: rotate(-45deg);
+    }
+    .slick-dots {
+      display: flex !important;
+      margin: 0 -4px;
+      width: 260px;
+      bottom: 0;
+      overflow: hidden;
       position: relative;
-      transition: .3s all ease;
-      backface-visibility: hidden;
-      height: 2px;
-      background: $color-grey-dark;
 
-      &.slick-active {
-        background: $color-main;
+      li {
+        width: 44px;
+        margin: 0 4px;
+        cursor: pointer;
+        flex-shrink: 0;
+        position: relative;
+        transition: .3s all ease;
+        backface-visibility: hidden;
+        height: 2px;
+        background: $color-grey-dark;
+
+        &.slick-active {
+          background: $color-main;
+        }
       }
     }
   }
+
+
+
 }
