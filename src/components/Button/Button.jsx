@@ -1,8 +1,11 @@
 import React from 'react';
 
-const button = (
+const Button = ({ onClick }) => {
+    return (
         <div className="product-item__button">
-            <button className="button buy">Buy</button>
+            <button className="button buy" onClick={onClick}>Buy</button>
         </div>
-    )
-export default button;
+    );
+}
+
+export default Button;
