@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopNext.scss";
+import "../../assets/styles/slick-dots.scss"
 
 const SliderTopNext = () => {
   const { data, loading, error } = useFetchData();
@@ -65,7 +66,7 @@ const SliderTopNext = () => {
               <div className="image">
                 <img src={item.api_featured_image} alt={item.name} className="product-image" />
               </div>
-              <h3 className="product-name">{item.name}</h3>
+              <h3 className="title-2">{item.name}</h3>
               <p className="product-price">${item.price}</p>
             </div>
           </div>

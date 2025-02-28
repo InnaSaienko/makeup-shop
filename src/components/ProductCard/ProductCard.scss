@@ -21,7 +21,7 @@
   &__badge {
     position: absolute;
 
-    & .card__label {
+    & .card_label {
       @include flex(center, center);
       @include card-label();
     }

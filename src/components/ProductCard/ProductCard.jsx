@@ -12,7 +12,7 @@ function ProductCard(props) {
   return (
     <Link className="catalog-grid__cell card" id={id} to={`/products/${id}`}>
       <div className="card__badge">
-        {isDeal ? (<div className="card__label">DEAL</div>) : (<div className="card__label">HIT</div>)}
+        {isDeal ? (<div className="card_label">DEAL</div>) : (<div className="card_label">HIT</div>)}
       </div>
       <div className="card-icons-wrapper">
         <div className="to-favorite">

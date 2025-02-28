@@ -9,7 +9,7 @@ const ProductDescription = ({ isDeal, productDetails }) => {
     const { deal, message } = isDeal;
     return (
         <div className="product-item__description">
-            {deal && (<div className="card__label">DEAL</div>)}
+            {deal && (<div className="card_label">DEAL</div>)}
             <div className="label_brand">
                 <Link className="brand" to={`/products/${brand}`}>   <span>{brand}</span> </Link>
                 <Link className="brand-product__name" to={`/products/${category}/${subcategory}`}> / <span>{subcategory}</span></Link>
