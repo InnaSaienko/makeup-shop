@@ -1,10 +1,9 @@
 import React from 'react';
+import "./Button.scss";
 
-const Button = ({ onClick }) => {
+const Button = ({onClick, context}) => {
     return (
-        <div className="product-item__button">
-            <button className="button buy" onClick={onClick}>Buy</button>
-        </div>
+        <button className="button buy" onClick={onClick}>{context}</button>
     );
 }
 

@@ -4,9 +4,11 @@ import Slider from "react-slick";
 import useFetchData from "../../hooks/useFetchData.js";
 import { Preloader } from "../Preloader/Preloader";
 import CustomArrow from "../CustomArrow/CustomArrow.jsx";
+import Button from "../Button/Button";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopFive.scss";
+import "../../assets/styles/slick-dots.scss";
 
 const CarouselBanner = () => {
   const { data, loading, error } = useFetchData();
@@ -38,7 +40,7 @@ const CarouselBanner = () => {
                         {product.brand ? product.brand.toUpperCase() : "COSMETICS"}
                       </div>
                       <h2 className="title-2">{product.name}</h2>
-                      <button className="button">Buy Now</button>
+                      <Button context={"Details"}><Link to={`/products/${product.id}`}></Link></Button>
                     </div>
                     <div className="slide__position-right">
                       <Link className="slide-link" to="#one!">

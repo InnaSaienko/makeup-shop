@@ -49,7 +49,7 @@ const ProductDetails = () => {
                         <VariantsOfColors product_colors={product.product_colors} handleColorSelect={handleColorSelect}
                                           id={product.id}/>
                     )}
-                    <Button onClick={() => addProduct(product.id, selectedColor, product.product_type)}/>
+                    <Button onClick={() => addProduct(product.id, selectedColor, product.product_type)} context={"Buy"}/>
                 </div>
             </div>
             <ProductTabs productDetails={product}/>

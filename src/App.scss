@@ -35,11 +35,10 @@ li {
 }
 
 .title-2 {
-  font: $font-button-cta;
-  font-weight: 600;
+  font: $font-title;
   color: $color-main;
   line-height: 40px;
-  margin: 8px 0 0 0;
+  margin-bottom: 15px;
 }
 
 .offers {
@@ -49,7 +48,7 @@ li {
   color: $color-main;
 }
 
-.card__label {
+.card_label {
   @include flex(flex-start, center);
   @include card-label();
 }
