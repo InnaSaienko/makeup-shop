@@ -4,16 +4,20 @@ const useFetchData = (filters = {}) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url = "http://makeup-api.herokuapp.com/api/v1/products.json"
+    const url = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
                 const queryString = new URLSearchParams(filters).toString();
-                const response = await fetch(`${url}?${queryString}`);
+                const finalUrl = queryString ? `${url}?${queryString}` : url;
+                const response = await fetch(finalUrl);
 
-                if (!response.ok) throw new Error("Failed to fetch data");
+                if (!response.ok) {
+                    setError("Failed to fetch data"); // Handle the error directly
+                    return; // Exit early, no need to throw
+                }
 
                 const result = await response.json();
                 setData(result);
@@ -24,7 +28,7 @@ const useFetchData = (filters = {}) => {
             }
         };
         fetchData();
-    }, [JSON.stringify(filters)]); // Re-fetch if filters changed
+    }, [url, filters]); // Re-fetch if filters changed
 
     return { data, loading, error };
 };
