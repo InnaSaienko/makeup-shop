@@ -6,7 +6,6 @@
   margin: 0 auto;
   height: 4px;
   display: block;
-  // width: calc(100vw - 15%);
   width: 100%;
   background-color: $color-white;
   border-radius: 2px;
@@ -25,7 +24,7 @@
 @keyframes indeterminate {
   0% {
     left: 100%;
-    width: 0%;
+    width: 0;
   }
 
   50% {

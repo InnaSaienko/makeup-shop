@@ -2,18 +2,8 @@
 @import "../../assets/styles/mixins";
 
 #root {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-
   & .main-wrap {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-width: 100%;
-    background-color: $color-white;
-    padding: 42px clamp(20px, 50vw - 585px, 30px) 0;
+    margin: 0 auto;
 
     .header {
       flex: 0 0 auto;

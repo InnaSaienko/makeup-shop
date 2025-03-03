@@ -24,8 +24,15 @@ li {
 }
 
 .content {
+  @include flex(center, center, column);
   width: calc(100vw - 15%);
   margin: 0 auto;
+  overflow: visible;
+  position: relative;
+
+  & .main {
+    width: calc(100vw - 15%);
+  }
 }
 
 .text {
