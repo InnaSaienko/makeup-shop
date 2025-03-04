@@ -1,14 +1,26 @@
-import React, {useState} from "react";
-import "./VariantsOfColors.scss"
+import React, {useEffect, useState} from "react";
+import "./ColorsVariants.scss"
+import {Preloader} from "../Preloader/Preloader";
 
-const VariantsOfColors = ({id, product_colors, handleColorSelect}) => {
+const ColorsVariants = ({product_colors, handleColorSelect}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [selectedVariant, setSelectedVariant] = useState(product_colors[0]);
+    const [selectedColor, setSelectedColor] = useState(product_colors?.[0] || null);
+
+    useEffect(() => {
+        if (!selectedColor && product_colors?.length) {
+            setSelectedColor(product_colors[0]);
+            handleColorSelect(product_colors[0]);
+        }
+    }, [product_colors, handleColorSelect, selectedColor]);
+
+
+    if (!selectedColor) {
+        return <Preloader/>;
+    }
 
     if (!product_colors || product_colors.length === 0) {
         return null;
     }
-
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev);
     };
@@ -17,26 +29,26 @@ const VariantsOfColors = ({id, product_colors, handleColorSelect}) => {
         <div className="variants-container">
             <button
                 className={`select-product-variant ${isDropdownOpen ? "open" : ""}`}
-                data-id={id}
                 onClick={toggleDropdown}
                 aria-expanded={isDropdownOpen}
                 aria-label="Select product color"
             >
                 <div className="variant">
-                    <div className="variant-image" style={{ backgroundColor: selectedVariant.hex_value }}></div>
-                    <span>{selectedVariant.colour_name}</span>
+                    <div className="variant-image" style={{backgroundColor: selectedColor?.hex_value}}></div>
+                    {/* (?.) prevents errors*/}
+                    <span>{selectedColor.colour_name}</span>
                 </div>
-                    <div className="dropdown-icon"></div>
+                <div className="dropdown-icon"></div>
 
             </button>
             <div className={`variants-scrolling ${isDropdownOpen && ("open")}`}>
-                {product_colors.map((color) => (
+                {product_colors.map((color, index) => (
                     <div
-                        key={color.hex_value}
+                        key={index}
                         className="variant-option"
                         onClick={() => {
-                            setSelectedVariant(color);
-                            handleColorSelect(color.hex_value);
+                            setSelectedColor(color);
+                            handleColorSelect(color);
                             setIsDropdownOpen(false);
                         }}
                     >
@@ -49,4 +61,4 @@ const VariantsOfColors = ({id, product_colors, handleColorSelect}) => {
     );
 };
 
-export default VariantsOfColors;
+export default ColorsVariants;
