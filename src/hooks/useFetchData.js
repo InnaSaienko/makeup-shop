@@ -4,7 +4,7 @@ const useFetchData = (filters = {}) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url = process.env.REACT_APP_API_URL;
+    const url = process.env.REACT_APP_MAKEUP_API_URL;
 
     useEffect(() => {
         const fetchData = async () => {
