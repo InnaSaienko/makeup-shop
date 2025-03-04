@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useParams} from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData.js";
 import {useBasket} from "../../context/BasketContext/BasketContext";
 import {Preloader} from "../Preloader/Preloader";
 import ProductDescription from "./ProductDescription/ProductDescription.jsx";
 import ProductImage from "./ProductImage/ProductImage.jsx";
-import VariantsOfColors from "../VariantsColors/VariantsOfColors.jsx";
+import ColorsVariants from "../ColorsVariants/ColorsVariants.jsx";
 import ProductPrice from "./ProductPrice/ProductPrice.jsx";
 import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal.jsx";
 import "./ProductDetails.scss";
@@ -15,16 +15,10 @@ import Button from "../Button/Button.jsx";
 
 const ProductDetails = () => {
     const {id} = useParams();
-    const {data, loading, error} = useFetchData({ product_id: id });
+    const {data, loading, error} = useFetchData({product_id: id});
     const {addProduct} = useBasket();
     const product = data.find((item) => item.id === Number(id));
     const [selectedColor, setSelectedColor] = useState(null);
-
-    useEffect(() => {
-        if (!loading && product?.product_colors?.length) {
-            setSelectedColor(product.product_colors[0]);
-        }
-    }, [loading, product]);
 
     if (loading) {
         return <Preloader/>;
@@ -42,14 +36,20 @@ const ProductDetails = () => {
         <>
             <div className="product-item">
                 <ProductDescription isDeal={{deal, message}} productDetails={product}/>
-                <ProductImage productImage={{name: product.name, image: product.api_featured_image, product_type: product.product_type}}/>
+                <ProductImage productImage={{
+                    name: product.name,
+                    image: product.api_featured_image,
+                    product_type: product.product_type
+                }}/>
                 <div className="product-item__buy">
-                    <ProductPrice isDeal={{deal}} productPrice={{id: id, price: product.price, currency: product.currency}}/>
+                    <ProductPrice isDeal={{deal}}
+                                  productPrice={{id: id, price: product.price, currency: product.currency}}/>
                     {product.product_colors && product.product_colors.length > 0 && (
-                        <VariantsOfColors product_colors={product.product_colors} handleColorSelect={handleColorSelect}
-                                          id={product.id}/>
+                        <ColorsVariants product_colors={product.product_colors}
+                                        handleColorSelect={handleColorSelect}/>
                     )}
-                    <Button onClick={() => addProduct(product.id, selectedColor, product.product_type)} context={"Buy"}/>
+                    <Button onClick={() => addProduct(product.id, selectedColor, product.product_type)}
+                            context={"Buy"}/>
                 </div>
             </div>
             <ProductTabs productDetails={product}/>
