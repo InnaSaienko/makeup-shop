@@ -1,10 +1,9 @@
 import React, {useState} from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./RegisterForm.scss";
 import { useAuthorization } from "../../context/AuthorizationContext/AuthorizationContext";
 
 function RegisterForm() {
-    const location = useLocation();
     const navigate = useNavigate();
     const { userSignUp } = useAuthorization();
     const [firstName, setFirstName] = useState('');

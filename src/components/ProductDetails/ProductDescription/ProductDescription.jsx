@@ -1,18 +1,19 @@
 import React from 'react';
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RenderStars from '../RenderStars/RenderStars';
 import "./ProductDescription.scss";
+import {getCategoryName} from "../../../utils/getCategoryName";
 
 const ProductDescription = ({ isDeal, productDetails }) => {
-    const { category, subcategory } = useParams();
-    const { name, brand, rating } = productDetails;
+    const { name, brand, rating, product_type } = productDetails;
+    const category = getCategoryName(product_type);
     const { deal, message } = isDeal;
     return (
         <div className="product-item__description">
             {deal && (<div className="card_label">DEAL</div>)}
             <div className="label_brand">
-                <Link className="brand" to={`/products/${brand}`}>   <span>{brand}</span> </Link>
-                <Link className="brand-product__name" to={`/products/${category}/${subcategory}`}> / <span>{subcategory}</span></Link>
+                <Link className="brand" to={`/brand/${brand}`}><span>{brand}</span></Link>
+                <Link className="brand-product__name" to={`/products/${category}/${product_type}`}> / <span>{product_type}</span></Link>
             </div>
             <p className="product-item__category-name">{name}</p>
             <RenderStars rating={rating} />

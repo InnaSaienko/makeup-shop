@@ -1,0 +1,46 @@
+@import "../../assets/styles/_variables";
+@import "../../assets/styles/mixins";
+
+
+.carouselVideo {
+  // margin: 0 auto;
+  // width: calc(100vw - 15%);
+
+  & .swiper {
+    // height: 40vh !important;
+    // overflow: visible;
+
+    &-wrapper {
+      // height: 100%;
+      padding-bottom: 40px;
+    }
+
+    & .slide-video {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & .video {
+        width: 100%;
+        height: auto;        
+      }
+    }
+
+    & .swiper-button-next,
+    & .swiper-button-prev {
+      color: $color-main;
+    }
+
+    & .swiper-pagination {
+      bottom: -30px;
+
+      & .swiper-pagination-bullet {
+        background: $color-grey-dark;
+
+        &-active {
+          background-color: $color-main;
+        }
+      }
+    }
+  }
+}
