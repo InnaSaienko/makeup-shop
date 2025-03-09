@@ -2,6 +2,7 @@ import React from "react";
 import useFetchData from "../../hooks/useFetchData.js";
 import { useBasket } from "../../context/BasketContext/BasketContext";
 import { Preloader } from "../Preloader/Preloader";
+import {path} from "../../constatnts/path";
 
 function BasketCard(props) {
   const {id, selectedColor, product_type} = props;
@@ -13,10 +14,10 @@ function BasketCard(props) {
     removeFromBasket,
   } = useBasket();
 
-  const { data, loading, error } = useFetchData({ product_type });
+  const { data, loading, error } = useFetchData(path, { product_type });
   const foundProduct = data.find((product) => parseInt(product.id) === parseInt(id));
     
-  if (loading) { return <Preloader />; };
+  if (loading) { return <Preloader />; }
 
   if (foundProduct) {
     const { name, category, api_featured_image } = foundProduct;

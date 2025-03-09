@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData.js";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { Preloader } from "../Preloader/Preloader";
+import {path} from "../../constatnts/path";
 import "./ProductsList.scss";
 
 
 function ProductsList() {
   const { category, subcategory, brand} = useParams();
   const fetchParams = brand ? { brand } : { product_type: subcategory };
-  const { data, loading, error } = useFetchData(fetchParams);
+  const { data, loading, error } = useFetchData(path, fetchParams);
 
 
   if (loading) { return <Preloader />; }
