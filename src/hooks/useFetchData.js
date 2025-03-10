@@ -29,10 +29,9 @@ const useFetchData = (Path, filters = {}) => {
             }
         };
         fetchData();
-    }, [url.toString()]); // Re-fetch if filters changed
+    }, [url.toString()]);
 
     return { data, loading, error };
 };
 
-//http://cicada-1:5272/api/v1/
 export default useFetchData;
