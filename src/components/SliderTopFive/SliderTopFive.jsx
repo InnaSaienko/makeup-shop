@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import useFetchData from "../../hooks/useFetchData.js";
 import {Preloader} from "../Preloader/Preloader";
 import CustomArrow from "../CustomArrow/CustomArrow.jsx";
-import Button from "../Button/Button";
+import Button from "../Button/Button.tsx";
 import {path} from "../../constatnts/path";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
