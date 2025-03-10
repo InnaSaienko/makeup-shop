@@ -11,13 +11,12 @@ import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal.jsx";
 import "./ProductDetails.scss";
 import "../Button/Button.scss";
 import ProductTabs from "./ProductTabs/ProductTabs.jsx";
-import Button from "../Button/Button.jsx";
+import Button from "../Button/Button.tsx";
 
 const ProductDetails = () => {
     const {id} = useParams();
-    const {data, loading, error} = useFetchData({product_id: id});
+    const {data: product, loading, error} = useFetchData(`products/${id}.json`);
     const {addProduct} = useBasket();
-    const product = data.find((item) => item.id === Number(id));
     const [selectedColor, setSelectedColor] = useState(null);
 
     if (loading) {

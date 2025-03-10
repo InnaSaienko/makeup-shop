@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 
-const useFetchData = (filters = {}) => {
-    const [data, setData] = useState([]);
+const useFetchData = (Path, filters = {}) => {
+    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url = process.env.REACT_APP_MAKEUP_API_URL;
+
+    let url = new URL(process.env.REACT_APP_MAKEUP_API_URL);
+    url.pathname = `${url.pathname}/${Path}`
+    url.search = new URLSearchParams(filters).toString();
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const queryString = new URLSearchParams(filters).toString();
-                const finalUrl = queryString ? `${url}?${queryString}` : url;
-                const response = await fetch(finalUrl);
+                const response = await fetch(url);
 
                 if (!response.ok) {
                     setError("Failed to fetch data"); // Handle the error directly
@@ -28,7 +29,7 @@ const useFetchData = (filters = {}) => {
             }
         };
         fetchData();
-    }, [url, filters]); // Re-fetch if filters changed
+    }, [url.toString()]);
 
     return { data, loading, error };
 };
