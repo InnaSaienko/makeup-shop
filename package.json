@@ -40,6 +40,9 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.78.0"
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "sass": "^1.78.0",
+    "typescript": "^5.8.2"
   }
 }
