@@ -29,7 +29,7 @@ const useFetchData = (path, filters = {}) => {
             }
         };
         fetchData();
-    }, [url]); // Re-fetch if filters changed
+    }, [url.toString()]); // Re-fetch if filters changed
 
     return { data, loading, error };
 };
