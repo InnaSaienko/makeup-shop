@@ -15,9 +15,8 @@ import Button from "../Button/Button.tsx";
 
 const ProductDetails = () => {
     const {id} = useParams();
-    const {data, loading, error} = useFetchData(`products/${id}.json`);
+    const {data: product, loading, error} = useFetchData(`products/${id}.json`);
     const {addProduct} = useBasket();
-    const product = data;
     const [selectedColor, setSelectedColor] = useState(null);
 
     if (loading) {
