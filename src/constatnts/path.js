@@ -1,1 +1,1 @@
-export const path = "products.json";
+export const Path = "products.json";

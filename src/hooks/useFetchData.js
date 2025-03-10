@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-const useFetchData = (path, filters = {}) => {
-    const [data, setData] = useState([]);
+const useFetchData = (Path, filters = {}) => {
+    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     let url = new URL(process.env.REACT_APP_MAKEUP_API_URL);
-    url.pathname = `${url.pathname}/${path}`
+    url.pathname = `${url.pathname}/${Path}`
     url.search = new URLSearchParams(filters).toString();
 
     useEffect(() => {
