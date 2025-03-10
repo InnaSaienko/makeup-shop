@@ -1,1 +1,1 @@
-export const Path = "products.json";
+export const PRODUCTS_QUERY_PATH = "products.json";

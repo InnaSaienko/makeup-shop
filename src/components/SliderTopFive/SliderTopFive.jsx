@@ -5,14 +5,14 @@ import useFetchData from "../../hooks/useFetchData.js";
 import {Preloader} from "../Preloader/Preloader";
 import CustomArrow from "../CustomArrow/CustomArrow.jsx";
 import Button from "../Button/Button.tsx";
-import {Path} from "../../constatnts/path";
+import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopFive.scss";
 import "../../assets/styles/slick-dots.scss";
 
 const CarouselBanner = () => {
-    const {data, loading, error} = useFetchData(Path);
+    const {data, loading, error} = useFetchData(PRODUCTS_QUERY_PATH);
     const topFive = data.slice(0, 5);
 
     const settings = {
