@@ -1,5 +1,5 @@
 import React from "react";
-import useFetchData from "../../hooks/useFetchData.js";
+import useFetchData from "../../hooks/useFetchData.ts";
 import { useBasket } from "../../context/BasketContext/BasketContext";
 import { Preloader } from "../Preloader/Preloader";
 import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";

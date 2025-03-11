@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import useFetchData from "../../hooks/useFetchData.js";
+import useFetchData from "../../hooks/useFetchData.ts";
 import { Preloader } from "../Preloader/Preloader";
 import CustomArrow from "../CustomArrow/CustomArrow.jsx";
 import Slider from "react-slick";

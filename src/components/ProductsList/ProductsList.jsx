@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useFetchData from "../../hooks/useFetchData.js";
+import useFetchData from "../../hooks/useFetchData.ts";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { Preloader } from "../Preloader/Preloader";
 import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";

@@ -8,4 +8,10 @@ declare global {
         currency: string;
         product_colors?: { hex_value: string; colour_name?: string }[];
     }
+
+    interface Filters {
+        product_type?: string;
+        brand?: string;
+    }
+
 }

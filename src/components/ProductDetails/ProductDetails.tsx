@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, {useState} from "react";
 import {useParams} from "react-router-dom";
-import useFetchData from "../../hooks/useFetchData.js";
+import useFetchData from "../../hooks/useFetchData";
 import {useBasket} from "../../context/BasketContext/BasketContext";
 import {Preloader} from "../Preloader/Preloader";
 import ProductDescription from "./ProductDescription/ProductDescription.jsx";
