@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useFetchData = (Path, filters = {}) => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
