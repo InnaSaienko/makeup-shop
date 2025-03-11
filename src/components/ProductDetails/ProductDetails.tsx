@@ -14,16 +14,6 @@ import "../Button/Button.scss";
 import ProductTabs from "./ProductTabs/ProductTabs.jsx";
 import Button from "../Button/Button.tsx";
 
-interface Product {
-    id: number;
-    name: string;
-    api_featured_image: string;
-    product_type: string;
-    price: string;
-    currency: string;
-    product_colors?: { hex_value: string; colour_name?: string }[];
-}
-
 const ProductDetails: React.FC = () => {
     const {id} = useParams<{id: string}>();
     const {data: product, loading, error} = useFetchData<Product>(`products/${id}.json`);
