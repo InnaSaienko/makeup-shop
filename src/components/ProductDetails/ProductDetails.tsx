@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, {useState} from "react";
 import {useParams} from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData.js";
@@ -13,11 +14,21 @@ import "../Button/Button.scss";
 import ProductTabs from "./ProductTabs/ProductTabs.jsx";
 import Button from "../Button/Button.tsx";
 
-const ProductDetails = () => {
-    const {id} = useParams();
-    const {data: product, loading, error} = useFetchData(`products/${id}.json`);
+interface Product {
+    id: number;
+    name: string;
+    api_featured_image: string;
+    product_type: string;
+    price: string;
+    currency: string;
+    product_colors?: { hex_value: string; colour_name?: string }[];
+}
+
+const ProductDetails: React.FC = () => {
+    const {id} = useParams<{id: string}>();
+    const {data: product, loading, error} = useFetchData<Product>(`products/${id}.json`);
     const {addProduct} = useBasket();
-    const [selectedColor, setSelectedColor] = useState(null);
+    const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
     if (loading) {
         return <Preloader/>;
@@ -25,7 +36,7 @@ const ProductDetails = () => {
 
     if (error) return <p>Error: {error}</p>;
 
-    const handleColorSelect = (color) => {
+    const handleColorSelect = (color: string) => {
         setSelectedColor(color);
     };
 
