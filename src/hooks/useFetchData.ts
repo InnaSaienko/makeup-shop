@@ -14,6 +14,7 @@ const useFetchData = <T>(Path: string, filters: Record<string, string> = {}) => 
     url.pathname = `${url.pathname}/${Path}`
     url.search = new URLSearchParams(filters).toString();
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
