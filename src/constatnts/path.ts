@@ -1,0 +1,1 @@
+export const PRODUCTS_QUERY_PATH : string = "products.json";
