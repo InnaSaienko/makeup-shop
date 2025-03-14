@@ -18,21 +18,18 @@ interface BasketItem {
 
 interface BasketContextType {
     basketProductsContext: BasketItem[];
+    setBasketProductsContext: React.Dispatch<React.SetStateAction<BasketItem[]>>;
     addProduct: (id: string, selectedColor: string, product_type: string) => void;
     decreaseQuantity: (id: string, selectedColor: string) => void;
     removeFromBasket: (id: string, selectedColor: string) => void;
     getUniqueProductQuantity: (id: string, selectedColor: string) => number;
-    getTotalQuantity: () => number | null;
+    getProductQuantity: () => number | null;
     openBasket: () => void;
     closeBasket: () => void;
 }
 
-interface BasketProviderProps {
-    children: ReactNode;
-}
-
 interface BasketItem extends Product {
-    selectedColor: string;
+    selectedColor:  { hex_value: string; colour_name?: string };
     quantity: number;
 }
 
@@ -42,6 +39,5 @@ interface BasketProps {
 
 declare module '*.svg' {
     const content: string;
-    export default content;
 }
 
