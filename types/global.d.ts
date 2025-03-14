@@ -29,10 +29,7 @@ interface BasketContextType {
     closeBasket: () => void;
 }
 
-interface BasketItem extends Product {
-    selectedColor:  { hex_value: string; colour_name?: string };
-    quantity: number;
-}
+
 
 interface BasketProps {
     isOpen: boolean;
