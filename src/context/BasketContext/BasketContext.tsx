@@ -7,7 +7,11 @@ import { useAuthorization } from "../../context/AuthorizationContext/Authorizati
 const BasketContext = createContext<BasketContextType | undefined>(undefined);
 
 export function useBasket() {
-  return useContext(BasketContext);
+  const context = useContext(BasketContext);
+  if (!context) {
+    throw new Error("useBasket must be used within a BasketProvider");
+  }
+  return context;
 }
 
 
