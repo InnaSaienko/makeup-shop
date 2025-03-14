@@ -1,17 +1,20 @@
+
+import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 import Basket from "../../components/Basket/Basket";
 import { useAuthorization } from "../../context/AuthorizationContext/AuthorizationContext";
 
-const BasketContext = createContext({});
+const BasketContext = createContext<BasketContextType | undefined>(undefined);
 
 export function useBasket() {
   return useContext(BasketContext);
 }
 
-export function BasketProvider({ children }) {
-  const [basketProductsContext, setBasketProductsContext] = useState([]);
+
+export function BasketProvider({ children }: { children: React.ReactNode }) {
+  const [basketProductsContext, setBasketProductsContext] = useState<BasketItem[]>([]);
   const { loggedUser } = useAuthorization();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const openBasket = () => setIsOpen(true);
   const closeBasket = () => setIsOpen(false);
@@ -31,10 +34,11 @@ export function BasketProvider({ children }) {
 
 
 
-  function addProduct(id, selectedColor, product_type) {
-    setBasketProductsContext((prevBasket) => {
-      const existingItem = prevBasket.find(item => item.id === id && item.selectedColor === selectedColor);
-
+  const addProduct = (id: string, selectedColor: string, product_type: string)=>  {
+    setBasketProductsContext((prevBasket: BasketItem[]) =>  {
+      const existingItem = prevBasket.find(
+          (item) => item.id === id && item.selectedColor === selectedColor
+      );
       let updatedBasket;
       if (existingItem) {
         updatedBasket = prevBasket.map(item =>
@@ -43,7 +47,7 @@ export function BasketProvider({ children }) {
             : item
         );
       } else {
-        updatedBasket = [...prevBasket, { id, selectedColor, product_type, quantity: 1 }];
+        updatedBasket = [...prevBasket, { id, selectedColor, product_type, quantity: 1 } as BasketItem];
       }
 
       localStorage.setItem(loggedUser, JSON.stringify(updatedBasket));
@@ -51,8 +55,7 @@ export function BasketProvider({ children }) {
     });
 }
 
-
-  function decreaseQuantity(id, selectedColor) {
+  const decreaseQuantity = (id: string, selectedColor: string) => {
     setBasketProductsContext((prevBasket) => {
       return prevBasket
         .map(item =>
@@ -64,26 +67,26 @@ export function BasketProvider({ children }) {
     });
   }
 
-  function removeFromBasket(id, selectedColor) {
+  const removeFromBasket = (id: string, selectedColor: string) => {
     setBasketProductsContext((prevBasket) =>
       prevBasket.filter(item => !(item.id === id && item.selectedColor === selectedColor))
     );
   }
-  function getUniqueProductQuantity(id, selectedColor) {
+
+  const getUniqueProductQuantity = (id: string, selectedColor: string)=> {
     const product = basketProductsContext.find((item) => (item.id === id && item.selectedColor === selectedColor));
     return product ? product.quantity : 0;
   }
 
-  function getProductQuantity() {
+  const getProductQuantity = () => {
     if (basketProductsContext.length === 0) {
       return null;
     }
 
-    const quantity = basketProductsContext.reduce(
+    return basketProductsContext.reduce(
       (quantity, item) => item.quantity + quantity,
       0
     );
-    return quantity;
   }
 
   return (
