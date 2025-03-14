@@ -1,13 +1,19 @@
 import {useState, useEffect} from "react";
 
-const useFetchData = <T>(Path: string, filters: Record<string, string> = {}) => {
+interface UseFetchDataReturn<T> {
+    data: T[];
+    loading: boolean;
+    error: string | null;
+}
+
+const useFetchData = <T>(Path: string, filters: Record<string, string> = {}): UseFetchDataReturn<T> => {
     const [data, setData] = useState<T[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     if (!process.env.REACT_APP_MAKEUP_API_URL) {
         setError("Failed to read REACT_APP_MAKEUP_API_URL");
-        return;
+        return {data: [], loading: false, error: "Failed to read REACT_APP_MAKEUP_API_URL"};
     }
 
     let url = new URL(process.env.REACT_APP_MAKEUP_API_URL);
