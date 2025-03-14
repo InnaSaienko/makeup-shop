@@ -7,6 +7,7 @@ interface Product {
     price: string;
     currency: string;
     product_colors?: { hex_value: string; colour_name?: string }[];
+    selectedColor?: { hex_value: string; colour_name?: string };
 }
 
 interface BasketItem {

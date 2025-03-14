@@ -26,7 +26,7 @@ const ProductDetails: React.FC = () => {
 
     if (error) return <p>Error: {error}</p>;
 
-    const handleColorSelect = (color: string) => {
+    const handleColorSelect = (color: object) => {
         setSelectedColor(color);
     };
 

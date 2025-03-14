@@ -30,7 +30,7 @@ const Basket: React.FC<BasketProps> = ({ isOpen }) => {
               <p>Your basket is empty</p>
             </div>
           ) : (
-              basketProductsContext.map((product: Product) => (
+              basketProductsContext.map((product) => (
             <BasketCard
               key={`${product.id}}`}
               {...product}
