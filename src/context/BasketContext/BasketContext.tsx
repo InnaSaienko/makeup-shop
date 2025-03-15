@@ -1,4 +1,3 @@
-
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 import Basket from "../../components/Basket/Basket";
@@ -27,19 +26,13 @@ export function BasketProvider({ children }: ChildrenNode) {
   const closeBasket = () => setIsOpen(false);
 
   useEffect(() => {
-    const prevUser = localStorage.getItem(loggedUser) ;
-    console.log("prevUser in localStore: " , prevUser);
-
     const storedBasket = localStorage.getItem(loggedUser);
     setBasketProductsContext(storedBasket ? JSON.parse(storedBasket) : []);
   }, [loggedUser]);
-  
 
   useEffect(() => {   
       localStorage.setItem(loggedUser, JSON.stringify(basketProductsContext));    
   }, [basketProductsContext, loggedUser]);
-
-
 
   const addProduct = (id: string, selectedColor: string, product_type: string)=>  {
     setBasketProductsContext((prevBasket: BasketItem[]) =>  {
