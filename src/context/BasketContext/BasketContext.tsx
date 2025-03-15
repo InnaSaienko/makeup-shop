@@ -14,8 +14,11 @@ export function useBasket() {
   return context;
 }
 
+type ChildrenNode = {
+  children: React.ReactNode
+};
 
-export function BasketProvider({ children }: { children: React.ReactNode }) {
+export function BasketProvider({ children }: ChildrenNode) {
   const [basketProductsContext, setBasketProductsContext] = useState<BasketItem[]>([]);
   const { loggedUser } = useAuthorization();
   const [isOpen, setIsOpen] = useState<boolean>(false);
