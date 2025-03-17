@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData";
 import {useBasket} from "../../context/BasketContext/BasketContext";
 import {Preloader} from "../Preloader/Preloader";
-import ProductDescription from "./ProductDescription/ProductDescription.jsx";
+import ProductDescription from "./ProductDescription/ProductDescription";
 import ProductImage from "./ProductImage/ProductImage.jsx";
 import ColorsVariants from "../ColorsVariants/ColorsVariants";
 import ProductPrice from "./ProductPrice/ProductPrice.jsx";

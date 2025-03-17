@@ -1,6 +1,8 @@
 interface Product {
     id: string;
     name: string;
+    brand: string;
+    rating: number | null;
     api_featured_image: string;
     product_type: string;
     category: string | null;

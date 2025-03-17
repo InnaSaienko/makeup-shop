@@ -4,10 +4,20 @@ import RenderStars from '../RenderStars/RenderStars';
 import "./ProductDescription.scss";
 import {getCategoryName} from "../../../utils/getCategoryName";
 
-const ProductDescription = ({ isDeal, productDetails }) => {
+interface DealProps {
+    deal: boolean;
+    message?: string;
+}
+
+interface ProductDescriptionProps {
+    isDeal: DealProps;
+    productDetails: Product;
+}
+
+const ProductDescription: React.FC<ProductDescriptionProps> = ({ isDeal, productDetails} : ProductDescriptionProps) => {
     const { name, brand, rating, product_type } = productDetails;
     const category = getCategoryName(product_type);
-    const { deal, message } = isDeal;
+    const { deal, message } = isDeal; // mauybe beter dispstching right in argument?
     return (
         <div className="product-item__description">
             {deal && (<div className="card_label">DEAL</div>)}
