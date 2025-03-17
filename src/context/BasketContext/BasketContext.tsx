@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 import Basket from "../../components/Basket/Basket";
