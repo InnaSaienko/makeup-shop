@@ -8,7 +8,7 @@ import ProductDescription from "./ProductDescription/ProductDescription";
 import ProductImage from "./ProductImage/ProductImage";
 import ColorsVariants from "../ColorsVariants/ColorsVariants";
 import ProductPrice from "./ProductPrice/ProductPrice";
-import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal.jsx";
+import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal";
 import "./ProductDetails.scss";
 import "../Button/Button.scss";
 import ProductTabs from "./ProductTabs/ProductTabs.jsx";
