@@ -5,7 +5,7 @@ import useFetchData from "../../hooks/useFetchData";
 import {useBasket} from "../../context/BasketContext/BasketContext";
 import {Preloader} from "../Preloader/Preloader";
 import ProductDescription from "./ProductDescription/ProductDescription";
-import ProductImage from "./ProductImage/ProductImage.jsx";
+import ProductImage from "./ProductImage/ProductImage";
 import ColorsVariants from "../ColorsVariants/ColorsVariants";
 import ProductPrice from "./ProductPrice/ProductPrice.jsx";
 import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal.jsx";
@@ -38,7 +38,7 @@ const ProductDetails: React.FC = () => {
                 <ProductDescription isDeal={{deal, message}} productDetails={product}/>
                 <ProductImage productImage={{
                     name: product.name,
-                    image: product.api_featured_image,
+                    api_featured_image: product.api_featured_image,
                     product_type: product.product_type
                 }}/>
                 <div className="product-item__buy">
