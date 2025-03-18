@@ -11,7 +11,7 @@ import ProductPrice from "./ProductPrice/ProductPrice";
 import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal";
 import "./ProductDetails.scss";
 import "../Button/Button.scss";
-import ProductTabs from "./ProductTabs/ProductTabs.jsx";
+import ProductTabs from "./ProductTabs/ProductTabs";
 import Button from "../Button/Button.tsx";
 
 const ProductDetails: React.FC = () => {

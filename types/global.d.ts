@@ -8,6 +8,8 @@ interface Product {
     category: string | null;
     price: string;
     currency: string;
+    tag_list?: string[];
+    description?: string;
     product_colors?: { hex_value: string; colour_name?: string }[];
     selectedColor?: { hex_value: string; colour_name?: string };
 }
