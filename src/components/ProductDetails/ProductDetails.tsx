@@ -7,7 +7,7 @@ import {Preloader} from "../Preloader/Preloader";
 import ProductDescription from "./ProductDescription/ProductDescription";
 import ProductImage from "./ProductImage/ProductImage";
 import ColorsVariants from "../ColorsVariants/ColorsVariants";
-import ProductPrice from "./ProductPrice/ProductPrice.jsx";
+import ProductPrice from "./ProductPrice/ProductPrice";
 import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal.jsx";
 import "./ProductDetails.scss";
 import "../Button/Button.scss";
