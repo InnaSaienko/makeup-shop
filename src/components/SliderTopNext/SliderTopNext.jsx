@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import useFetchData from "../../hooks/useFetchData.ts";
 import { Preloader } from "../Preloader/Preloader";
 import CustomArrow from "../CustomArrow/CustomArrow.jsx";
 import Slider from "react-slick";
@@ -9,9 +8,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopNext.scss";
 import "../../assets/styles/slick-dots.scss"
+import useFetchDataPromise from "../../hooks/useFetchDataPromise";
 
 const SliderTopNext = () => {
-  const { data, loading, error } = useFetchData(PRODUCTS_QUERY_PATH);
+  const { data, loading, error } = useFetchDataPromise(PRODUCTS_QUERY_PATH);
   const topNext = data.length > 5 ? data.slice(5, Math.min(data.length, 21)) : data;
   const settings = {
     dots: true,

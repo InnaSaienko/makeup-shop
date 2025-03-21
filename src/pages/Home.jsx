@@ -4,15 +4,15 @@ import SliderTopFive from "../components/SliderTopFive/SliderTopFive";
 import SliderTopNext from "../components/SliderTopNext/SliderTopNext";
 
 function Home() {
-  return (
-    <main className="content">
-      <div className="main"  >
-        <SliderVideo />
-        <SliderTopFive />
-        <SliderTopNext />
-      </div>
-    </main>
-  );
+    return (
+        <main className="content">
+            <div className="main">
+                <SliderVideo/>
+                <SliderTopFive/>
+                <SliderTopNext/>
+            </div>
+        </main>
+    );
 }
 
-export { Home };
+export {Home};

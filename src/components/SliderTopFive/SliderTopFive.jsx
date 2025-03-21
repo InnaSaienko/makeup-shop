@@ -1,7 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Slider from "react-slick";
-import useFetchData from "../../hooks/useFetchData.ts";
 import {Preloader} from "../Preloader/Preloader";
 import CustomArrow from "../CustomArrow/CustomArrow.jsx";
 import Button from "../Button/Button.tsx";
@@ -10,9 +9,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopFive.scss";
 import "../../assets/styles/slick-dots.scss";
+import useFetchDataPromise from "../../hooks/useFetchDataPromise";
 
 const CarouselBanner = () => {
-    const {data, loading, error} = useFetchData(PRODUCTS_QUERY_PATH);
+    const {data, loading, error} = useFetchDataPromise(PRODUCTS_QUERY_PATH);
     const topFive = data.slice(0, 5);
 
     const settings = {
