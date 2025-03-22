@@ -12,12 +12,11 @@ import "./ProductDetails.scss";
 import "../Button/Button.scss";
 import ProductTabs from "./ProductTabs/ProductTabs";
 import Button from "../Button/Button.tsx";
-import useFetchDataPromise from "../../hooks/useFetchDataPromise";
 import useFetchData from "../../hooks/useFetchData";
 
 const ProductDetails: React.FC = () => {
     const {id} = useParams<{id: string}>();
-    const {data: product, loading, error} = useFetchDataPromise<Product>(`products/${id}.json`);
+    const {data: product, loading, error} = useFetchData<Product>(`products/${id}.json`);
     const {addProduct} = useBasket();
     const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
