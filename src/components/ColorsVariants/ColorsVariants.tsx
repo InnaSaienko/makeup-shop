@@ -2,7 +2,18 @@ import React, {useEffect, useState} from "react";
 import "./ColorsVariants.scss"
 import {Preloader} from "../Preloader/Preloader";
 
-const ColorsVariants = ({product_colors, handleColorSelect}) => {
+
+interface ProductColor {
+    hex_value: string;
+    colour_name?: string;
+}
+
+interface ColorsVariantsProps {
+    product_colors?: ProductColor[];
+    handleColorSelect: (color: ProductColor) => void;
+}
+
+const ColorsVariants: React.FC<ColorsVariantsProps> = ({product_colors = [], handleColorSelect}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedColor, setSelectedColor] = useState(product_colors?.[0] || null);
 

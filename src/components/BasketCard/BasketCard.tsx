@@ -1,11 +1,10 @@
 import React from "react";
-import useFetchData from "../../hooks/useFetchData.js";
+import useFetchData from "../../hooks/useFetchData";
 import { useBasket } from "../../context/BasketContext/BasketContext";
 import { Preloader } from "../Preloader/Preloader";
 import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";
 
-function BasketCard(props) {
-  const {id, selectedColor, product_type} = props;
+const BasketCard = ({ id, selectedColor, product_type } : BasketItem) => {
 
   const {
     getUniqueProductQuantity,
@@ -14,7 +13,7 @@ function BasketCard(props) {
     removeFromBasket,
   } = useBasket();
 
-  const { data, loading, error } = useFetchData(PRODUCTS_QUERY_PATH, { product_type });
+  const { data, loading, error } = useFetchData<Product>(PRODUCTS_QUERY_PATH, { product_type });
   const foundProduct = data.find((product) => parseInt(product.id) === parseInt(id));
     
   if (loading) { return <Preloader />; }
@@ -31,10 +30,10 @@ function BasketCard(props) {
              className="img"
              loading="lazy"
              src={api_featured_image}
-             alt={category}
+             alt={category ?? ""} //logical nullish assignment null => ""
            />
          </div>
-         <div className="product-list__name" style={{ color: selectedColor.hex_value }}>{name}</div>
+         <div className="product-list__name" style={{ color: selectedColor }}>{name}</div>
          <div className="product-list__count">
            <div
              className="product__button-decrease"
@@ -70,9 +69,7 @@ function BasketCard(props) {
        </li>
     );
   } else {
-    <div>
-          {error}
-        </div>
+    return <div>{error}</div>;
   }
 }
 

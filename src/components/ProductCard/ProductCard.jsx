@@ -1,5 +1,5 @@
 import {Link, useParams} from "react-router-dom";
-import { getSubcategoryDeal } from "../../utils/getSubcategoryDeal.jsx";
+import { getSubcategoryDeal } from "../../utils/getSubcategoryDeal.tsx";
 import "./ProductCard.scss";
 
 function ProductCard(props) {  

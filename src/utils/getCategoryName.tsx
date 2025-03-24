@@ -1,6 +1,6 @@
 import { categories } from "../constatnts/categories";
 
-export const getCategoryName = (subcategory) => {
+export const getCategoryName = (subcategory: string | null) : string | null => {
   if (!subcategory) return null; 
 
   // const formattedSubcategory = subcategory.toLowerCase().replace(/_/g, " ");

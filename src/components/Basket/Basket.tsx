@@ -4,7 +4,7 @@ import BasketCard from "../../components/BasketCard/BasketCard";
 import emptyBasket from "../../assets/images/empty-cart.svg";
 import "./Basket.scss";
 
-function Basket({ isOpen }) {
+const Basket: React.FC<BasketProps> = ({ isOpen }) => {
   const { closeBasket, basketProductsContext } = useBasket();
 
   if (!isOpen) {
@@ -32,9 +32,7 @@ function Basket({ isOpen }) {
           ) : (
               basketProductsContext.map((product) => (
             <BasketCard
-              key={`${product.id}_${
-                product.selectedColor ? product.selectedColor : "default"
-              }`}
+              key={`${product.id}}`}
               {...product}
             />
           ))

@@ -2,11 +2,21 @@ import React from 'react';
 import { calculatePrice } from "../../../utils/calculatePrice";
 import "./ProductPrice.scss"
 
-const ProductPrice = ({ isDeal, productPrice }) => {
+interface ProductPriceProps {
+    isDeal: {
+        deal: boolean;
+        message?: string;
+    };
+    productPrice: Product;
+    oldPrice: string;
+    newPrice: string | null;
+}
+
+const ProductPrice: React.FC<ProductPriceProps> = ({ isDeal, productPrice }: ProductPriceProps) => {
     const { id, price, currency } = productPrice;
     const { deal } = isDeal;
     if (deal) {
-        const { oldPrice, newPrice } = calculatePrice(price, isDeal);
+        const { oldPrice, newPrice } = calculatePrice(price, deal);
         return (
             <div className="product-item__price-wrap" data-id={id}>
                 <span className="product-item__price_red">

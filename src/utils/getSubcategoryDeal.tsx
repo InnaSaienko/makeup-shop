@@ -1,6 +1,8 @@
 import { categories } from "../constatnts/categories";
 
-export const getSubcategoryDeal = (subcategory) => {
+
+
+export const getSubcategoryDeal = (subcategory: string): {deal: boolean; message: string | null} | null => {
   if (!subcategory) return null;
 
   // const formattedSubcategory = subcategory.toLowerCase().replace(/_/g, " ");
@@ -9,7 +11,7 @@ export const getSubcategoryDeal = (subcategory) => {
     cat.items.some((item) => item.name.toLowerCase() === subcategory)
   );
   
-  if (!category) return false;
+  if (!category) return null;
 
   const subcategoryItem = category.items.find(
     (item) => item.name.toLowerCase() === subcategory

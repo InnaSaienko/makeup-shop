@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import "./ProductTabs.scss";
 
-const ProductTabs = ({ productDetails }) => {
+interface ProductTabsProps {
+    productDetails: Product;
+}
+
+const ProductTabs: React.FC<ProductTabsProps> = ({ productDetails } : ProductTabsProps) => {
     const product = productDetails;
-    const filteredKeys = ["name", "brand", "description", "tag_list"].filter(key => key in productDetails);
+    const filteredKeys = ["name", "brand", "description", "tag_list"].filter(key => key in productDetails) as (keyof Product)[];
     const [activeTab, setActiveTab] = useState(filteredKeys[0]);
 
     return (
@@ -12,10 +16,10 @@ const ProductTabs = ({ productDetails }) => {
                 {filteredKeys.map((key) => (
                     <li
                         key={key}
-                        className={activeTab === key && "active-tab"}
+                        className={activeTab === key ? "active-tab" : ""}
                         onClick={() => setActiveTab(key)}
                     >
-                        {key.charAt(0).toUpperCase() + key.slice(1)} {/* make titles in representing style */}
+                        {key.charAt(0).toUpperCase() + key.slice(1)}
                     </li>
                 ))}
             </ul>
@@ -24,9 +28,12 @@ const ProductTabs = ({ productDetails }) => {
                 {filteredKeys.map((key) => (
                     <li
                         key={key}
-                        className={activeTab === key && "active-tab"}
+                        className={activeTab === key ? "active-tab" : ""}
                     >
-                        {Array.isArray(product[key]) ? product[key].join(", ") : product[key]} 
+                        {Array.isArray(product[key]) ?
+                            (product[key] as string[]).join(", ") :
+                            (product[key] as string)
+                        }
                     </li>
                 ))}
             </ul>

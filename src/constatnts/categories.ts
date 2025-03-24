@@ -1,4 +1,17 @@
-import {messageDealText} from "./message.js"
+import {messageDealText} from "./message"
+
+
+interface Item {
+    name: string;
+    link: string;
+    attention: {
+        deal: boolean; message:  string;
+    }
+}
+interface Category {
+    category: string;
+    items: Item[];
+}
 
 export const categories = [
     {
