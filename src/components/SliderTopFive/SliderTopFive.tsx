@@ -42,8 +42,7 @@ const CarouselBanner = () => {
                                     {product.brand ? product.brand.toUpperCase() : "COSMETICS"}
                                 </div>
                                 <h2 className="title-2">{product.name}</h2>
-                                <Button context={"Details"} onClick={() => {
-                                }}></Button>
+                                <Button context={"Details"} onClick={() => {}}></Button>
                             </div>
                             <div className="slide__position-right">
                                 <img src={product.api_featured_image} alt="Product" className="slide-image"/>
