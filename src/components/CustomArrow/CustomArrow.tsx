@@ -2,7 +2,7 @@ import React from "react";
 import "./CustomArrow.scss";
 import "../../assets/styles/_variables.scss";
 
-const CustomArrow = ({ className, style, onClick, direction, svg = false }) => {
+const CustomArrow = ({ className, style, onClick, direction, svg} : CustomArrowProps) => {
   return (
     <div
       className={`${className} custom-${direction}-arrow`}
