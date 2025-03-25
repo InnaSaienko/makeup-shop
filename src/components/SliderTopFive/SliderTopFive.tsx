@@ -1,18 +1,22 @@
-import React from "react";
 import {Link} from "react-router-dom";
 import Slider from "react-slick";
 import {Preloader} from "../Preloader/Preloader";
-import CustomArrow from "../CustomArrow/CustomArrow.jsx";
-import Button from "../Button/Button.tsx";
+import CustomArrow from "../CustomArrow/CustomArrow";
+import Button from "../Button/Button";
 import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopFive.scss";
 import "../../assets/styles/slick-dots.scss";
-import useFetchDataPromise from "../../hooks/useFetchDataPromise";
+import useFetchDataObjectPromise from "../../hooks/useFetchDataObjectPromise";
 
 const CarouselBanner = () => {
-    const {data, loading, error} = useFetchDataPromise(PRODUCTS_QUERY_PATH);
+    const {data, loading, error} = useFetchDataObjectPromise<Product[]>(PRODUCTS_QUERY_PATH);
+
+    if (loading) return <Preloader/>;
+    if (error) return <p>Error: {error}</p>;
+
+    // @ts-ignore
     const topFive = data.slice(0, 5);
 
     const settings = {
@@ -26,9 +30,6 @@ const CarouselBanner = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
     };
-
-    if (loading) return <Preloader/>;
-    if (error) return <p>Error: {error}</p>;
 
     return (
         <div className="carouselTopFive">
@@ -48,7 +49,7 @@ const CarouselBanner = () => {
                                 <img src={product.api_featured_image} alt="Product" className="slide-image"/>
                             </div>
                         </div>
-                    < /Link>
+                    </Link>
                 ))
                 }
             </Slider>

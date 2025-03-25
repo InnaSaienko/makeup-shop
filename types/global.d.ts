@@ -33,8 +33,6 @@ interface BasketContextType {
     closeBasket: () => void;
 }
 
-
-
 interface BasketProps {
     isOpen: boolean;
 }
@@ -44,3 +42,37 @@ declare module '*.svg' {
     export default content;
 }
 
+type UseFetchDataReturn<T> = {
+    data: T | null;
+    loading: boolean;
+    error: string | null;
+}
+
+type ErrorHandler = (reason: any) => void;
+
+interface CustomArrowProps {
+    className?: string;
+    style?: React.CSSProperties;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+    direction: "next" | "prev";
+    svg?: boolean;
+}
+
+declare module 'react-slick' {
+    import React, { Component } from 'react';
+
+    interface SliderProps {
+        dots?: boolean;
+        infinite?: boolean;
+        speed?: number;
+        slidesToShow?: number;
+        slidesToScroll?: number;
+        autoplay?: boolean;
+        autoplaySpeed?: number;
+        arrows?: boolean;
+        nextArrow?: React.ReactNode;
+        prevArrow?: React.ReactNode;
+    }
+
+    export default class Slider extends Component<SliderProps> {}
+}
