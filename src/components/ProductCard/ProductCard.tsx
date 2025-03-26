@@ -1,11 +1,12 @@
+import React from "react";
 import {Link, useParams} from "react-router-dom";
-import { getSubcategoryDeal } from "../../utils/getSubcategoryDeal.tsx";
+import { getSubcategoryDeal } from "../../utils/getSubcategoryDeal";
 import "./ProductCard.scss";
 
-function ProductCard(props) {  
+const ProductCard = (props: Product) =>  {
   const {id, brand, rating, name, api_featured_image: image_link } = props;
 
-  const { subcategory } = useParams();
+  const { subcategory = "" } = useParams();
 
   const isDeal = getSubcategoryDeal(subcategory);
 
