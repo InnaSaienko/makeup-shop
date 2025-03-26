@@ -1,17 +1,24 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import { Preloader } from "../Preloader/Preloader";
-import CustomArrow from "../CustomArrow/CustomArrow.tsx";
+import CustomArrow from "../CustomArrow/CustomArrow";
 import Slider from "react-slick";
 import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderTopNext.scss";
 import "../../assets/styles/slick-dots.scss"
-import useFetchDataArrayPromise from "../../hooks/useFetchDataArrayPromise";
+import useFetchDataObjectPromise from "../../hooks/useFetchDataObjectPromise";
 
 const SliderTopNext = () => {
-  const { data, loading, error } = useFetchDataArrayPromise(PRODUCTS_QUERY_PATH);
+  const { data, loading, error } = useFetchDataObjectPromise<Product[]>(PRODUCTS_QUERY_PATH);
+
+  if (loading) { return <Preloader />; }
+  if (error) return <p>Error: {error}</p>;
+
+  // @ts-ignore
+  const topNext = data.slice(5, Math.min(data.length, 21));
+
   const settings = {
     dots: true,
     infinite: true,
@@ -46,13 +53,6 @@ const SliderTopNext = () => {
       },
     ],
   };
-
-  if (loading) { return <Preloader />; }
-  if (error) return <p>Error: {error}</p>;
-
-  const topNext = data.length > 5 ? data.slice(5, Math.min(data.length, 21)) : data;
-
-
 
 
   return (
