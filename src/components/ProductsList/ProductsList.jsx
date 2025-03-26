@@ -4,13 +4,13 @@ import { ProductCard } from "../ProductCard/ProductCard";
 import { Preloader } from "../Preloader/Preloader";
 import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";
 import "./ProductsList.scss";
-import useFetchDataArrayPromise from "../../hooks/useFetchDataArrayPromise";
+import useFetchDataObjectPromise from "../../hooks/useFetchDataObjectPromise";
 
 
 function ProductsList() {
   const { category, subcategory, brand} = useParams();
   const fetchParams = brand ? { brand } : { product_type: subcategory };
-  const { data, loading, error } = useFetchDataArrayPromise(PRODUCTS_QUERY_PATH, fetchParams);
+  const { data, loading, error } = useFetchDataObjectPromise(PRODUCTS_QUERY_PATH, fetchParams);
 
 
   if (loading) { return <Preloader />; }
