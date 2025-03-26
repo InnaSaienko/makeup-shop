@@ -1,23 +1,7 @@
 import {useEffect, useState} from "react";
 
-type FetchDataRequest = {
-    url: URL,
-    setLoading: (flag: boolean) => void,
-    setData: (data: any) => void,
-    setError: (message: any) => void,
-
-};
-
-type ErrorHandler = (reason: any) => void;
-
-type UseFetchDataReturn<T> = {
-    data: T[];
-    loading: boolean;
-    error: string | null;
-}
-
-const useFetchDataPromise = <T>(Path: string, filters: Record<string, string> = {}): UseFetchDataReturn<T> => {
-    const [data, setData] = useState<T[]>([]);
+const useFetchDataArrayPromise = <T>(Path: string, filters: Record<string, string> = {}): UseFetchDataReturn<T[]> => {
+    const [data, setData] = useState<T[] | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +17,11 @@ const useFetchDataPromise = <T>(Path: string, filters: Record<string, string> = 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-        const errorHandler: ErrorHandler = (reason: any) => setError(`Error: ${reason.message}`);
+        const errorHandler: ErrorHandler = (reason: any) => {
+            setError(`Error: ${reason.message}`);
+            setLoading(false);
+        };
+
         fetch(url)
             .then(
                 (response: Response) => {
@@ -44,23 +32,15 @@ const useFetchDataPromise = <T>(Path: string, filters: Record<string, string> = 
                     }
                     response.json()
                         .then((json: T[]) => {
-                            console.log("Returned json succes ", json);
-                            setData(json);
-                            setLoading(false);
-                            console.log("Setteled data: ", json);
-                            },
-                            errorHandler);
+                                setData(json);
+                                setLoading(false);
+                            }, errorHandler);
                 },
                 errorHandler
             )
-            .catch(errorHandler)
-            .finally(() => {
-                setLoading(false);
-                console.log("Setteled data finnaly: ", data);
-            });
     }, [url.toString()]);
 
     return {data, loading, error};
 };
 
-export default useFetchDataPromise;
+export default useFetchDataArrayPromise;
