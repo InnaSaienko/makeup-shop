@@ -8,7 +8,9 @@ const ProductCard = (props: Product) =>  {
 
   const { subcategory = "" } = useParams();
 
-  const isDeal = getSubcategoryDeal(subcategory);
+    const isDealData = getSubcategoryDeal(subcategory);
+    const isDeal = isDealData?.deal ?? false;
+
 
   return (
     <Link className="catalog-grid__cell card" id={id} to={`/products/${id}`}>
