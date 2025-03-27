@@ -12,7 +12,6 @@ function ProductsList() {
   const fetchParams = brand ? { brand } : { product_type: subcategory };
   const { data, loading, error } = useFetchDataObjectPromise(PRODUCTS_QUERY_PATH, fetchParams);
 
-
   if (loading) { return <Preloader />; }
   if (error) return <p>Error: {error}</p>;
 

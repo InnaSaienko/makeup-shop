@@ -1,6 +1,5 @@
 import {messageDealText} from "./message"
 
-
 interface Item {
     name: string;
     link: string;

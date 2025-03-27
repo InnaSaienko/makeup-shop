@@ -54,7 +54,6 @@ const SliderTopNext = () => {
     ],
   };
 
-
   return (
     <div className="carouselTopNext">
       <Slider {...settings}>

@@ -42,4 +42,5 @@ const Basket: React.FC<BasketProps> = ({ isOpen }) => {
     </>
   );
 }
+
 export default Basket;
