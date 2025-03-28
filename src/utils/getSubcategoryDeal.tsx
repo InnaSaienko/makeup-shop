@@ -1,7 +1,5 @@
 import { categories } from "../constatnts/categories";
 
-
-
 export const getSubcategoryDeal = (subcategory: string): {deal: boolean; message: string | null} | null => {
   if (!subcategory) return null;
 

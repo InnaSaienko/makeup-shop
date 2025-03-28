@@ -1,3 +1,4 @@
+import React from "react";
 import "./RenderStars.scss";
 
 interface RatingProps {
