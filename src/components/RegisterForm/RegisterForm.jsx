@@ -24,7 +24,10 @@ function RegisterForm() {
             alert("Passwords do not match!");
             return;
         }
-        userSignUp(user);
+
+        const { password, repeat_password, ...userWithoutPassword } = user;
+
+        userSignUp(userWithoutPassword);
         navigate(`/`);
     };
     const handleChange = e => {
