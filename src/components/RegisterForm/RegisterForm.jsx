@@ -6,35 +6,34 @@ import { useAuthorization } from "../../context/AuthorizationContext/Authorizati
 function RegisterForm() {
     const navigate = useNavigate();
     const { userSignUp } = useAuthorization();
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [birthday, setBirthday] = useState('');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
+    const [user, setUser] = useState({
+        firstName: "",
+        lastName: "",
+        birthday: "",
+        phone : "",
+        email: "",
+        password : "",
+        repeat_password: "",
+        isLogin: false,
+    });
     
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (password !== repeatPassword) {
+        if (user.password !== user.repeat_password) {
             alert("Passwords do not match!");
             return;
         }
 
-        const userData = {
-            firstName,
-            lastName,
-            birthday,
-            phone,
-            email,
-            password,
-            isLogin: true
-        };
-        userSignUp(userData);
-        navigate(`/`);
+        const { password, repeat_password, ...userWithoutPassword } = user;
 
+        userSignUp(userWithoutPassword);
+        navigate(`/`);
     };
+    const handleChange = e => {
+        const {name, value} = e.target;
+        setUser({...user, [name]: value});
+    }
 
     return (
         <form className="form" autoComplete="off" method="post" onSubmit={handleSubmit}>
@@ -42,42 +41,42 @@ function RegisterForm() {
             <div>
                 <div className="input-group">
                     <label htmlFor="name"></label>
-                    <input type="text" id="name" className="first_name" placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                    <input type="text" id="name" className="first_name" placeholder="First name" name="firstName" value={user.firstName} onChange={handleChange}/>
                     <span className="bar"></span>
                 </div>
                 <div className="input-group">
                     <label htmlFor="surname"></label>
-                    <input type="text" id="surname" className="last_name" placeholder="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                    <input type="text" id="surname" className="last_name" placeholder="Last name" name="lastName" value={user.lastName} onChange={handleChange}/>
                     <span className="bar"></span>
                 </div>
                 <div className="input-group">
                     <label htmlFor="birthday"></label>
-                    <input type="text" id="birthday" className="birthday_date" placeholder="Date of birthday" value={birthday} onChange={(e) => setBirthday(e.target.value)}/>
+                    <input type="text" id="birthday" className="birthday_date" placeholder="Date of birthday" name="birthday" value={user.birthday} onChange={handleChange}/>
                     <span className="bar"></span>
                 </div>
             </div>
             <div>
                 <div className="input-group">
                     <label htmlFor="phone"></label>
-                    <input id="phone" type="tel" name="phone" maxLength="20" required  className="phone" inputMode="text" placeholder="Phone*" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                    <input id="phone" type="tel" maxLength="20" required  className="phone" inputMode="text" placeholder="Phone*" name="phone" value={user.phone} onChange={handleChange}/>
                     <span className="bar"></span>
                 </div>
                 <div className="input-group">
                     <label htmlFor="mail" className="form__label"></label>
-                    <input type="email" id="mail" className="form__input" required placeholder="E-mail*" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="email" id="mail" className="form__input" required placeholder="E-mail*" name="email" value={user.email} onChange={handleChange}/>
                     <span className="bar"></span>
                 </div>
             </div>
             <div>
                 <div className="input-group">
                     <label htmlFor="password"></label>
-                    <input id="password" type="password" name="cust_password1" autoComplete="off" required className="input" placeholder="Password*" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input id="password" type="password" autoComplete="off" required className="input" placeholder="Password*" name="password" value={user.password} onChange={handleChange}/>
                     <div className="password-show-button"></div>                    
                     <span className="bar"></span>
                 </div>
                 <div className="input-group">
                     <label htmlFor="repeat-password"></label>
-                    <input id="repeat-password" type="password" autoComplete="off" name="cust_password2" required className="input" placeholder="Repeat password*" value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}/>
+                    <input id="repeat-password" type="password" autoComplete="off" required className="input" placeholder="Repeat password*" name="repeat_password" value={user.repeat_password} onChange={handleChange}/>
                     <div className="password-show-button"></div>                    
                     <span className="bar"></span>
                 </div>
@@ -85,6 +84,6 @@ function RegisterForm() {
             </div>
         </form>
     );
-};
+}
 
 export default RegisterForm;

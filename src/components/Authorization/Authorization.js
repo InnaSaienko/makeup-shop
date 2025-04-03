@@ -19,7 +19,7 @@ function Authorization({ isOpen }) {
   }
 
   if (loggedUser !== guest || "") {
-    console.log("Now this user try to loguot: ", loggedUser);
+    console.log("Now this user try to logout: ", loggedUser);
       return (
           <>
               <div className="background-overlay" onClick={closeAuthorization}></div>
