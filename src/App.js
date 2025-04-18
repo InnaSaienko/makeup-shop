@@ -10,7 +10,7 @@ import { Footer } from "./layout/Footer/Footer";
 import { Home } from "./pages/Home";
 import ProductsList from "./components/ProductsList/ProductsList";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
-import RegisterForm from "./components/RegisterForm/RegisterForm"
+import {RegisterFormikForm} from "./components/RegisterForm/RegisterFormikForm";
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
                 <Route path="/products/:id" element={<ProductDetails />} />
                 <Route path="/products/:category/:subcategory" element={<ProductsList />} />
                 <Route path="/brand/:brand" element={<ProductsList />} />
-                <Route path="/register-form" element={<RegisterForm />} />
+                <Route path="/register-form" element={<RegisterFormikForm />} />
               </Routes>
             </BasketProvider>
           </AuthorizationProvider>
