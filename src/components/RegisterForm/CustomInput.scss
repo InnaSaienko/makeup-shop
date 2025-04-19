@@ -8,16 +8,13 @@
   & .input {
     width: 100%;
     padding: 16px 0px 8px;
+    margin-left: 0.5rem;
     font-size: 16px;
     letter-spacing: 2px;
     border: none;
     background: transparent;
     outline: none;
     transition: border-color 0.3s ease;
-
-    &:focus ~ .floating-label {
-      top: 0;
-    }
 
     &:focus ~ .bar::before {
       transform: scaleX(1);
@@ -29,23 +26,35 @@
     position: absolute;
     top: 1rem;
     left: 0.5rem;
-    color: #aaa;
+    color: $color-grey-dark;
     font-size: 1rem;
     pointer-events: none;
     transition: 0.2s ease all;
+
+    &.active {
+      top: -1rem;
+      font-size: 0.9rem;
+    }
   }
 
-  .password-show-button {
+  .password-button {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    background: url('../../assets/images/hide-icon.svg') no-repeat center;
     width: 20px;
     height: 20px;
     opacity: 0.5;
     transition: opacity 0.3s;
+
+    &.hide {
+      background: url('../../assets/images/hide-icon.svg') no-repeat center;
+    }
+
+    &.show {
+      background: url('../../assets/images/show-icon.svg') no-repeat center;
+    }
 
     &:hover {
       opacity: 1;
@@ -73,7 +82,6 @@
       z-index: 1;
     }
   }
-
 }
 
 
