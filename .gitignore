@@ -21,6 +21,11 @@
 .webstorm64.exe
 .idea/
 
+# Sass and Less
+*.scssc
+*.css.map
+.sass-cache/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
