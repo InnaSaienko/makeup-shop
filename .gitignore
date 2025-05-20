@@ -20,7 +20,7 @@
 .vscode
 .webstorm64.exe
 .idea/
-.sass-cache
+.sass-cache/
 *.map
 
 npm-debug.log*
