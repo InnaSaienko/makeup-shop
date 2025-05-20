@@ -20,6 +20,8 @@
 .vscode
 .webstorm64.exe
 .idea/
+.sass-cache/
+*.map
 
 # Sass and Less
 *.scssc
