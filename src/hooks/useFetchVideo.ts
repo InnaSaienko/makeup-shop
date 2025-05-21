@@ -1,13 +1,20 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 
-const useVideos = () => {
-    const [videos, setVideos] = useState(null);
+interface Video {
+    src: string,
+    title: string
+}
+
+declare var require: Require;
+
+const useVideos = (): {videos: Video[] | []; loading: boolean} => {
+    const [videos, setVideos] = useState<Video[] | []>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const loadVideos = async () => {
             const context = require.context('../assets/videos', false, /\.(mp4|webm)$/);
-            const videoList = context.keys().map((key) => ({
+            const videoList : Video[] = context.keys().map((key :string) => ({
                 src: context(key),
                 title: key.replace('./', '').replace(/\.(mp4|webm)$/, ''),
             }));
@@ -19,7 +26,7 @@ const useVideos = () => {
         loadVideos();
     }, []);
 
-    return { videos, loading };
+    return {videos, loading};
 };
 
 export default useVideos;
