@@ -5,10 +5,14 @@ interface Video {
     title: string
 }
 
+interface VideoReturn {
+    videos: Video[];
+    loading: boolean;
+}
 declare var require: Require;
 
-const useVideos = (): { videos: Video[] | []; loading: boolean } => {
-    const [videos, setVideos] = useState<Video[] | []>([]);
+const useVideos = (): VideoReturn => {
+    const [videos, setVideos] = useState<Video[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
