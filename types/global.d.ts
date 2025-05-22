@@ -76,3 +76,12 @@ declare module 'react-slick' {
 
     export default class Slider extends Component<SliderProps> {}
 }
+
+declare function require(context: string): any;
+
+interface Require {
+    context(directory: string, useSubdirectories: boolean, regExp: RegExp): {
+        keys: () => string[];
+        (id: string): string;
+    };
+}
