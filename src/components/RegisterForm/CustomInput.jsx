@@ -41,12 +41,11 @@ export const CustomInput = ({name}) => {
 
             <label htmlFor={id} className={`floating-label ${isActive ? 'active' : ''}`}>
                 {formatLabel(name)}</label>
-            {isPasswordField ?
+            {isPasswordField &&
                 <span
                     className={`password-button ${showPassword ? 'show' : 'hide'}`}
                     onClick={togglePasswordVisibility}
-                /> :
-                (null)}
+                /> }
             <span className="bar"></span>
         </div>
     );
