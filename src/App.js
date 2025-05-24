@@ -8,7 +8,7 @@ import { Navigation } from "./layout/Navigation/Navigation";
 import { Footer } from "./layout/Footer/Footer";
 import RouterSet from "./components/Routes/RouterSet";
 
-function App() {
+const App = () => {
   return (
       <div className="main-wrap">
         <ErrorBoundary>
