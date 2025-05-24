@@ -5,7 +5,7 @@ import {CustomInput} from "../RegisterForm/CustomInput";
 import "./AuthorizationFormik.scss";
 import {Link} from "react-router-dom";
 import LogOut from "../LogOut/LogOut";
-import {applySchema} from "../RegisterForm/ApplyShema";
+import {applySchema} from "../RegisterForm/ApplySchema";
 
 export const AuthorizationFormik = ({isOpen}) => {
     const {guest, loggedUser, closeAuthorization, verifyUserCredentials, signIn} = useAuthorization();
