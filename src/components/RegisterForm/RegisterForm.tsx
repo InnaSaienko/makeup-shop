@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "./CustomInput";
 <<<<<<<< HEAD:src/components/RegisterForm/RegisterForm.tsx
+<<<<<<<< HEAD:src/components/RegisterForm/RegisterForm.tsx
 import "./RegisterForm.scss";
 import {applySchema} from "./ApplySchema";
 
@@ -13,6 +14,11 @@ export const RegisterForm = () : JSX.Element=> {
 import "./RegistrationForm.scss";
 import {applySchema} from "./ApplySchema";
 
+========
+import "./RegistrationForm.scss";
+import {applySchema} from "./ApplySchema";
+
+>>>>>>>> cb7d4a0 (rename component to RegistrationForm):src/components/RegisterForm/RegistrationForm.jsx
 export const RegistrationForm = () => {
         const navigate = useNavigate();
 >>>>>>>> 1e836d1 (rename component to RegistrationForm):src/components/RegisterForm/RegistrationForm.jsx
