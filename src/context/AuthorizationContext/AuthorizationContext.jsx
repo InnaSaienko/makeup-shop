@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import Authorization from "../../components/Authorization/Authorization";
+import {AuthorizationFormik} from "../../components/Authorization/AuthorizationFormik";
 
 const guest = "guest@guest";
 
@@ -11,7 +11,9 @@ export function useAuthorization() {
 
 export function AuthorizationProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(() => {
+      return localStorage.getItem("loggedUser") || []
+  });
   const [loggedUser, setLoggedUser] = useState(() => {
     return localStorage.getItem("loggedUser") || guest;
   });
@@ -37,7 +39,6 @@ export function AuthorizationProvider({ children }) {
   }
 
   function signOut() {
-    console.log(`User ${loggedUser} is logging out.`);
     localStorage.removeItem("loggedUser");
     setLoggedUser(guest);
     closeAuthorization();
@@ -47,7 +48,6 @@ export function AuthorizationProvider({ children }) {
     setLoggedUser(userData.email);
     setUsers([...users, userData]);
     setIsOpen(false);
-    console.log(`User with email ${userData.email} has been signed up.`);
   }
 
 
@@ -67,7 +67,7 @@ export function AuthorizationProvider({ children }) {
       }}
     >
       {children}
-      <Authorization isOpen={isOpen} />
+     <AuthorizationFormik isOpen={isOpen} />
     </AuthorizationContext.Provider>
   );
 }
