@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "./CustomInput";
 import "./RegisterFormikForm.scss";
-import {applySchema} from "./ApplyShema";
+import {applySchema} from "./ApplySchema";
 
 export const RegisterFormikForm = () => {
         const navigate = useNavigate();
@@ -25,7 +25,6 @@ export const RegisterFormikForm = () => {
         email: "",
         password: "",
         repeat_password: "",
-        isLogin: false,
     }
 
     return (<div className="form-wrapper">
