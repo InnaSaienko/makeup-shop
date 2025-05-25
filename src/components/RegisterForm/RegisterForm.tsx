@@ -1,23 +1,25 @@
 import React from 'react';
-import {Form, Formik} from "formik";
+import {Form, Formik, FormikHelpers} from "formik";
 import {useNavigate} from "react-router-dom";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "./CustomInput";
-import "./RegisterFormikForm.scss";
+import "./RegisterForm.scss";
 import {applySchema} from "./ApplySchema";
 
-export const RegisterFormikForm = () => {
-    const navigate = useNavigate();
-    const {userSignUp} = useAuthorization();
+export const RegisterForm = () : JSX.Element=> {
+    const navigate = useNavigate<NavigateFunction>();
+    const {userSignUp} = useAuthorization<AuthorizationContextType>();
 
-    const onSubmit = (values, options) => {
+    const onSubmit = (
+        values: User,
+        options: FormikHelpers<User>) => {
         const {repeat_password, ...userWithoutPassword} = values;
         userSignUp(userWithoutPassword);
         options.resetForm();
         navigate(`/`);
     }
 
-    const initialValues = {
+    const initialValues : User= {
         first_name: "",
         last_name: "",
         birthday: "",
@@ -32,7 +34,6 @@ export const RegisterFormikForm = () => {
             <Form className="form">
                 <h2 className="form__title">Registration of a new user</h2>
                 {Object.keys(initialValues).map((key) => {
-                    if (typeof initialValues[key] === 'boolean') return null;
                     return <CustomInput key={key} name={key}/>
                 })}
                 <button type="submit" className="button">Sign up</button>
@@ -40,4 +41,4 @@ export const RegisterFormikForm = () => {
         </Formik>
     </div>);
 };
-export default RegisterFormikForm;
+export default RegisterForm;
