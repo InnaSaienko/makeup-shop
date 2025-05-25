@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {JSX} from 'react';
 import {Form, Formik, FormikHelpers} from "formik";
 import {useNavigate} from "react-router-dom";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
@@ -7,8 +7,8 @@ import "./RegisterForm.scss";
 import {applySchema} from "./ApplySchema";
 
 export const RegisterForm = () : JSX.Element=> {
-    const navigate = useNavigate<NavigateFunction>();
-    const {userSignUp} = useAuthorization<AuthorizationContextType>();
+    const navigate = useNavigate();
+    const {userSignUp} = useAuthorization();
 
     const onSubmit = (
         values: User,
