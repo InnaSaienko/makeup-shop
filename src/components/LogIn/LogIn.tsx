@@ -8,7 +8,7 @@ import LogOut from "../LogOut/LogOut";
 import {applySchema} from "../RegisterForm/ApplySchema";
 
 interface LogInProps {
-    isOpen: () => void;
+    isOpen: boolean;
 }
 
 interface FormValues {
@@ -16,7 +16,6 @@ interface FormValues {
     password: string,
 }
 
-// @ts-ignore
 export const LogIn = ({isOpen}: LogInProps) : JSX.Element | null => {
     const {guest, loggedUser, closeAuthorization, verifyUserCredentials, signIn} = useAuthorization();
     const [isShaking, setIsShaking] = useState(false);
