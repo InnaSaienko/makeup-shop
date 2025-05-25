@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import {AuthorizationFormik} from "../../components/Authorization/AuthorizationFormik";
+import {LogIn} from "../../components/LogIn/LogIn";
 
 const guest = "guest@guest";
 
@@ -67,7 +67,7 @@ export function AuthorizationProvider({ children }) {
       }}
     >
       {children}
-     <AuthorizationFormik isOpen={isOpen} />
+     <LogIn isOpen={isOpen} />
     </AuthorizationContext.Provider>
   );
 }

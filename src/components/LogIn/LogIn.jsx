@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {Form, Formik} from "formik";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "../RegisterForm/CustomInput";
-import "./AuthorizationFormik.scss";
+import "./LogIn.scss";
 import {Link} from "react-router-dom";
 import LogOut from "../LogOut/LogOut";
 import {applySchema} from "../RegisterForm/ApplySchema";
 
-export const AuthorizationFormik = ({isOpen}) => {
+export const LogIn = ({isOpen}) => {
     const {guest, loggedUser, closeAuthorization, verifyUserCredentials, signIn} = useAuthorization();
     const [isShaking, setIsShaking] = useState(false);
 
