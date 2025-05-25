@@ -109,6 +109,6 @@ interface User {
     phone: string,
     email: string,
     password: string,
-    repeat_password: string,
+    repeat_password?: string,
 }
 
