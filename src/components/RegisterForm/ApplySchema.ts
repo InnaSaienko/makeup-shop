@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const regPhone = /^\D*(\d\D*){11,}$/;
+const regPhone : RegExp = /^\D*(\d\D*){11,}$/;
 
 export const applySchema = Yup.object().shape({
     first_name: Yup.string()
