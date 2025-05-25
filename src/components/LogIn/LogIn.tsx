@@ -11,24 +11,21 @@ interface LogInProps {
     isOpen: boolean;
 }
 
-interface FormValues {
-    email: string,
-    password: string,
-}
-
 export const LogIn = ({isOpen}: LogInProps) : JSX.Element | null => {
     const {guest, loggedUser, closeAuthorization, verifyUserCredentials, signIn} = useAuthorization();
     const [isShaking, setIsShaking] = useState(false);
 
-    const initialValues : FormValues= {
+    type LoginUser = Pick<User, 'email' | 'password'>;
+
+    const initialValues: LoginUser = {
         email: "",
         password: "",
     };
     const loginSchema = applySchema.pick(['email', 'password']);
 
    const onSubmit = (
-       values: FormValues,
-       options:  FormikHelpers<FormValues>) => {
+       values: LoginUser,
+       options:  FormikHelpers<LoginUser>) => {
         const isValidUser = verifyUserCredentials(values.email, values.password);
         if (isValidUser) {
             signIn(values.email);
