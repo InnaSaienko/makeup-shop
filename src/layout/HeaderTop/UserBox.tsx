@@ -1,14 +1,13 @@
-import React from 'react';
-// @ts-ignore
-import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext.jsx";
-import RegistrationForm from "../../pages/RegistrationPage";
+import React, {FC} from 'react';
+import BasketBox from "./BasketBox";
+import User from "./User";
 
-const UserBox = () => {
-    const {isLoggedIn, loggedUser, guest} = useAuthorization();
+const UserBox: FC = () => {
 
     return (
         <div className="header-right-row">
-            {isLoggedIn && loggedUser === guest && <RegistrationForm/>}
+            <User/>
+            <BasketBox/>
         </div>
     );
 };
