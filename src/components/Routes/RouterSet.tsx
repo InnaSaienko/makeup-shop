@@ -6,7 +6,7 @@ import {Preloader} from "../Preloader/Preloader";
 const Home = lazy(() => import("../../pages/Home.jsx") as Promise<{ default: React.ComponentType<any> }>);
 const ProductDetails = lazy(() => import("../../components/ProductDetails/ProductDetails") as Promise<{ default: React.ComponentType<any> }>);
 // @ts-ignore
-const RegisterForm = lazy(() => import("../RegisterForm/./RegisterForm") as Promise<{ default: React.ComponentType<any> }>);
+const RegisterForm = lazy(() => import("../../components/RegisterForm/RegistrationForm.jsx") as Promise<{ default: React.ComponentType<any> }>);
 const ProductsList = lazy(() => import("../ProductsList/ProductsList") as Promise<{ default: React.ComponentType<any> }>);
 
 const RouterSet = () => {
