@@ -7,7 +7,7 @@ import "./RegisterFormikForm.scss";
 import {applySchema} from "./ApplySchema";
 
 export const RegisterFormikForm = () => {
-        const navigate = useNavigate();
+    const navigate = useNavigate();
     const {userSignUp} = useAuthorization();
 
     const onSubmit = (values, options) => {
@@ -40,3 +40,4 @@ export const RegisterFormikForm = () => {
         </Formik>
     </div>);
 };
+export default RegisterFormikForm;

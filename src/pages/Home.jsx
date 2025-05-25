@@ -3,7 +3,7 @@ import {SliderVideo} from "../components/SliderVideo/SliderVideo"
 import SliderTopFive from "../components/SliderTopFive/SliderTopFive";
 import SliderTopNext from "../components/SliderTopNext/SliderTopNext";
 
-function Home() {
+const Home = () => {
     return (
         <main className="content">
             <div className="main">
@@ -15,4 +15,4 @@ function Home() {
     );
 }
 
-export {Home};
+export default Home;
