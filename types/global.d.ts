@@ -98,7 +98,7 @@ interface AuthorizationContextType {
     closeAuthorization: () => void;
     verifyUserCredentials: (email: string, password: string) => boolean;
     signIn: (email: string) => void;
-    signOut: () => void;
+    signOut: (loggedUser: string) => void;
     userSignUp: (userData: User) => void;
 }
 
