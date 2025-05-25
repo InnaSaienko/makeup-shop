@@ -11,12 +11,12 @@ export const RegisterFormikForm = () => {
     const {userSignUp} = useAuthorization();
 
     const onSubmit = (values, options) => {
-        console.log("user's data", values);
         const {repeat_password, ...userWithoutPassword} = values;
         userSignUp(userWithoutPassword);
         options.resetForm();
         navigate(`/`);
     }
+
     const initialValues = {
         first_name: "",
         last_name: "",
