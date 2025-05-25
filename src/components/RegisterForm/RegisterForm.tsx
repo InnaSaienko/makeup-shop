@@ -1,5 +1,5 @@
 import React, {JSX} from 'react';
-import {Form, Formik, FormikHelpers} from "formik";
+import {Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "./CustomInput";
@@ -18,10 +18,8 @@ import {applySchema} from "./ApplySchema";
 import "./RegistrationForm.scss";
 import {applySchema} from "./ApplySchema";
 
->>>>>>>> cb7d4a0 (rename component to RegistrationForm):src/components/RegisterForm/RegistrationForm.jsx
 export const RegistrationForm = () => {
-        const navigate = useNavigate();
->>>>>>>> 1e836d1 (rename component to RegistrationForm):src/components/RegisterForm/RegistrationForm.jsx
+    const navigate = useNavigate();
     const {userSignUp} = useAuthorization();
 
     const onSubmit = (
@@ -54,9 +52,4 @@ export const RegistrationForm = () => {
             </Form>
         </Formik>
     </div>);
-<<<<<<<< HEAD:src/components/RegisterForm/RegisterForm.tsx
 };
-export default RegisterForm;
-========
-};
->>>>>>>> 1e836d1 (rename component to RegistrationForm):src/components/RegisterForm/RegistrationForm.jsx
