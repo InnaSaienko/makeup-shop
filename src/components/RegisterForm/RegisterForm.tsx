@@ -1,24 +1,12 @@
 import React, {JSX} from 'react';
-import {Form, Formik} from "formik";
+import {Form, Formik, FormikHelpers} from "formik";
 import {useNavigate} from "react-router-dom";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "./CustomInput";
-<<<<<<<< HEAD:src/components/RegisterForm/RegisterForm.tsx
-<<<<<<<< HEAD:src/components/RegisterForm/RegisterForm.tsx
 import "./RegisterForm.scss";
 import {applySchema} from "./ApplySchema";
 
-export const RegisterForm = () : JSX.Element=> {
-    const navigate = useNavigate();
-========
-import "./RegistrationForm.scss";
-import {applySchema} from "./ApplySchema";
-
-========
-import "./RegistrationForm.scss";
-import {applySchema} from "./ApplySchema";
-
-export const RegistrationForm = () => {
+export const RegisterForm = (): JSX.Element => {
     const navigate = useNavigate();
     const {userSignUp} = useAuthorization();
 
@@ -31,7 +19,7 @@ export const RegistrationForm = () => {
         navigate(`/`);
     }
 
-    const initialValues : User= {
+    const initialValues: User = {
         first_name: "",
         last_name: "",
         birthday: "",
