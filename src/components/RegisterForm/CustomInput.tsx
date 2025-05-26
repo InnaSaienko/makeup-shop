@@ -1,4 +1,4 @@
-import React, {JSX, useId, useState} from 'react';
+import React, {FC, JSX, useId, useState} from 'react';
 import {ErrorMessage, Field, FieldProps, useFormikContext} from "formik";
 import "./CustomInput.scss";
 
@@ -13,7 +13,7 @@ interface FormValues {
     [key: string]: any;
 }
 
-export const CustomInput = ({name}: CustomInputProps) : JSX.Element => {
+export const CustomInput : FC<CustomInputProps> = ({name}) : JSX.Element => {
     const id = useId();
     const { values , setFieldValue} = useFormikContext<FormValues>();
     const isPasswordField = (name === 'password' || name === 'repeat_password');

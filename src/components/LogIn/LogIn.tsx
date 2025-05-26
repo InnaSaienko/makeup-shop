@@ -1,4 +1,4 @@
-import React, {JSX, useState} from 'react';
+import React, {FC, JSX, useState} from 'react';
 import {Form, Formik, FormikHelpers} from "formik";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "../RegisterForm/CustomInput";
@@ -11,7 +11,7 @@ interface LogInProps {
     isOpen: boolean;
 }
 
-export const LogIn = ({isOpen}: LogInProps) : JSX.Element | null => {
+export const LogIn : FC<LogInProps> = ({isOpen}) : JSX.Element | null => {
     const {guest, loggedUser, closeAuthorization, verifyUserCredentials, signIn} = useAuthorization();
     const [isShaking, setIsShaking] = useState(false);
 
