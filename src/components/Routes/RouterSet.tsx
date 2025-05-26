@@ -6,7 +6,7 @@ import {Preloader} from "../Preloader/Preloader";
 const Home = lazy(() => import("../../pages/Home.jsx") as Promise<{ default: React.ComponentType<any> }>);
 const ProductDetails = lazy(() => import("../../components/ProductDetails/ProductDetails") as Promise<{ default: React.ComponentType<any> }>);
 // @ts-ignore
-const RegisterFormikForm = lazy(() => import("../../components/RegisterForm/RegisterFormikForm.jsx") as Promise<{ default: React.ComponentType<any> }>);
+const RegisterForm = lazy(() => import("../RegisterForm/./RegisterForm") as Promise<{ default: React.ComponentType<any> }>);
 const ProductsList = lazy(() => import("../ProductsList/ProductsList") as Promise<{ default: React.ComponentType<any> }>);
 
 const RouterSet = () => {
@@ -18,7 +18,7 @@ const RouterSet = () => {
                     <Route path="/products/:id" element={<ProductDetails/>}/>
                     <Route path="/products/:category/:subcategory" element={<ProductsList/>}/>
                     <Route path="/brand/:brand" element={<ProductsList/>}/>
-                    <Route path="/register-form" element={<RegisterFormikForm/>}/>
+                    <Route path="/register-form" element={<RegisterForm/>}/>
                 </Routes>
         </Suspense>
     )

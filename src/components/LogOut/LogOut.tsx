@@ -1,6 +1,6 @@
 import React, {JSX} from 'react';
 // @ts-ignore
-import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext.jsx";
+import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 
 const LogOut = () : JSX.Element => {
     const {loggedUser, closeAuthorization, signOut} = useAuthorization();

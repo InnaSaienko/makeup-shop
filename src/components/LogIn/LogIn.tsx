@@ -1,22 +1,31 @@
-import React, {useState} from 'react';
-import {Form, Formik} from "formik";
+import React, {FC, JSX, useState} from 'react';
+import {Form, Formik, FormikHelpers} from "formik";
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "../RegisterForm/CustomInput";
-import "./AuthorizationFormik.scss";
+import "./LogIn.scss";
 import {Link} from "react-router-dom";
 import LogOut from "../LogOut/LogOut";
 import {applySchema} from "../RegisterForm/ApplySchema";
 
-export const AuthorizationFormik = ({isOpen}) => {
+interface LogInProps {
+    isOpen: boolean;
+}
+
+export const LogIn : FC<LogInProps> = ({isOpen}) : JSX.Element | null => {
     const {guest, loggedUser, closeAuthorization, verifyUserCredentials, signIn} = useAuthorization();
     const [isShaking, setIsShaking] = useState(false);
 
-    const initialValues = {
+    type LoginUser = Pick<User, 'email' | 'password'>;
+
+    const initialValues: LoginUser = {
         email: "",
         password: "",
     };
     const loginSchema = applySchema.pick(['email', 'password']);
-   const onSubmit = (values, options) => {
+
+   const onSubmit = (
+       values: LoginUser,
+       options:  FormikHelpers<LoginUser>) => {
         const isValidUser = verifyUserCredentials(values.email, values.password);
         if (isValidUser) {
             signIn(values.email);

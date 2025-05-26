@@ -85,3 +85,30 @@ interface Require {
         (id: string): string;
     };
 }
+
+interface AuthorizationProviderProps {
+    children: React.ReactNode;
+}
+
+interface AuthorizationContextType {
+    users: User[];
+    loggedUser: string;
+    guest: string;
+    openAuthorization: () => void;
+    closeAuthorization: () => void;
+    verifyUserCredentials: (email: string, password: string) => boolean;
+    signIn: (email: string) => void;
+    signOut: (loggedUser: string) => void;
+    userSignUp: (userData: User) => void;
+}
+
+interface User {
+    first_name: string,
+    last_name: string,
+    birthday: string,
+    phone: string,
+    email: string,
+    password: string,
+    repeat_password?: string,
+}
+
