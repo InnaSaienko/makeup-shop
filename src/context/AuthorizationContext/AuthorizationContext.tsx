@@ -22,6 +22,7 @@ export const AuthorizationProvider: FC<AuthorizationProviderProps> =
         const stored = localStorage.getItem("users");
         return stored ? JSON.parse(stored) : [];
     });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loggedUser, setLoggedUser] = useState(() => {
         return localStorage.getItem("loggedUser") || guest;
     });
@@ -33,6 +34,7 @@ export const AuthorizationProvider: FC<AuthorizationProviderProps> =
         const storedUser = localStorage.getItem("loggedUser");
         if (storedUser) {
             setLoggedUser(storedUser);
+            setIsLoggedIn(true);
         }
     }, []);
 
@@ -42,6 +44,7 @@ export const AuthorizationProvider: FC<AuthorizationProviderProps> =
 
     function signIn(email: string): void {
         setLoggedUser(email);
+        setIsLoggedIn(true);
         localStorage.setItem("loggedUser", email);
         console.log(`User with email ${email} has been signed in.`);
     }
@@ -49,11 +52,13 @@ export const AuthorizationProvider: FC<AuthorizationProviderProps> =
     function signOut(): void {
         localStorage.removeItem("loggedUser");
         setLoggedUser(guest);
+        setIsLoggedIn(false);
         closeAuthorization();
     }
 
     function userSignUp(userData: User) {
         setLoggedUser(userData.email);
+        setIsLoggedIn(true);
         setUsers([...users, userData]);
         setIsOpen(false);
     }
@@ -64,6 +69,7 @@ export const AuthorizationProvider: FC<AuthorizationProviderProps> =
             value={{
                 users,
                 loggedUser,
+                isLoggedIn,
                 guest,
                 openAuthorization,
                 closeAuthorization,

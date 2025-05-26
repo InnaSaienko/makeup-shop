@@ -92,6 +92,7 @@ interface AuthorizationProviderProps {
 
 interface AuthorizationContextType {
     users: User[];
+    isLoggedIn: boolean;
     loggedUser: string;
     guest: string;
     openAuthorization: () => void;
