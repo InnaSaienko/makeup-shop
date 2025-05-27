@@ -42,7 +42,7 @@ export const AuthorizationProvider: FC<AuthorizationProviderProps> =
         return users.some(user => user.email === email && user.password === password);
     }
 
-    function signIn(email: string): void {
+    function logIn(email: string): void {
         setLoggedUser(email);
         setIsLoggedIn(true);
         localStorage.setItem("loggedUser", email);
@@ -74,7 +74,7 @@ export const AuthorizationProvider: FC<AuthorizationProviderProps> =
                 openAuthorization,
                 closeAuthorization,
                 verifyUserCredentials,
-                signIn,
+                logIn,
                 userSignUp,
                 signOut,
             }}
