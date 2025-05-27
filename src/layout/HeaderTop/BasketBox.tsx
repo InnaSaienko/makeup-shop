@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {JSX} from 'react';
 import { useBasket } from "../../context/BasketContext/BasketContext";
 import "./HeaderTop.scss";
 
-const BasketBox : JSX.Element = () => {
+const BasketBox  = (): JSX.Element => {
     const { openBasket, getProductQuantity } = useBasket();
     return (
         <div className="basket-box">
