@@ -3,10 +3,9 @@ import "./App.scss";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { BasketProvider } from "./context/BasketContext/BasketContext";
 import { AuthorizationProvider } from "./context/AuthorizationContext/AuthorizationContext";
-import { HeaderTop } from "./layout/HeaderTop/HeaderTop";
-import { Navigation } from "./layout/Navigation/Navigation";
-import { Footer } from "./layout/Footer/Footer";
+import Footer from "./layout/Footer/Footer";
 import RouterSet from "./components/Routes/RouterSet";
+import Layout from "./layout/Layout";
 
 const App = () => {
   return (
@@ -14,9 +13,9 @@ const App = () => {
         <ErrorBoundary>
           <AuthorizationProvider>
             <BasketProvider>
-              <HeaderTop />
-              <Navigation />
-              <RouterSet />
+              <Layout>
+                  <RouterSet />
+              </Layout>
             </BasketProvider>
           </AuthorizationProvider>
           <Footer />
