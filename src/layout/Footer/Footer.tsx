@@ -1,7 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import "./Footer.scss"
+import {JSX} from "react";
 
-function Footer() {
+const Footer = (): JSX.Element=> {
   return (
     <footer className="footer">
       <div className="container">
@@ -59,4 +60,4 @@ function Footer() {
   );
 }
 
-export { Footer };
+export default Footer;
