@@ -3,7 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import {Preloader} from "../Preloader/Preloader";
 
 // @ts-ignore
-const Home = lazy(() => import("../../pages/Home.jsx") as Promise<{ default: React.ComponentType<any> }>);
+const Home = lazy(() => import("../../pages/Home") as Promise<{ default: React.ComponentType<any> }>);
 const ProductDetails = lazy(() => import("../../components/ProductDetails/ProductDetails") as Promise<{
     default: React.ComponentType<any>
 }>);
