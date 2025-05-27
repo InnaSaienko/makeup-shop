@@ -1,10 +1,10 @@
-import React from "react";
+import React, {JSX} from "react";
 import "./HeaderTop.scss";
 import SearchBox from "./SearchBox";
 import LogoBox from "./LogoBox";
 import UserBox from "./UserBox";
 
-function HeaderTop() {
+const HeaderTop = () : JSX.Element => {
 
     return (
         <header className="header">
@@ -17,4 +17,4 @@ function HeaderTop() {
     );
 }
 
-export {HeaderTop};
+export default HeaderTop;
