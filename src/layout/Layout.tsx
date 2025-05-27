@@ -1,10 +1,7 @@
 import React, {FC, JSX} from 'react';
-// @ts-ignore
-import HeaderTop from "./HeaderTop/HeaderTop.jsx";
-// @ts-ignore
-import Navigation from "./Navigation/Navigation.jsx";
-// @ts-ignore
-import Footer from "./Footer/Footer.jsx";
+import HeaderTop from "../layout/HeaderTop/HeaderTop";
+import Navigation from "./Navigation/Navigation";
+import Footer from "./Footer/Footer";
 
 interface ChildrenProps { children: React.ReactNode }
 
