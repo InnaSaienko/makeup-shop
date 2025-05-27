@@ -1,13 +1,13 @@
-import React, {FC} from 'react';
+import React, {FC, JSX} from 'react';
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
-import {RegistrationForm} from "../../components/RegisterForm/RegistrationForm";
 
-const User : FC = () => {
-    const {isLoggedIn, loggedUser, guest} = useAuthorization();
+const User : FC = () : JSX.Element => {
+    const {openAuthorization, loggedUser, guest} = useAuthorization();
 
     return (
-        <div>
-            {isLoggedIn && loggedUser === guest && <RegistrationForm/>}
+        <div className={`authorization ${loggedUser !== guest ? "logged-in" : "logged-out"}`}
+             onClick={openAuthorization}
+        >
         </div>
     );
 };
