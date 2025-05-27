@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {JSX} from 'react';
 import useVideos from "../../hooks/useFetchVideo";
 import {Preloader} from "../Preloader/Preloader";
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -9,7 +9,7 @@ import "./SliderVideo.scss";
 import {Navigation, Pagination} from 'swiper/modules';
 import SliderTopFive from "../SliderTopFive/SliderTopFive";
 
-export const SliderVideo = () => {
+const SliderVideo = () : JSX.Element => {
     const {videos, loading} = useVideos();
 
     if (loading) {
@@ -41,3 +41,5 @@ export const SliderVideo = () => {
         </div>
     );
 }
+
+export default SliderVideo;
