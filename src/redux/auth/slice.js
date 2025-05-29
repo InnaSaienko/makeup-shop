@@ -15,24 +15,20 @@ const authSlice = createSlice({
         setLoggedUser: (state, action) => {
             state.loggedUser = action.payload;
             state.isLoggedIn = action.payload !== 'guest@example.com';
-            localStorage.setItem('loggedUser', action.payload);
         },
         userSignUp: (state, action) => {
             const newUser = action.payload;
             state.users = [...state.users, newUser];
             state.loggedUser = newUser.email;
             state.isLoggedIn = true;
-            localStorage.setItem('loggedUser', newUser.email);
         },
         logIn: (state, action) => {
             state.loggedUser = action.payload;
             state.isLoggedIn = true;
-            localStorage.setItem('loggedUser', action.payload);
         },
         signOut: (state) => {
             state.loggedUser = 'guest@example.com';
             state.isLoggedIn = false;
-            localStorage.removeItem('loggedUser');
         },
     },
 });
