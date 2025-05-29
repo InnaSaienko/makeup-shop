@@ -1,7 +1,7 @@
-import React, {FC, JSX} from 'react';
+import React, {JSX} from 'react';
 import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 
-const User : FC = () : JSX.Element => {
+const User = () : JSX.Element => {
     const {openAuthorization, loggedUser, guest} = useAuthorization();
 
     return (
