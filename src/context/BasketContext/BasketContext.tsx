@@ -2,11 +2,11 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 import Basket from "../../components/Basket/Basket";
-import { useAuthorization } from "../../context/AuthorizationContext/AuthorizationContext";
+import { useAuthorization } from "../AuthorizationContext/AuthorizationContext";
 
 const BasketContext = createContext<BasketContextType | undefined>(undefined);
 
-export function useBasket() {
+export function useBasket(): BasketContextType {
   const context = useContext(BasketContext);
   if (!context) {
     throw new Error("useBasket must be used within a BasketProvider");

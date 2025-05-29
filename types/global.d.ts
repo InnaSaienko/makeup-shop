@@ -92,12 +92,13 @@ interface AuthorizationProviderProps {
 
 interface AuthorizationContextType {
     users: User[];
+    isLoggedIn: boolean;
     loggedUser: string;
     guest: string;
     openAuthorization: () => void;
     closeAuthorization: () => void;
     verifyUserCredentials: (email: string, password: string) => boolean;
-    signIn: (email: string) => void;
+    logIn: (email: string) => void;
     signOut: (loggedUser: string) => void;
     userSignUp: (userData: User) => void;
 }

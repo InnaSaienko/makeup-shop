@@ -12,7 +12,7 @@ interface LogInProps {
 }
 
 export const LogIn : FC<LogInProps> = ({isOpen}) : JSX.Element | null => {
-    const {guest, loggedUser, closeAuthorization, verifyUserCredentials, signIn} = useAuthorization();
+    const {guest, loggedUser, closeAuthorization, verifyUserCredentials, logIn} = useAuthorization();
     const [isShaking, setIsShaking] = useState(false);
 
     type LoginUser = Pick<User, 'email' | 'password'>;
@@ -28,7 +28,7 @@ export const LogIn : FC<LogInProps> = ({isOpen}) : JSX.Element | null => {
        options:  FormikHelpers<LoginUser>) => {
         const isValidUser = verifyUserCredentials(values.email, values.password);
         if (isValidUser) {
-            signIn(values.email);
+            logIn(values.email);
             options.resetForm();
             closeAuthorization();
         } else {

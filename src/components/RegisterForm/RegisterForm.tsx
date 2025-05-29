@@ -6,7 +6,7 @@ import {CustomInput} from "./CustomInput";
 import "./RegisterForm.scss";
 import {applySchema} from "./ApplySchema";
 
-export const RegisterForm = () : JSX.Element=> {
+const RegisterForm = (): JSX.Element => {
     const navigate = useNavigate();
     const {userSignUp} = useAuthorization();
 
@@ -19,7 +19,7 @@ export const RegisterForm = () : JSX.Element=> {
         navigate(`/`);
     }
 
-    const initialValues : User= {
+    const initialValues: User = {
         first_name: "",
         last_name: "",
         birthday: "",
