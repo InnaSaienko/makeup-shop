@@ -4,6 +4,10 @@ import storage from 'redux-persist/lib/storage';
 import authSlice from "./authSlice";
 import basketSlice from "./basketSlice";
 
+export interface RootState {
+    auth: AuthState;
+    basket: BasketState;
+}
 
 const rootReducer = combineReducers({
     auth: authSlice,
@@ -27,5 +31,4 @@ export const store = configureStore(
 );
 
 export const persistor = persistStore(store);
-export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
