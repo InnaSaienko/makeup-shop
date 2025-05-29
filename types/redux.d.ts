@@ -14,3 +14,7 @@ interface AuthState {
     loggedUser: string;
     isLoggedIn: boolean;
 }
+
+interface BasketState {
+    items: BasketItem[];
+}
