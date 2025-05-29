@@ -18,3 +18,10 @@ interface AuthState {
 interface BasketState {
     items: BasketItem[];
 }
+
+interface BasketItem {
+    id: string;
+    selectedColor: string;
+    product_type: string;
+    quantity: number;
+}

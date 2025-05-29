@@ -14,12 +14,7 @@ interface Product {
     selectedColor?: { hex_value: string; colour_name?: string };
 }
 
-interface BasketItem {
-    id: string;
-    selectedColor: string;
-    product_type: string;
-    quantity: number;
-}
+
 
 interface BasketContextType {
     basketProductsContext: BasketItem[];
