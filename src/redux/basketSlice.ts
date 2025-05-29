@@ -1,9 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-interface BasketState {
-    items: BasketItem[];
-}
-
 const initialState: BasketState = {
     items: [],
 };
