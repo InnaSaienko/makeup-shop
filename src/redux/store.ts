@@ -3,6 +3,15 @@ import {persistReducer, persistStore} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authSlice from "./authSlice";
 import basketSlice from "./basketSlice";
+import {
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist';
+import logger from "redux-logger";
 
 export interface RootState {
     auth: AuthState;
@@ -22,11 +31,15 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = configureStore(
-    {reducer: {
-            reducer: persistedReducer,
-        },
-        devTools: import.meta.env.MODE === 'development',
+export const store = configureStore({
+        reducer: persistedReducer,
+        middleware: getDefaultMiddleware =>
+            getDefaultMiddleware({
+                serializableCheck: {
+                    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+                },
+            }).concat(logger),
+        devTools: process.env.NODE_ENV === 'development',
     }
 );
 
