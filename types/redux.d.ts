@@ -17,6 +17,7 @@ interface AuthState {
 
 interface BasketState {
     items: BasketItem[];
+    isOpen: boolean,
 }
 
 interface BasketItem {

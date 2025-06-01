@@ -14,8 +14,6 @@ interface Product {
     selectedColor?: { hex_value: string; colour_name?: string };
 }
 
-
-
 interface BasketContextType {
     basketProductsContext: BasketItem[];
     setBasketProductsContext: React.Dispatch<React.SetStateAction<BasketItem[]>>;

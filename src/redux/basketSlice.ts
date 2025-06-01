@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 const initialState: BasketState = {
     items: [],
+    isOpen: false,
 };
 
 const basketSlice = createSlice({
@@ -39,8 +40,14 @@ const basketSlice = createSlice({
         setBasket: (state, action: PayloadAction<BasketItem[]>) => {
             state.items = action.payload;
         },
-        clearBasket: (state) => {
+        clearBasket: (state) : void => {
             state.items = [];
+        },
+        openBasket: (state): void => {
+            state.isOpen = true;
+        },
+        closeBasket: (state) : void => {
+            state.isOpen = false;
         },
 
     },
@@ -52,6 +59,8 @@ export const {
     removeFromBasket,
     setBasket,
     clearBasket,
+    openBasket,
+    closeBasket,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;
