@@ -4,8 +4,8 @@ const guest = 'guest@example.com';
 
 const initialState: AuthState  = {
     users: [],
-    loggedUser: 'guest@example.com',
-    isLoggedIn: false,
+    loggedUser: localStorage.getItem('loggedUser') || guest,
+    isLoggedIn: !!localStorage.getItem('loggedUser'),
 };
 
 const authSlice = createSlice({
