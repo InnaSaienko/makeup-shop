@@ -1,4 +1,4 @@
-import React, {JSX} from "react";
+import React, {FC, JSX} from "react";
 import {Preloader} from "../Preloader/Preloader";
 import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";
 import useFetchDataObjectPromise from "../../hooks/useFetchDataObjectPromise";
@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectProductQuantity} from "../../redux/selectors";
 import {addProduct, decreaseQuantity, removeFromBasket} from "../../redux/basketSlice";
 
-const BasketCard = ({id, selectedColor, product_type}: BasketItem) : JSX.Element => {
+const BasketCard : FC<BasketItem> = ({id, selectedColor, product_type} ) : JSX.Element => {
     const dispatch = useDispatch();
     const {data, loading, error} = useFetchDataObjectPromise<Product>(PRODUCTS_QUERY_PATH, {product_type});
     const quantity = useSelector(selectProductQuantity(id, selectedColor));
