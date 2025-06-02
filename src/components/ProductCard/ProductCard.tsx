@@ -1,9 +1,9 @@
-import React from "react";
+import React, {FC, JSX} from "react";
 import {Link, useParams} from "react-router-dom";
 import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal";
 import "./ProductCard.scss";
 
-const ProductCard = (props: Product) => {
+const ProductCard : FC<Product> = (props ) : JSX.Element => {
     const {id, brand, rating, name, api_featured_image: image_link} = props;
 
     const {subcategory = ""} = useParams();
