@@ -13,6 +13,7 @@ interface AuthState {
     users: User[];
     loggedUser: string;
     isLoggedIn: boolean;
+    isOpen: boolean,
 }
 
 interface BasketState {
