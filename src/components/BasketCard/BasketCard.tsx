@@ -1,26 +1,21 @@
-import React from "react";
-import {useBasket} from "../../context/BasketContext/BasketContext";
+import React, {JSX} from "react";
 import {Preloader} from "../Preloader/Preloader";
 import {PRODUCTS_QUERY_PATH} from "../../constatnts/path";
 import useFetchDataObjectPromise from "../../hooks/useFetchDataObjectPromise";
+import {useDispatch, useSelector} from "react-redux";
+import {selectProductQuantity} from "../../redux/selectors";
+import {addProduct, decreaseQuantity, removeFromBasket} from "../../redux/basketSlice";
 
-const BasketCard = ({id, selectedColor, product_type}: BasketItem) => {
-
-    const {
-        getUniqueProductQuantity,
-        addProduct,
-        decreaseQuantity,
-        removeFromBasket,
-    } = useBasket();
-
+const BasketCard = ({id, selectedColor, product_type}: BasketItem) : JSX.Element => {
+    const dispatch = useDispatch();
     const {data, loading, error} = useFetchDataObjectPromise<Product>(PRODUCTS_QUERY_PATH, {product_type});
+    const quantity = useSelector(selectProductQuantity(id, selectedColor));
 
     if (loading) {return <Preloader/>;}
     if (error) return <p>Error: {error}</p>;
 
     // @ts-ignore
     const foundProduct = data.find((product) => parseInt(product.id) === parseInt(id));
-
 
     if (foundProduct) {
         const {name, category, api_featured_image} = foundProduct;
@@ -41,8 +36,7 @@ const BasketCard = ({id, selectedColor, product_type}: BasketItem) => {
                 <div className="product-list__count">
                     <div
                         className="product__button-decrease"
-                        onClick={() => {
-                            decreaseQuantity(id, selectedColor);
+                        onClick={() => {dispatch(decreaseQuantity({id, selectedColor}))
                         }}
                     >
                         -
@@ -51,23 +45,19 @@ const BasketCard = ({id, selectedColor, product_type}: BasketItem) => {
                         key={selectedColor}
                         type="text"
                         name="count[]"
-                        value={getUniqueProductQuantity(id, selectedColor)}
+                        value={quantity}
                         readOnly
                     />
                     <div
                         className="product__button-increase"
-                        onClick={() => {
-                            addProduct(id, selectedColor, product_type);
-                        }}
+                        onClick={() => dispatch(addProduct({id, selectedColor, product_type}))}
                     >
                         +
                     </div>
                     <div className="product__price">Price</div>
                     <div
                         className="product__button-remove"
-                        onClick={() => {
-                            removeFromBasket(id, selectedColor);
-                        }}
+                        onClick={() => dispatch(removeFromBasket({id, selectedColor}))}
                     ></div>
                 </div>
             </li>
