@@ -1,4 +1,4 @@
-import React, {FC, JSX} from "react";
+import React, {JSX} from "react";
 import BasketCard from "../../components/BasketCard/BasketCard";
 import emptyBasket from "../../assets/images/empty-cart.svg";
 import "./Basket.scss";
@@ -6,13 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectBasketItems} from "../../redux/selectors";
 import {closeBasket} from "../../redux/basketSlice";
 
-const Basket: FC<BasketProps> = ({ isOpen }) : JSX.Element | null => {
+const Basket = () : JSX.Element => {
   const dispatch = useDispatch();
   const basketProducts = useSelector(selectBasketItems);
-
-  if (!isOpen) {
-    return null;
-  }
 
   const isEmpty = basketProducts.length === 0;
 
