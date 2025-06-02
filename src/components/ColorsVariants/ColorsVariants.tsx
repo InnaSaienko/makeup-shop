@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {FC, JSX, useEffect, useState} from "react";
 import "./ColorsVariants.scss"
 import {Preloader} from "../Preloader/Preloader";
 
@@ -13,7 +13,7 @@ interface ColorsVariantsProps {
     handleColorSelect: (color: ProductColor) => void;
 }
 
-const ColorsVariants: React.FC<ColorsVariantsProps> = ({product_colors = [], handleColorSelect}) => {
+const ColorsVariants: FC<ColorsVariantsProps> = ({product_colors = [], handleColorSelect}) : JSX.Element | null => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedColor, setSelectedColor] = useState(product_colors?.[0] || null);
 
