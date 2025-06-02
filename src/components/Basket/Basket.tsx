@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, JSX} from "react";
 import BasketCard from "../../components/BasketCard/BasketCard";
 import emptyBasket from "../../assets/images/empty-cart.svg";
 import "./Basket.scss";
@@ -6,9 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectBasketItems} from "../../redux/selectors";
 import {closeBasket} from "../../redux/basketSlice";
 
-
-
-const Basket: React.FC<BasketProps> = ({ isOpen }) => {
+const Basket: FC<BasketProps> = ({ isOpen }) : JSX.Element | null => {
   const dispatch = useDispatch();
   const basketProducts = useSelector(selectBasketItems);
 
@@ -35,7 +33,7 @@ const Basket: React.FC<BasketProps> = ({ isOpen }) => {
               <p>Your basket is empty</p>
             </div>
           ) : (
-              basketProducts.map((product) => (
+              basketProducts.map((product: BasketItem) => (
             <BasketCard
               key={`${product.id}}`}
               {...product}
