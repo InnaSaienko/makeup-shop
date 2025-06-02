@@ -1,18 +1,23 @@
 import React, {FC, JSX, useState} from 'react';
 import {Form, Formik, FormikHelpers} from "formik";
-import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "../RegisterForm/CustomInput";
 import "./LogIn.scss";
 import {Link} from "react-router-dom";
 import LogOut from "../LogOut/LogOut";
 import {applySchema} from "../RegisterForm/ApplySchema";
+import {useDispatch, useSelector} from "react-redux";
+import {verifyUser} from "../../utils/verifyUser";
+import {closeAuthorization, logIn} from "../../redux/authSlice";
+import {selectLoggedUser, selectUsers} from "../../redux/selectors";
 
 interface LogInProps {
     isOpen: boolean;
 }
 
-export const LogIn : FC<LogInProps> = ({isOpen}) : JSX.Element | null => {
-    const {guest, loggedUser, closeAuthorization, verifyUserCredentials, logIn} = useAuthorization();
+export const LogIn: FC<LogInProps> = ({isOpen}): JSX.Element | null => {
+    const dispatch = useDispatch();
+    const loggedUser = useSelector(selectLoggedUser);
+    const users = useSelector(selectUsers);
     const [isShaking, setIsShaking] = useState(false);
 
     type LoginUser = Pick<User, 'email' | 'password'>;
@@ -23,14 +28,15 @@ export const LogIn : FC<LogInProps> = ({isOpen}) : JSX.Element | null => {
     };
     const loginSchema = applySchema.pick(['email', 'password']);
 
-   const onSubmit = (
-       values: LoginUser,
-       options:  FormikHelpers<LoginUser>) => {
-        const isValidUser = verifyUserCredentials(values.email, values.password);
+    const onSubmit = (
+        values: LoginUser,
+        options: FormikHelpers<LoginUser>
+    ) => {
+        const isValidUser = verifyUser(users, values.email, values.password);
         if (isValidUser) {
-            logIn(values.email);
+            dispatch(logIn(values.email));
             options.resetForm();
-            closeAuthorization();
+            dispatch(closeAuthorization());
         } else {
             setIsShaking(true);
             setTimeout(() => setIsShaking(false), 500);
@@ -42,12 +48,12 @@ export const LogIn : FC<LogInProps> = ({isOpen}) : JSX.Element | null => {
     }
 
     return (
-        loggedUser !== guest ? (<LogOut/>) : (
+        loggedUser !== "guest" ? (<LogOut/>) : (
             <div className="form-wrapper-author">
-                <div className="background-overlay" onClick={closeAuthorization}></div>
+                <div className="background-overlay" onClick={() => dispatch(closeAuthorization())}></div>
                 <Formik validationSchema={loginSchema} initialValues={initialValues} onSubmit={onSubmit}>
                     <Form className={`modal-auth ${isShaking ? "shake" : ""}`}>
-                        <span className="close" onClick={closeAuthorization}>&times;</span>
+                        <span className="close" onClick={() => dispatch(closeAuthorization())}>&times;</span>
                         <h2>Login to personal account</h2>
                         {Object.keys(initialValues).map((key) => {
                             return <CustomInput key={key} name={key}/>
@@ -60,7 +66,7 @@ export const LogIn : FC<LogInProps> = ({isOpen}) : JSX.Element | null => {
                             <Link
                                 to="/register-form"
                                 className="auth-link"
-                                onClick={closeAuthorization}
+                                onClick={() => dispatch(closeAuthorization())}
                             >
                                 Sign Up
                             </Link>
