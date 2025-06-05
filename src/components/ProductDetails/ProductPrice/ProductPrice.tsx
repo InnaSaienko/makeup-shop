@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC, JSX} from 'react';
 import { calculatePrice } from "../../../utils/calculatePrice";
 import "./ProductPrice.scss"
 
@@ -12,7 +12,7 @@ interface ProductPriceProps {
     newPrice: string | null;
 }
 
-const ProductPrice: React.FC<ProductPriceProps> = ({ isDeal, productPrice }: ProductPriceProps) => {
+const ProductPrice: FC<ProductPriceProps> = ({ isDeal, productPrice }) : JSX.Element => {
     const { id, price, currency } = productPrice;
     const { deal } = isDeal;
     if (deal) {
