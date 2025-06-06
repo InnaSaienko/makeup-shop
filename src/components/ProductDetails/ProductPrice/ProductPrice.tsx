@@ -7,9 +7,7 @@ interface ProductPriceProps {
         deal: boolean;
         message?: string;
     };
-    productPrice: Product;
-    oldPrice: string;
-    newPrice: string | null;
+    productPrice: Pick<Product, "id" | "price" | "currency">;
 }
 
 const ProductPrice: FC<ProductPriceProps> = ({ isDeal, productPrice }) : JSX.Element => {

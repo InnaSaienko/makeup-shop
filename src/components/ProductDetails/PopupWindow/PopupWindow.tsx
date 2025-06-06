@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {FC, JSX} from 'react';
 import {useState} from "react";
 import "./PopupWindow.scss";
 
 interface ProductImageProps {
     onClose: (isOpen: boolean) => void;
-    productImage: Product;
+    productImage: Pick<Product, "name" | "api_featured_image" | "product_type">;
     isOpen: boolean;
 }
 
-const PopupWindow: React.FC<ProductImageProps> = ({onClose, productImage}: ProductImageProps) => {
+const PopupWindow: FC<ProductImageProps> = ({onClose, productImage}) : JSX.Element => {
     const {name, api_featured_image, product_type} = productImage;
     const [mousePos, setMousePos] = useState({x: 50, y: 50});
 
