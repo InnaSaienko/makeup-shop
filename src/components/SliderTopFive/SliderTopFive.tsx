@@ -16,8 +16,8 @@ const CarouselBanner = () => {
 
     if (loading) return <Preloader/>;
     if (error) return <p>Error: {error}</p>;
+    if (!data) return <p>Error: no product data</p>;
 
-    // @ts-ignore
     const topFive = data.slice(0, 5);
 
     const settings = {
