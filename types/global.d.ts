@@ -106,3 +106,8 @@ interface User {
     repeat_password?: string,
 }
 
+interface ProductColor {
+    hex_value: string;
+    colour_name?: string;
+}
+

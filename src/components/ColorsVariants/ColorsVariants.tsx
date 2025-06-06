@@ -2,12 +2,6 @@ import React, {FC, JSX, useEffect, useState} from "react";
 import "./ColorsVariants.scss"
 import {Preloader} from "../Preloader/Preloader";
 
-
-interface ProductColor {
-    hex_value: string;
-    colour_name?: string;
-}
-
 interface ColorsVariantsProps {
     product_colors?: ProductColor[];
     handleColorSelect: (color: ProductColor) => void;
