@@ -1,13 +1,17 @@
 import React, {JSX} from 'react';
-import { useBasket } from "../../context/BasketContext/BasketContext";
 import "./HeaderTop.scss";
+import {useDispatch, useSelector} from "react-redux";
+import {selectTotalQuantity} from "../../redux/selectors";
+import {openBasket} from "../../redux/basketSlice";
 
 const BasketBox  = (): JSX.Element => {
-    const { openBasket, getProductQuantity } = useBasket();
+    const dispatch = useDispatch();
+    const productQuantity = useSelector(selectTotalQuantity);
+
     return (
         <div className="basket-box">
-            <button className={`basket-widget ${getProductQuantity() === null ? "empty" : ""}`} onClick={openBasket}>
-                <span className={`header-counter${getProductQuantity() === null ? "hidden" : ""}`}>{getProductQuantity()}</span>
+            <button className={`basket-widget ${productQuantity === null ? "empty" : ""}`} onClick={() => dispatch(openBasket())}>
+                <span className={`header-counter${productQuantity === null ? "hidden" : ""}`}>{productQuantity}</span>
             </button>
         </div>
     );
