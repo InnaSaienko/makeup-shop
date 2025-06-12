@@ -40,13 +40,13 @@ const basketSlice = createSlice({
         setBasket: (state, action: PayloadAction<BasketItem[]>) => {
             state.items = action.payload;
         },
-        clearBasket: (state) : void => {
+        clearBasket: (state): void => {
             state.items = [];
         },
         openBasket: (state): void => {
             state.isOpen = true;
         },
-        closeBasket: (state) : void => {
+        closeBasket: (state): void => {
             state.isOpen = false;
         },
 
