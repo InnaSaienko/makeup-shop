@@ -1,7 +1,7 @@
 export const verifyUser = (
-    users: User[],
+    user: { email: string; password: string },
     email: string,
     password: string
 ): boolean => {
-       return users.some((user: User) => user.email === email && user.password === password);
+       return user.email === email && user.password === password;
 };
