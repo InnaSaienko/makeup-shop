@@ -5,13 +5,17 @@ interface ImportMeta {
 }
 
 interface User {
+    first_name:  string,
+    last_name: string,
+    birthday: string,
+    phone: string,
     email: string;
-    password: string;
+    password: string,
+    repeat_password?: string,
 }
 
 interface AuthState {
-    users: User[];
-    loggedUser: string;
+    user: User;
     isLoggedIn: boolean;
     isOpen: boolean,
 }

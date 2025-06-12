@@ -1,11 +1,15 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-const guest = 'guest@example.com';
-
 const initialState: AuthState  = {
-    users: [],
-    loggedUser: localStorage.getItem('loggedUser') || guest,
-    isLoggedIn: !!localStorage.getItem('loggedUser'),
+    user: {
+        first_name: "",
+        last_name: "",
+        birthday: "",
+        phone: "",
+        email: "",
+        password: "",
+    },
+    isLoggedIn: false,
     isOpen: false,
 };
 
@@ -13,20 +17,18 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setUsers: (state, action: PayloadAction<User[]>) => {
-            state.users = action.payload;
+        setUser: (state, action: PayloadAction<User>) => {
+            state.user = action.payload;
         },
         signUp: (state, action: PayloadAction<User>) => {
-            state.users.push(action.payload);
-            state.loggedUser = action.payload.email;
+            state.user = action.payload;
             state.isLoggedIn = true;
         },
         logIn: (state, action: PayloadAction<string>) => {
-            state.loggedUser = action.payload;
             state.isLoggedIn = true;
         },
-        signOut: (state) => {
-            state.loggedUser = guest;
+        logOut: (state) => {
+            state.user = initialState.user;
             state.isLoggedIn = false;
         },
         closeAuthorization: (state) => {
@@ -38,5 +40,5 @@ const authSlice = createSlice({
     },
 });
 
-export const {setUsers, signUp, logIn, signOut, closeAuthorization, openAuthorization} = authSlice.actions;
+export const {setUser, signUp, logIn, logOut, closeAuthorization, openAuthorization} = authSlice.actions;
 export default authSlice.reducer;
