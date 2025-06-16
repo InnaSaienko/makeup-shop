@@ -1,7 +1,7 @@
-import React from "react";
+import React, {JSX} from "react";
 import "./Preloader.scss";
 
-const Preloader: React.FC = () => {
+const Preloader = () : JSX.Element => {
     return (
         <div className="progress">
             <div className="indeterminate"></div>

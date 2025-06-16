@@ -15,8 +15,8 @@ const SliderTopNext = () => {
 
   if (loading) { return <Preloader />; }
   if (error) return <p>Error: {error}</p>;
+  if (!data) return <p>Error: no product data</p>;
 
-  // @ts-ignore
   const topNext = data.slice(5, Math.min(data.length, 21));
 
   const settings = {

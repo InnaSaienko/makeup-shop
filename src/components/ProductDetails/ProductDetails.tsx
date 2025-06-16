@@ -1,7 +1,5 @@
-// @ts-nocheck
-import React, {useState} from "react";
+import React, {FC, useState} from "react";
 import {useParams} from "react-router-dom";
-import {useBasket} from "../../context/BasketContext/BasketContext";
 import {Preloader} from "../Preloader/Preloader";
 import ProductDescription from "./ProductDescription/ProductDescription";
 import ProductImage from "./ProductImage/ProductImage";
@@ -11,27 +9,28 @@ import {getSubcategoryDeal} from "../../utils/getSubcategoryDeal";
 import "./ProductDetails.scss";
 import "../Button/Button.scss";
 import ProductTabs from "./ProductTabs/ProductTabs";
-import Button from "../Button/Button.tsx";
-import useFetchData from "../../hooks/useFetchData";
+import Button from "../Button/Button";
 import useFetchDataObjectPromise from "../../hooks/useFetchDataObjectPromise";
+import {useDispatch} from "react-redux";
+import {addProduct} from "../../redux/basketSlice";
 
-const ProductDetails: React.FC = () => {
-    const {id} = useParams<{id: string}>();
+const ProductDetails: FC = () => {
+    const {id} = useParams<{ id: string }>();
     const {data: product, loading, error} = useFetchDataObjectPromise<Product>(`products/${id}.json`);
-    const {addProduct} = useBasket();
-    const [selectedColor, setSelectedColor] = useState<string | null>(null);
+    const dispatch = useDispatch();
+    const [selectedColor, setSelectedColor] = useState<string | "">("");
 
     if (loading) {
         return <Preloader/>;
     }
-
     if (error) return <p>Error: {error}</p>;
+    if (!product) return <p>Error: no data</p>;
 
-    const handleColorSelect = (color: object) => {
-        setSelectedColor(color);
+    const handleColorSelect = (color: ProductColor) => {
+        setSelectedColor(color.hex_value);
     };
 
-    const {deal, message} = getSubcategoryDeal(product.product_type);
+    const { deal = false, message = "" } = getSubcategoryDeal(product.product_type) ?? {};
 
     return (
         <>
@@ -44,12 +43,12 @@ const ProductDetails: React.FC = () => {
                 }}/>
                 <div className="product-item__buy">
                     <ProductPrice isDeal={{deal}}
-                                  productPrice={{id: id, price: product.price, currency: product.currency}}/>
+                                  productPrice={{id: product.id, price: product.price, currency: product.currency}}/>
                     {product.product_colors && product.product_colors.length > 0 && (
                         <ColorsVariants product_colors={product.product_colors}
                                         handleColorSelect={handleColorSelect}/>
                     )}
-                    <Button onClick={() => addProduct(product.id, selectedColor, product.product_type)}
+                    <Button onClick={() => dispatch(addProduct({id: product.id, selectedColor, product_type: product.product_type}))}
                             context={"Buy"}/>
                 </div>
             </div>

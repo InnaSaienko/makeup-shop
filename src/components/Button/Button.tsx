@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC, JSX} from 'react';
 import "./Button.scss";
 
 type ButtonProps = {
@@ -6,7 +6,7 @@ type ButtonProps = {
     onClick: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({context, onClick}) => {
+const Button: FC<ButtonProps> = ({context, onClick}) : JSX.Element => {
     return (
         <button className="button buy" onClick={onClick}>{context}</button>
     );

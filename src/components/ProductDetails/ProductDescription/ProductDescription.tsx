@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC, JSX} from 'react';
 import { Link } from "react-router-dom";
 import RenderStars from '../RenderStars/RenderStars';
 import "./ProductDescription.scss";
@@ -14,7 +14,7 @@ interface ProductDescriptionProps {
     productDetails: Product;
 }
 
-const ProductDescription: React.FC<ProductDescriptionProps> = ({ isDeal, productDetails} : ProductDescriptionProps) => {
+const ProductDescription: FC<ProductDescriptionProps> = ({ isDeal, productDetails})  : JSX.Element => {
     const { name, brand, rating, product_type } = productDetails;
     const category = getCategoryName(product_type);
     const { deal, message } = isDeal;

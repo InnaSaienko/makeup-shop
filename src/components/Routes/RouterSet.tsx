@@ -2,12 +2,10 @@ import React, {lazy, Suspense} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {Preloader} from "../Preloader/Preloader";
 
-// @ts-ignore
 const Home = lazy(() => import("../../pages/Home") as Promise<{ default: React.ComponentType<any> }>);
 const ProductDetails = lazy(() => import("../../components/ProductDetails/ProductDetails") as Promise<{
     default: React.ComponentType<any>
 }>);
-// @ts-ignore
 const RegisterForm = lazy(() => import("../../components/RegisterForm/RegisterForm") as Promise<{
     default: React.ComponentType<any>
 }>);

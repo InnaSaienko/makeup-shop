@@ -14,27 +14,9 @@ interface Product {
     selectedColor?: { hex_value: string; colour_name?: string };
 }
 
-interface BasketItem {
-    id: string;
-    selectedColor: string;
-    product_type: string;
-    quantity: number;
-}
-
-interface BasketContextType {
-    basketProductsContext: BasketItem[];
-    setBasketProductsContext: React.Dispatch<React.SetStateAction<BasketItem[]>>;
-    addProduct: (id: string, selectedColor: string, product_type: string) => void;
-    decreaseQuantity: (id: string, selectedColor: string) => void;
-    removeFromBasket: (id: string, selectedColor: string) => void;
-    getUniqueProductQuantity: (id: string, selectedColor: string) => number;
-    getProductQuantity: () => number | null;
-    openBasket: () => void;
-    closeBasket: () => void;
-}
-
-interface BasketProps {
-    isOpen: boolean;
+interface ProductColor {
+    hex_value: string;
+    colour_name?: string;
 }
 
 declare module '*.svg' {
@@ -86,30 +68,5 @@ interface Require {
     };
 }
 
-interface AuthorizationProviderProps {
-    children: React.ReactNode;
-}
 
-interface AuthorizationContextType {
-    users: User[];
-    isLoggedIn: boolean;
-    loggedUser: string;
-    guest: string;
-    openAuthorization: () => void;
-    closeAuthorization: () => void;
-    verifyUserCredentials: (email: string, password: string) => boolean;
-    logIn: (email: string) => void;
-    signOut: (loggedUser: string) => void;
-    userSignUp: (userData: User) => void;
-}
-
-interface User {
-    first_name: string,
-    last_name: string,
-    birthday: string,
-    phone: string,
-    email: string,
-    password: string,
-    repeat_password?: string,
-}
 

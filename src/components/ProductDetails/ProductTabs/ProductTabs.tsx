@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, {FC, JSX, useState} from 'react';
 import "./ProductTabs.scss";
 
 interface ProductTabsProps {
     productDetails: Product;
 }
 
-const ProductTabs: React.FC<ProductTabsProps> = ({ productDetails } : ProductTabsProps) => {
+const ProductTabs: FC<ProductTabsProps> = ({productDetails}): JSX.Element => {
     const product = productDetails;
     const filteredKeys = ["name", "brand", "description", "tag_list"].filter(key => key in productDetails) as (keyof Product)[];
     const [activeTab, setActiveTab] = useState(filteredKeys[0]);
@@ -23,7 +23,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ productDetails } : ProductTab
                     </li>
                 ))}
             </ul>
-            
+
             <ul className="product-item-tabs__content">
                 {filteredKeys.map((key) => (
                     <li

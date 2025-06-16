@@ -1,20 +1,21 @@
 import React, {JSX} from 'react';
 import {Form, Formik, FormikHelpers} from "formik";
 import {useNavigate} from "react-router-dom";
-import {useAuthorization} from "../../context/AuthorizationContext/AuthorizationContext";
 import {CustomInput} from "./CustomInput";
 import "./RegisterForm.scss";
 import {applySchema} from "./ApplySchema";
+import {useDispatch} from "react-redux";
+import {signUp} from "../../redux/authSlice";
 
 const RegisterForm = (): JSX.Element => {
     const navigate = useNavigate();
-    const {userSignUp} = useAuthorization();
+    const dispatch = useDispatch();
 
     const onSubmit = (
         values: User,
         options: FormikHelpers<User>) => {
         const {repeat_password, ...userWithoutPassword} = values;
-        userSignUp(userWithoutPassword);
+        dispatch(signUp(userWithoutPassword));
         options.resetForm();
         navigate(`/`);
     }
@@ -22,7 +23,7 @@ const RegisterForm = (): JSX.Element => {
     const initialValues: User = {
         first_name: "",
         last_name: "",
-        birthday: "",
+        date_of_birth: "",
         phone: "",
         email: "",
         password: "",

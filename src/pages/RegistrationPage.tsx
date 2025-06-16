@@ -1,6 +1,5 @@
 import React, {JSX} from 'react';
-// @ts-ignore
-import {RegistrationForm} from "../components/RegisterForm/RegistrationForm.jsx";
+import RegistrationForm from "../components/RegisterForm/RegisterForm";
 
 const RegistrationPage = () : JSX.Element=> {
     return (

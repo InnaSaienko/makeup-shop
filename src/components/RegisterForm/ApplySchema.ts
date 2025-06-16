@@ -13,7 +13,7 @@ export const applySchema = Yup.object().shape({
         .trim()
         .required("Last name is required"),
 
-    birthday: Yup.date()
+    date_of_birth: Yup.date()
         .nullable()
         .min(new Date(1900, 0, 1), "Invalid date"),
 
@@ -26,7 +26,7 @@ export const applySchema = Yup.object().shape({
         .required("Email is required"),
 
     password: Yup.string()
-        .min(6, "Password too short") // Add basic validation
+        .min(6, "Password too short")
         .required("Password is required"),
 
     repeat_password: Yup.string()
