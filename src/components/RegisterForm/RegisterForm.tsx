@@ -23,7 +23,7 @@ const RegisterForm = (): JSX.Element => {
     const initialValues: User = {
         first_name: "",
         last_name: "",
-        birthday: "",
+        date_of_birth: "",
         phone: "",
         email: "",
         password: "",

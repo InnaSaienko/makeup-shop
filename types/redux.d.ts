@@ -7,7 +7,7 @@ interface ImportMeta {
 interface User {
     first_name:  string,
     last_name: string,
-    birthday: string,
+    date_of_birth: string,
     phone: string,
     email: string;
     password: string,
