@@ -10,7 +10,7 @@ const initialState: AuthState  = {
         password: "",
     },
     isLoggedIn: false,
-    isOpen: false,
+    isModalOpen: false,
 };
 
 const authSlice = createSlice({
@@ -32,10 +32,10 @@ const authSlice = createSlice({
             state.isLoggedIn = false;
         },
         closeAuthorization: (state) => {
-            state.isOpen = false;
+            state.isModalOpen = false;
         },
         openAuthorization: (state) => {
-            state.isOpen = true;
+            state.isModalOpen = true;
         },
     },
 });

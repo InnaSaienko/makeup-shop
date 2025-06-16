@@ -17,7 +17,7 @@ interface User {
 interface AuthState {
     user: User;
     isLoggedIn: boolean;
-    isOpen: boolean,
+    isModalOpen: boolean,
 }
 
 interface BasketState {
