@@ -1,19 +1,23 @@
 # Makeup Web Shop
 
-A modern and responsive web shop for makeup products built with React.js.
+Welcome to the make-up-project! This repository contains a modern web application for managing user authentication, shopping basket, etc. The application is built using TypeScript, React, Redux, and other modern web technologies.
+
+# Inspiration
+
+The inspiration for this project comes from the popular Ukrainian e-commerce platform, makeup.com.ua. We aim to provide a similar user experience with a modern and responsive web application.
 
 ## Features
 
 - **User Authentication** 
-- **Shopping Cart Context**
+- **Shopping Cart**
 - **Product Listings**
 - **Responsive Design**
 
 ## Tech Stack
 
-- **Frontend**: React.js, React Router, Context API, Slick-carousel React, Swiper React
+- **Frontend**: React.js, React Router, Context API, Slick-carousel React, Swiper React, TypeScript
 - **State Management**: Context API
-- **Styling**: CSS / Styled Components
+- **Styling**: SCSS / Styled Components
 
 
 ## Contact
